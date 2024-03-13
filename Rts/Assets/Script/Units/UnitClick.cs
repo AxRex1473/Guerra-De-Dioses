@@ -19,6 +19,7 @@ public class UnitClick : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+
             if (Physics.Raycast(ray,out hit,Mathf.Infinity,clickable))
             {
                 //if we hit a clickable object
@@ -36,7 +37,7 @@ public class UnitClick : MonoBehaviour
             else
             {
                 //if we didn't and we're not shift clicking
-                if (!Input.GetKey(KeyCode.RightShift))
+                if (!Input.GetKey(KeyCode.LeftShift))
                 {
                 UnitSelections.Instance.DeselectAll();
                 }   
