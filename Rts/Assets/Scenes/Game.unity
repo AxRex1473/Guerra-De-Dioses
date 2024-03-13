@@ -2685,6 +2685,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4478442420524755373, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
+      propertyPath: maxX
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478442420524755373, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
+      propertyPath: maxY
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478442420524755373, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
+      propertyPath: maxZ
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478442420524755373, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478442420524755373, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
+      propertyPath: zoomSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7551496354055003716, guid: 76234c476a0861a4480a9fd942019ae6, type: 3}
       propertyPath: m_Name
       value: CameraPlayer
@@ -3011,7 +3031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1346810316
 RectTransform:
   m_ObjectHideFlags: 0
