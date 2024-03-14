@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1040985984139128907}
   - component: {fileID: 3278317904353074666}
   - component: {fileID: 3184380304831365548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4237505763795879445}
   - component: {fileID: 4478442420524755373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,8 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfead8656d4c53458bfcb2cd31459c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 10
   panSpeed: 20
-  zoomSpeed: 5
+  zoomSpeed: 10
   minY: 10
-  maxY: 500
+  maxY: 200
+  minX: 0
+  maxX: 800
+  minZ: 0
+  maxZ: 700
