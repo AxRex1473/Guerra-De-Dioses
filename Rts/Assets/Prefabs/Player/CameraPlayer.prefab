@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 667532981822760608}
   - component: {fileID: 1040985984139128907}
   - component: {fileID: 3278317904353074666}
+  - component: {fileID: 1360972698293966153}
   - component: {fileID: 3184380304831365548}
   m_Layer: 0
   m_Name: Main Camera
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5738163261176115994}
   serializedVersion: 2
   m_LocalRotation: {x: -0.24293564, y: 0.38576958, z: -0.106072724, w: -0.8836927}
-  m_LocalPosition: {x: 248.6, y: 235.9, z: -91.6}
+  m_LocalPosition: {x: 322.3, y: 240.9, z: -95.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,6 +94,27 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5738163261176115994}
   m_Enabled: 1
+--- !u!114 &1360972698293966153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5738163261176115994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acfead8656d4c53458bfcb2cd31459c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  panSpeed: 20
+  zoomSpeed: 5
+  minY: 10
+  maxY: 80
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!54 &3184380304831365548
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,3 +192,7 @@ MonoBehaviour:
   zoomSpeed: 5
   minY: 10
   maxY: 500
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
