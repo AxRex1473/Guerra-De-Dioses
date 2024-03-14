@@ -7,7 +7,7 @@ public class UnitMovement : MonoBehaviour
     NavMeshAgent myAgent;
     public LayerMask ground;
     private Animator animator;
-    public float stoppingDistance = .3f; // Umbral para detener la animación de caminar
+    public float stoppingDistance = .3f; 
 
     void Start()
     {
@@ -29,7 +29,6 @@ public class UnitMovement : MonoBehaviour
             }
         }
 
-        // Verificar si el agente está en movimiento
         if (myAgent.velocity.magnitude > 0)
         {
             animator.SetBool("isWalking", true);
@@ -39,7 +38,6 @@ public class UnitMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-        // Verificar si el agente está cerca de su destino
         if (myAgent.remainingDistance <= stoppingDistance)
         {
             // Detener el agente
@@ -47,7 +45,6 @@ public class UnitMovement : MonoBehaviour
         }
         else
         {
-            // Continuar el movimiento del agente
             myAgent.isStopped = false;
         }
     }
