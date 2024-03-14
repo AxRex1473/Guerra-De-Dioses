@@ -28,7 +28,7 @@ public class UnitSelections : MonoBehaviour
     {
         DeselectAll();
         unitsSelected.Add(unitToAdd);
-        unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
+        unitToAdd.transform.GetChild(0).gameObject.SetActive(true); //
         unitToAdd.GetComponent<UnitMovement>().enabled = true;
     }
 
@@ -62,7 +62,7 @@ public class UnitSelections : MonoBehaviour
     {
         foreach(var unit in unitsSelected)
         {
-            unit.GetComponent<UnitMovement>().enabled = false;
+            unit.GetComponent<UnitMovement>().enabled = false; //
             unit.transform.GetChild(0).gameObject.SetActive(false);
         }
 
