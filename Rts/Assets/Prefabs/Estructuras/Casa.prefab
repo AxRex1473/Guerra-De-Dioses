@@ -222,5 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f73e513f86f7e43b4babc891b9c654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nativePrefab: {fileID: 2148642817058528145, guid: fe65de53cb6d41c4e9c889a1b81c1e55, type: 3}
+  nativePrefab: {fileID: 1166601147475684067, guid: f2f21176db542cd498c0d71b01ee9b4a, type: 3}
   spawnPoint: {fileID: 7677866858529982538}

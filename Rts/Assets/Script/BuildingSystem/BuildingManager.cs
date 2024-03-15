@@ -4,20 +4,26 @@ public class BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
     public GameObject pendingObject;
+    public Canvas ConstructionUI;
 
     private Vector3 pos;
 
     [SerializeField] private LayerMask LayerMask;
 
-    public float grifSize;
+    public float gridSize;
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            ConstructionUI.gameObject.SetActive(!ConstructionUI.gameObject.activeSelf);
+        }
+
         if (pendingObject != null)
         {
             pendingObject.transform.position = new Vector3(
                 RoundToNearestGrid(pos.x),
-                RoundToNearestGrid(pos.y) + 7.5f,
+                RoundToNearestGrid(pos.y) + 1,
                 RoundToNearestGrid(pos.z)
                 );
 
@@ -51,11 +57,11 @@ public class BuildingManager : MonoBehaviour
 
     float RoundToNearestGrid(float pos)
     {
-        float xDiff = pos % grifSize;
+        float xDiff = pos % gridSize;
         pos -= xDiff;
-        if(xDiff > (grifSize / 2))
+        if(xDiff > (gridSize / 2))
         {
-            pos += grifSize;
+            pos += gridSize;
         }
         return pos;
     }
