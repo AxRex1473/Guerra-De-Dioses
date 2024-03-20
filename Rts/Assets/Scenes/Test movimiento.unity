@@ -781,6 +781,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 128
+  stoppingDistance: 0.3
 --- !u!1 &2068265737
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +957,10 @@ PrefabInstance:
     - target: {fileID: 1980256985746616409, guid: f2f21176db542cd498c0d71b01ee9b4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039721115767407469, guid: f2f21176db542cd498c0d71b01ee9b4a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
