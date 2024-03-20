@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 640461791781200648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0.0000076580045, z: -0.2}
+  m_LocalPosition: {x: -0.0751, y: 0.0107, z: -0.003}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -222,5 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f73e513f86f7e43b4babc891b9c654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nativePrefab: {fileID: 1166601147475684067, guid: f2f21176db542cd498c0d71b01ee9b4a, type: 3}
+  nativePrefab: {fileID: 4657271383354382248, guid: 35981865a6c24fb418974f463d58f3d3, type: 3}
   spawnPoint: {fileID: 7677866858529982538}

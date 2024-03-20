@@ -350,11 +350,10 @@ MonoBehaviour:
   objects:
   - {fileID: 9129977340231858725, guid: 282442c30e49d1b45b2371ffe73a2b21, type: 3}
   pendingObject: {fileID: 0}
-  ConstructionUI: {fileID: 0}
   LayerMask:
     serializedVersion: 2
     m_Bits: 64
-  gridSize: 0
+  grifSize: 15
 --- !u!114 &7358212153232680754
 MonoBehaviour:
   m_ObjectHideFlags: 0
