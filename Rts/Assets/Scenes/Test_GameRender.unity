@@ -271,9 +271,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c31178515182f2c4ca1803e7db256a25, type: 3}
   m_PrefabInstance: {fileID: 36847367}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
 --- !u!1001 &37530849
 =======
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!1 &45509802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4455088686249942923, guid: 0f215bd9a181efe4390ed1452a43ba46, type: 3}
@@ -2745,8 +2748,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b729d38a688cd4840a3cbab59b68d769, type: 3}
   m_PrefabInstance: {fileID: 376390164}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
 =======
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!1001 &377991449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4197,12 +4203,16 @@ Transform:
   m_PrefabInstance: {fileID: 337364276}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &523000135
+<<<<<<< HEAD
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
     m_TransformParent: {fileID: 1758379948}
     m_Modifications:
@@ -4251,6 +4261,8 @@ PrefabInstance:
       value: Casa (1)
       objectReference: {fileID: 0}
 =======
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1166601147475684067, guid: eb9584f9aee14944fa514a7d980a95d3, type: 3}
@@ -4301,16 +4313,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
   m_SourcePrefab: {fileID: 100100000, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
 =======
   m_SourcePrefab: {fileID: 100100000, guid: eb9584f9aee14944fa514a7d980a95d3, type: 3}
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: eb9584f9aee14944fa514a7d980a95d3, type: 3}
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!1001 &525722246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4642,11 +4661,15 @@ PrefabInstance:
     - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
       propertyPath: ConstructionUI
       value: 
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
       objectReference: {fileID: 4331651680057043869}
 =======
       objectReference: {fileID: 1213509955}
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+      objectReference: {fileID: 1213509955}
+>>>>>>> parent of 7fbf624 (FBX y Building System)
     - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
       propertyPath: LayerMask.m_Bits
       value: 128
@@ -4658,6 +4681,7 @@ PrefabInstance:
     - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
       propertyPath: objects.Array.data[0]
       value: 
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
       objectReference: {fileID: 5259226335481497356, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
     - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
@@ -4723,6 +4747,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 804343411}
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+      objectReference: {fileID: 1958777401}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[1]
+      value: 
+      objectReference: {fileID: 45509802}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1188273127}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[3]
+      value: 
+      objectReference: {fileID: 1511419256}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[4]
+      value: 
+      objectReference: {fileID: 2133927483}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[5]
+      value: 
+      objectReference: {fileID: 2023196377}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[6]
+      value: 
+      objectReference: {fileID: 1329228921}
+    - target: {fileID: 1531193868241669446, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
+      propertyPath: objects.Array.data[7]
+      value: 
+      objectReference: {fileID: 804343411}
+>>>>>>> parent of 7fbf624 (FBX y Building System)
     - target: {fileID: 3670818550702770730, guid: 6ff0506c0730e17459892730b9d66d22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.015087
@@ -7131,7 +7186,10 @@ RectTransform:
   - {fileID: 1844128768}
   - {fileID: 1213509952}
   - {fileID: 1829278035}
+<<<<<<< HEAD
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
   - {fileID: 1920940871}
   - {fileID: 56403235}
   - {fileID: 238838398}
@@ -9069,8 +9127,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b729d38a688cd4840a3cbab59b68d769, type: 3}
   m_PrefabInstance: {fileID: 1209254802}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
 =======
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!224 &1213509952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1944143144551773981, guid: 0f215bd9a181efe4390ed1452a43ba46, type: 3}
@@ -15071,8 +15132,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a9eaa36e46826744b8513de9cb873c9, type: 3}
   m_PrefabInstance: {fileID: 1956416471}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD:Rts/Assets/Scenes/NewGameRender.unity
 =======
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!1 &1958777401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1778676778046396651, guid: 0f215bd9a181efe4390ed1452a43ba46, type: 3}
@@ -16739,7 +16803,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3090432971517487789, guid: 0f215bd9a181efe4390ed1452a43ba46, type: 3}
   m_PrefabInstance: {fileID: 1289628443}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> parent of 7fbf624 (FBX y Building System):Rts/Assets/Scenes/Test_GameRender.unity
+=======
+>>>>>>> parent of 7fbf624 (FBX y Building System)
 --- !u!1001 &2146283411
 PrefabInstance:
   m_ObjectHideFlags: 0
