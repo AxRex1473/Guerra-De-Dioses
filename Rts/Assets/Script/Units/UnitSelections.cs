@@ -7,7 +7,7 @@ public class UnitSelections : MonoBehaviour
     public List<GameObject> unitsSelected = new List<GameObject>();
 
     private static UnitSelections _instance;
-    public static UnitSelections Instance {  get { return _instance; } }
+    public static UnitSelections Instance { get { return _instance; } }
 
     private void Awake()
     {
@@ -28,13 +28,13 @@ public class UnitSelections : MonoBehaviour
     {
         DeselectAll();
         unitsSelected.Add(unitToAdd);
-        unitToAdd.transform.GetChild(0).gameObject.SetActive(true); //
+        unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
         unitToAdd.GetComponent<UnitMovement>().enabled = true;
     }
 
     public void ShiftClickSelect(GameObject unitToAdd)
     {
-        if(!unitsSelected.Contains(unitToAdd))
+        if (!unitsSelected.Contains(unitToAdd))
         {
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
@@ -50,19 +50,19 @@ public class UnitSelections : MonoBehaviour
 
     public void DragSelect(GameObject unitToAdd)
     {
-        if(!unitsSelected.Contains(unitToAdd))
+        if (!unitsSelected.Contains(unitToAdd))
         {
             unitsSelected.Add(unitToAdd);
-            unitToAdd.transform.GetChild (0).gameObject.SetActive(true);
+            unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
             unitToAdd.GetComponent<UnitMovement>().enabled = true;
         }
     }
-    
+
     public void DeselectAll()
     {
-        foreach(var unit in unitsSelected)
+        foreach (var unit in unitsSelected)
         {
-            unit.GetComponent<UnitMovement>().enabled = false; //
+            unit.GetComponent<UnitMovement>().enabled = false;
             unit.transform.GetChild(0).gameObject.SetActive(false);
         }
 

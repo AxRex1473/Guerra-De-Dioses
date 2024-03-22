@@ -23,7 +23,7 @@ public class BuildingManager : MonoBehaviour
         {
             pendingObject.transform.position = new Vector3(
                 RoundToNearestGrid(pos.x),
-                RoundToNearestGrid(pos.y) + 1,
+                RoundToNearestGrid(pos.y),
                 RoundToNearestGrid(pos.z)
                 );
 

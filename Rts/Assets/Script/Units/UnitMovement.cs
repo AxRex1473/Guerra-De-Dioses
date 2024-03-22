@@ -7,7 +7,7 @@ public class UnitMovement : MonoBehaviour
     NavMeshAgent myAgent;
     public LayerMask ground;
     private Animator animator;
-    public float stoppingDistance = .3f; 
+    public float stoppingDistance =1f; 
 
     void Start()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3774079323545285280}
   - component: {fileID: 3203897616545986054}
   - component: {fileID: 768818121380579079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d57e8fd67d1fddd4fbe2f2131841d382, type: 3}
       propertyPath: m_Name
       value: Escultura
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d57e8fd67d1fddd4fbe2f2131841d382, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d57e8fd67d1fddd4fbe2f2131841d382, type: 3}
       propertyPath: m_TagString
