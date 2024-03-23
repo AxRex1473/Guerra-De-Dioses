@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("AldeanoSoldado"))
         {
-            InvokeRepeating("ReducirSalud", 1f, 1f); // Reduce la salud cada segundo
+            InvokeRepeating("ReducirSalud", 1f, 1f); 
         }
     }
 
@@ -24,13 +24,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("AldeanoSoldado"))
         {
-            CancelInvoke("ReducirSalud"); // Detiene la reducción de salud cuando el aldeano sale del trigger
+            CancelInvoke("ReducirSalud"); 
         }
     }
 
     private void ReducirSalud()
     {
-        saludActual -= 10; // Reducción de salud cada segundo, puedes ajustar este valor según sea necesario
+        saludActual -= 10; 
 
         if (saludActual <= 0)
         {
@@ -40,7 +40,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void DestruirObjeto()
     {
-        // Destruye el objeto cuando su salud llega a 0
         Destroy(gameObject);
     }
 }
