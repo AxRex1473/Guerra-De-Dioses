@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.name.Contains("Granja") || gameObject.name.Contains("Chinampa"))
+        if (gameObject.name.Contains("Granja") || gameObject.name.Contains("Chinampa_Prueba"))
         {
             StartCoroutine(foodGen());
         }
