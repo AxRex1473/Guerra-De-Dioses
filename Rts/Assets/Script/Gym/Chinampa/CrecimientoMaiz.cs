@@ -1,28 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CrecimientoMaiz : MonoBehaviour
 {
-    public GameObject[] maiz;
-    private int _prefabIndex = 0;
-    private float _timer = 15f;
-    private float _changeInter = 5f;
+    public GameObject maizPrefab;
+    public GameObject chinampa;
+    public float growthTime;
+
+    private bool _maizGrowth = false;
+
+    private void Start()
+    {
+        
+    }
+
+    private IEnumerator MaizGrowing(Vector3 position)
+    {
+        _maizGrowth = true;
+        GameObject maiz = Instantiate(maizPrefab, position, Quaternion.identity);
+        float elapsedTime = 0;
+
+        while (elapsedTime < growthTime)
+        {
+            elapsedTime += Time.deltaTime;
+            maiz.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, elapsedTime / growthTime);
+            yield return null;
+        }
+
+        _maizGrowth = false;
+    }
 
     private void Update()
     {
-        _timer += Time.deltaTime;
-
-        if(_timer > _changeInter && _prefabIndex < maiz.Length)
+        if(!_maizGrowth && Input.GetMouseButtonDown(0))
         {
-            _timer = 0f;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
-
-            _prefabIndex++;
+            if(Physics.Raycast(ray, out hit)) 
+            {
+                if(hit.collider.gameObject == chinampa)
+                {
+                    StartCoroutine(MaizGrowing(hit.point));
+                }
+            }
         }
     }
 }

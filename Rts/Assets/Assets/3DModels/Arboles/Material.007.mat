@@ -73,10 +73,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AO: 0.67
-    - _BaseLight: 0.358
+    - _AO: 1
+    - _BaseLight: 0.5
     - _BumpScale: 1
-    - _Cutoff: 0.438
+    - _Cutoff: 0.449
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
