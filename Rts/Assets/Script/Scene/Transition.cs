@@ -11,7 +11,7 @@ public class Transition : MonoBehaviour
     public void SwitchScene(string sceneName)
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Test_GAME_Ax");
     }
     
     public void Quit()
