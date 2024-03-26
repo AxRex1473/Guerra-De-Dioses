@@ -9,6 +9,7 @@ public class JSONDataService : IDataService
 {
     public bool SaveData<T>(string RelativePath, T Data, bool Encrypted)
     {
+        //Busca el Json en la dirección .
         string path = Application.persistentDataPath + RelativePath;
 
         //If para hacer que si el file no existe se guarda, y si ya existe borra el viejo file y se guarda el nuevo
@@ -41,6 +42,7 @@ public class JSONDataService : IDataService
     {
         string path = Application.persistentDataPath + RelativePath;
 
+        //Checa si tiene un archivo de guardado
         if(!File.Exists(path))
         {
             Debug.LogError($"Cannot load file at {path}.File does not exist!");

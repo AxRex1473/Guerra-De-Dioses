@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
 {
@@ -8,6 +9,17 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject _canvasGame;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
+
+    //Estos son para que funcione el guardado del juego
+    private IDataService DataService = new JSONDataService();
+    private PlayerStats PlayerStats = new PlayerStats();
+    private bool EncryptionEnabled;
+
+    public void ToggleEncryption(bool EncryptionEnabled)
+    {
+        this.EncryptionEnabled = EncryptionEnabled;
+    }
+
 
     //Aquí se pone pausa a la música del juego, se pone play a la música de pausa y se pone el canvas
     public void Pause()
@@ -32,7 +44,14 @@ public class PauseGame : MonoBehaviour
 
     public void ExitGame()
     {
-
+        if (DataService.SaveData("/player-stats.json", PlayerStats, EncryptionEnabled))
+        {
+            Debug.Log("Game saved!");             
+        }
+        else
+        {
+            Debug.LogError("Could not save file");           
+        }
     }
 
 
