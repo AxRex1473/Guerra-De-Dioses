@@ -7,16 +7,19 @@ public class EnemyHealth : MonoBehaviour
     public int saludMaxima = 100;
     public int saludActual;
 
+    private Animator animator;
+
     private void Start()
     {
         saludActual = saludMaxima;
+        animator = GetComponent<Animator>(); 
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("AldeanoSoldado"))
         {
-            InvokeRepeating("ReducirSalud", 1f, 1f); 
+            InvokeRepeating("ReducirSalud", 1f, 1f);
         }
     }
 
@@ -24,21 +27,22 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("AldeanoSoldado"))
         {
-            CancelInvoke("ReducirSalud"); 
+            CancelInvoke("ReducirSalud");
         }
     }
 
     private void ReducirSalud()
     {
-        saludActual -= 10; 
+        saludActual -= 10;
 
         if (saludActual <= 0)
         {
-            DestruirObjeto();
+            animator.SetBool("IsDead", true);
+            Invoke("DestruirAldeano", 5);
         }
     }
 
-    private void DestruirObjeto()
+    private void DestruirAldeano()
     {
         Destroy(gameObject);
     }
