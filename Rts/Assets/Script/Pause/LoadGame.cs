@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,25 +8,29 @@ using UnityEngine.UI;
 
 public class LoadGame : MonoBehaviour
 {
-    //Estos son para que funcione el guardado del juego
-    private IDataService DataService = new JSONDataService();
-    private bool EncryptionEnabled;
+    // Reference to StatCon class
+    public StatConData statCon;
 
-    public void ToggleEncryption(bool EncryptionEnabled)
-    {
-        this.EncryptionEnabled = EncryptionEnabled;
-    }
 
     public void LoadGameFile()
-    {        
+    {
         try
         {
-            //Carga el archivo, ahorita el Encryption no hace nada. Sirve para visualizar cuanto tarda en cargar el archivo
-            StatCon data = DataService.LoadData<StatCon>("/player-stats.json", EncryptionEnabled);
+            string filePath = Application.persistentDataPath + "/player-Resources.json"; // Path to the JSON file
+            if (File.Exists(filePath))
+            {
+                string jsonData = File.ReadAllText(filePath); // Read JSON data from file
+                statCon = JsonUtility.FromJson<StatConData>(jsonData); // Deserialize JSON data into StatCon object
+                Debug.Log("Game data loaded successfully!");
+            }
+            else
+            {
+                Debug.LogError("File not found: " + filePath);
+            }
         }
         catch (Exception e)
         {
-            Debug.LogError($"Could not read file! Show something on the UI here!");
+            Debug.LogError("Could not load game data: " + e.Message);
         }
     }
 

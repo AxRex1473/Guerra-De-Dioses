@@ -13,7 +13,7 @@ public class PauseGame : MonoBehaviour
     //Estos son para que funcione el guardado del juego
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
-    private StatCon PlayerStats = new StatCon();
+    private StatConData _statConData = new StatConData();
     private bool EncryptionEnabled;
 
     public void ToggleEncryption(bool EncryptionEnabled)
@@ -25,8 +25,8 @@ public class PauseGame : MonoBehaviour
     //Aquí se pone pausa a la música del juego, se pone play a la música de pausa y se pone el canvas
     public void Pause()
     {
-       // _audioGame.Pause();
-       //_audioPause.Play(); 
+        // _audioGame.Pause();
+        //_audioPause.Play(); 
         _canvasPause.SetActive(true);
         _canvasGame.SetActive(false);
         Time.timeScale = 0.0f;
@@ -45,21 +45,21 @@ public class PauseGame : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("Se Presiono");
-        if (DataService.SaveData("/player-Resources.json", PlayerStats, EncryptionEnabled))
+        if (_statConData != null)
         {
-            Debug.Log("Game saved!");             
-        }
-        else
-        {
-            Debug.LogError("Could not save file");           
+            // Update StatConData with current stats
+            _statConData.totalStone = StatCon.totalStone;
+            _statConData.totalFood = StatCon.totalFood;
+            _statConData.totalNative = StatCon.totalNative;
+
+            if (DataService.SaveData("/player-Resources.json", _statConData, EncryptionEnabled))
+            {
+                Debug.Log("Game saved!");
+            }
+            else
+            {
+                Debug.LogError("Could not save file");
+            }
         }
     }
-
-    public void ExitGame()
-    {
-
-    }
-
-
 }
