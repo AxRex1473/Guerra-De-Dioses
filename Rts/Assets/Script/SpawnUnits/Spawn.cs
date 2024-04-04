@@ -5,39 +5,55 @@ public class Spawn : MonoBehaviour
 {
     public GameObject nativePrefab;
     public Transform spawnPoint;
-    private int spawnIndex = 3;
+    public int spawnIndex = 3;
 
-    private void Awake()
-    {
-        //Con esto hago que al iniciar el juego se cargue el total de nativos que tenga en el Archivo JSON
-        //SpawnTotalNatives(StatCon.totalNative);
-    }
+    // Flag to check if natives have been spawned
+    private bool nativesSpawnedAllAtOnce = false;
 
     void Start()
     {
-        StartCoroutine(NativeSpawn());
+        SpawnAllNatives(); // Spawn all natives at once when the script starts
     }
 
-    IEnumerator NativeSpawn()
+    void SpawnAllNatives()
     {
-
-        for (int i = 0;i < spawnIndex;i ++)
-        {           
-            Vector3 pos = spawnPoint.position;
-            Quaternion rot = spawnPoint.rotation;
-            Instantiate(nativePrefab, pos, rot);
-            yield return new WaitForSeconds(3);
-            //StartCoroutine(NativeSpawn());
-        }        
+        int totalNatives = StatCon.totalNative; // Get the total number of natives from StatCon
+        if (!nativesSpawnedAllAtOnce)
+        {
+            // Spawn all natives at once
+            for (int i = 0; i < Mathf.Min(totalNatives, spawnIndex); i++)
+            {
+                Vector3 pos = spawnPoint.position;
+                Quaternion rot = spawnPoint.rotation;
+                Instantiate(nativePrefab, pos, rot);
+            }
+            nativesSpawnedAllAtOnce = true; // Set flag to true after all natives have been spawned at once
+        }
     }
 
-    private void SpawnTotalNatives(int NumberofNatives)
+    public void SpawnTotalNatives(int numberOfNatives)
     {
-        for (int i = 0; i < NumberofNatives; i++)
+        if (nativesSpawnedAllAtOnce)
+        {
+            int nativesSpawned = 0;
+            while (nativesSpawned < numberOfNatives)
+            {
+                // Spawn up to 3 natives at a time
+                int batchNatives = Mathf.Min(3, numberOfNatives - nativesSpawned);
+                StartCoroutine(SpawnNativesWithDelay(batchNatives));
+                nativesSpawned += batchNatives;
+            }
+        }
+    }
+
+    IEnumerator SpawnNativesWithDelay(int numberOfNatives)
+    {
+        for (int i = 0; i < numberOfNatives; i++)
         {
             Vector3 pos = spawnPoint.position;
             Quaternion rot = spawnPoint.rotation;
             Instantiate(nativePrefab, pos, rot);
+            yield return new WaitForSeconds(3);
         }
     }
 }

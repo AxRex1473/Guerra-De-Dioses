@@ -11,9 +11,10 @@ public class LoadGame : MonoBehaviour
     // Reference to StatCon class
     public StatConData statConData;
 
+
     private void Awake()
     {
-        //LoadGameFile();
+        LoadGameFile();
     }
 
     public void LoadGameFile()
@@ -29,7 +30,7 @@ public class LoadGame : MonoBehaviour
                 StatCon.totalStone=statConData.totalStone;
                 StatCon.totalFood= statConData.totalFood;
                 //Tengo que hacer que se genere en el Script de Spawn la misma cantidad de Nativos que en el Script
-                
+                StatCon.totalNative = statConData.totalNative;
                 Debug.Log("Game data loaded successfully!");
             }
             else
