@@ -19,19 +19,19 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKey("w"))
         {
-            pos.z += panSpeed * Time.deltaTime * moveSpeed;
+            pos.x += panSpeed * Time.deltaTime * moveSpeed;
         }
         if (Input.GetKey("s"))
         {
-            pos.z -= panSpeed * Time.deltaTime * moveSpeed;
+            pos.x -= panSpeed * Time.deltaTime * moveSpeed;
         }
         if (Input.GetKey("d"))
         {
-            pos.x += panSpeed * Time.deltaTime * moveSpeed;
+            pos.z -= panSpeed * Time.deltaTime * moveSpeed;
         }
         if (Input.GetKey("a"))
         {
-            pos.x -= panSpeed * Time.deltaTime * moveSpeed;
+            pos.z += panSpeed * Time.deltaTime * moveSpeed;
         }
 
         if (Input.GetKey("q"))

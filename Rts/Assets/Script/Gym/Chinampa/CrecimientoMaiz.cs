@@ -11,6 +11,7 @@ public class CrecimientoMaiz : MonoBehaviour
 
     private void Update()
     {
+
         _timer += Time.deltaTime;
 
         if( _timer > _changeInter && _prefabIndex < maiz.Length)
@@ -18,6 +19,7 @@ public class CrecimientoMaiz : MonoBehaviour
             _timer = 0f;
 
             Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
+            new WaitForSeconds(10);
 
             _prefabIndex++;
         }
