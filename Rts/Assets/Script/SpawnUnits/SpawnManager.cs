@@ -20,10 +20,11 @@ public class SpawnManager : MonoBehaviour
 
         int nativesPerHouse = Mathf.Min(3, remainingSpawns / totalHouses);
 
+        /*
         foreach (Spawn spawnScript in spawnScripts)
         {
-            spawnScript.SpawnTotalNatives(nativesPerHouse); // Spawn natives per house
-        }
+            spawnScript.SpawnTotalNatives(); // Spawn natives per house
+        }*/
 
     }
 }
