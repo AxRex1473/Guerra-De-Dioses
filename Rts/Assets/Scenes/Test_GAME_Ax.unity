@@ -14718,6 +14718,7 @@ GameObject:
   - component: {fileID: 6274613929598825209}
   - component: {fileID: 2972775003159905173}
   - component: {fileID: 6513068587122010593}
+  - component: {fileID: 6513068587122010594}
   m_Layer: 0
   m_Name: BuildingManager
   m_TagString: Untagged
@@ -18110,6 +18111,18 @@ MonoBehaviour:
   selectedObject: {fileID: 0}
   objUi: {fileID: 3405516265066569512}
   targetImage: {fileID: 7361725311212530791}
+--- !u!114 &6513068587122010594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841241595868664941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d227fe5dfb9d944088c996b6589630a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6527095693074312584
 PrefabInstance:
   m_ObjectHideFlags: 0

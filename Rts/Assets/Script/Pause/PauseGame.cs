@@ -14,7 +14,10 @@ public class PauseGame : MonoBehaviour
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
     private StatConData _statConData = new StatConData();
+    private BuildingsData _buildingsData = new BuildingsData();
     private bool EncryptionEnabled;
+
+  
 
     public void ToggleEncryption(bool EncryptionEnabled)
     {
@@ -51,8 +54,23 @@ public class PauseGame : MonoBehaviour
             _statConData.totalStone = StatCon.totalStone;
             _statConData.totalFood = StatCon.totalFood;
             _statConData.totalNative = StatCon.totalNative;
+          
+
 
             if (DataService.SaveData("/player-Resources.json", _statConData, EncryptionEnabled))
+            {
+                Debug.Log("Game saved!");
+            }
+            else
+            {
+                Debug.LogError("Could not save file");
+            }
+        }
+        if(_buildingsData != null)
+        {
+            _buildingsData.Buildings = LoadBuildings.estructureObjects;
+
+            if(DataService.SaveData("/player-Buildings.json",_buildingsData, EncryptionEnabled))
             {
                 Debug.Log("Game saved!");
             }

@@ -10,6 +10,9 @@ public class BuildingManager : MonoBehaviour
 
     [SerializeField] private LayerMask LayerMask;
 
+    //Referencia del código donde podré obtener una lista de las estructuras las cuales después podré usar para guardar los datos
+   // [SerializeField]private LoadBuildings loadBuilding;
+
     public float gridSize;
 
     void Update()
@@ -36,7 +39,9 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceObject()
     {
+        //LoadBuildings.estructureObjects.Add(pendingObject);
         pendingObject = null;
+
     }
 
     private void FixedUpdate()

@@ -11,7 +11,7 @@ public class Spawn : MonoBehaviour
     // Flag to check if natives have been spawned
     private bool nativesSpawnedAllAtOnce = false;
 
-    void Start()
+    void Awake()
     {
         SpawnAllNatives(); // Spawn all natives at once when the script starts
     }

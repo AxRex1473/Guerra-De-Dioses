@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class LoadGame : MonoBehaviour
 {
-    // Reference to StatCon class
+    //Aqui es donde guardo la data de los recursos y de todo lo que vaya a guardarse en el JSON
     public StatConData statConData;
 
 
@@ -31,6 +31,9 @@ public class LoadGame : MonoBehaviour
                 StatCon.totalFood= statConData.totalFood;
                 //Tengo que hacer que se genere en el Script de Spawn la misma cantidad de Nativos que en el Script
                 StatCon.totalNative = statConData.totalNative;
+                //Tengo que hacer una función con la que pueda guardar la cantidad de estructuras y su posición.
+
+
                 Debug.Log("Game data loaded successfully!");
             }
             else
