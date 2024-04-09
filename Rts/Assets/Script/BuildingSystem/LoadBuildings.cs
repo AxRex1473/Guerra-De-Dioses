@@ -11,7 +11,7 @@ public class BuildingsData
 
 public class LoadBuildings : MonoBehaviour
 {
-    public static List<GameObject> estructureObjects;
+    public static List<GameObject> estructureObjects = new List<GameObject>();
 
     void Start()
     {

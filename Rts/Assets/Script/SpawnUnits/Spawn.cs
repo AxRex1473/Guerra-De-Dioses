@@ -5,44 +5,50 @@ public class Spawn : MonoBehaviour
 {
     public GameObject nativePrefab;
     public Transform spawnPoint;
-    public int spawnIndex = 3;
-    private int totalNativesSpawned = 0;
+    private int _spawnIndex = 3;
+    private int _totalNativesSpawned = 0;
 
     // Flag to check if natives have been spawned
-    private bool nativesSpawnedAllAtOnce = false;
+    [SerializeField]private bool _nativesSpawnedAllAtOnce = false;
 
-    void Awake()
+    //La función Start sirve gracias al bool nativesSpawned... con el cuál permite a otras casas que se añadan adicionalmente a continuar Spawneando 
+    void Start()
     {
-        SpawnAllNatives(); // Spawn all natives at once when the script starts
+        if(_nativesSpawnedAllAtOnce)
+        {
+            StartCoroutine(NativesSpawn());
+        }
+        
     }
 
     public void SpawnAllNatives()
     {
         int totalNatives = StatCon.totalNative; // Get the total number of natives from StatCon
-        if (!nativesSpawnedAllAtOnce)
+        if (!_nativesSpawnedAllAtOnce)
         {
-            // Spawn all natives at once
-            for (int i = 0; i < Mathf.Min(totalNatives, spawnIndex); i++)
+            // Se calcula cuántos nativos en promedio se tienen que generar por SpawnScript.
+            for (int i = 0; i < Mathf.Min(totalNatives, _spawnIndex); i++)
             {
                 Vector3 pos = spawnPoint.position;
                 Quaternion rot = spawnPoint.rotation;
                 Instantiate(nativePrefab, pos, rot);
-                totalNativesSpawned++;
+                _totalNativesSpawned++;
             }
-            nativesSpawnedAllAtOnce = true; // Set flag to true after all natives have been spawned at once                        
+            _nativesSpawnedAllAtOnce = true; // Set flag to true after all natives have been spawned at once                        
         }
-        StartCoroutine(NativesSpawn());
+
     }
 
     IEnumerator NativesSpawn()
     {
-        while (totalNativesSpawned < spawnIndex)
+        while (_totalNativesSpawned < _spawnIndex)
         {
             yield return new WaitForSeconds(3);
             Vector3 pos = spawnPoint.position;
             Quaternion rot = spawnPoint.rotation;
             Instantiate(nativePrefab, pos, rot);
-            totalNativesSpawned++;
+            _totalNativesSpawned++;
+            Debug.Log("Spawneando");
         }
     }
 }
