@@ -4990,7 +4990,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5211,9 +5211,9 @@ GameObject:
   - component: {fileID: 6311506650123262810}
   - component: {fileID: 9010119061234424814}
   - component: {fileID: 5953479270870566893}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5614,7 +5614,7 @@ Transform:
   m_GameObject: {fileID: 1644853519643697174}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3164045, y: 0.63236713, z: -0.3164045, w: 0.63236713}
-  m_LocalPosition: {x: 48, y: 76.8, z: 92}
+  m_LocalPosition: {x: 45.56, y: 76.8, z: 92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6884,6 +6884,7 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 128
+  loadBuilding: {fileID: 0}
   gridSize: 5
 --- !u!1 &2979749649412931025
 GameObject:
@@ -11130,7 +11131,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 62
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
