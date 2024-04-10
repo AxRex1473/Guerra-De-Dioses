@@ -68,9 +68,18 @@ public class PauseGame : MonoBehaviour
         }
         if(_buildingsData != null)
         {
-            _buildingsData.Buildings = LoadBuildings.estructureObjects;
+            // Find all objects with the "Estructure" tag and add them to the list
+            GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
+            foreach (GameObject obj in estructureArray)
+            {
+                BuildingsData buildingData = new BuildingsData();
+                buildingData.name = obj.name;
+                buildingData.position = obj.transform.position;
+                buildingData.rotation = obj.transform.rotation;
+                LoadBuildings.estructureObjects.Add(buildingData);
+            }
 
-            if(DataService.SaveData("/player-Buildings.json",_buildingsData, EncryptionEnabled))
+            if (DataService.SaveData("/player-Buildings.json", _buildingsData, EncryptionEnabled))
             {
                 Debug.Log("Game saved!");
             }

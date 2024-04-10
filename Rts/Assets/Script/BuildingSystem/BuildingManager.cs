@@ -39,7 +39,7 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceObject()
     {
-        LoadBuildings.estructureObjects.Add(pendingObject);
+        //LoadBuildings.estructureObjects.Add(pendingObject);
         pendingObject = null;
 
     }

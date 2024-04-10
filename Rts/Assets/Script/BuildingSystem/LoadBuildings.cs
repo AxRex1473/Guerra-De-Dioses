@@ -6,19 +6,13 @@ using UnityEngine;
 [Serializable]
 public class BuildingsData
 {
-    public List<GameObject> Buildings;
+    public string name;
+    public Vector3 position;
+    public Quaternion rotation;
 }
 
 public class LoadBuildings : MonoBehaviour
 {
-    public static List<GameObject> estructureObjects = new List<GameObject>();
+    public static List<BuildingsData> estructureObjects = new List<BuildingsData>();
 
-    void Start()
-    {
-        // Find all objects with the "Estructure" tag and add them to the list
-        GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
-        estructureObjects = new List<GameObject>(estructureArray);
-
-        // Now you can use estructureObjects list to access all objects with the "Estructure" tag
-    }
 }
