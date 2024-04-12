@@ -45,7 +45,7 @@ public class Selection : MonoBehaviour
     }
 
     private void Deselect()
-    {
+    {        
         objUi.SetActive(false);
         selectedObject = null;
     }

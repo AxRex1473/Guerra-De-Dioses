@@ -14,7 +14,7 @@ public class PauseGame : MonoBehaviour
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
     private StatConData _statConData = new StatConData();
-    private BuildingsData _buildingsData = new BuildingsData();
+    //private BuildingsData _buildingsData = new BuildingsData();
     private bool EncryptionEnabled;
 
   
@@ -67,16 +67,20 @@ public class PauseGame : MonoBehaviour
                 Debug.LogError("Could not save file");
             }
         }
-        if(_buildingsData != null)
+        if (LoadBuildings.buildingsData != null && LoadBuildings.buildingsData.Buildings.Count > 0)
         {
-            if (DataService.SaveData("/player-Buildings.json", _buildingsData, EncryptionEnabled))
+            if (DataService.SaveData("/player-Buildings.json", LoadBuildings.buildingsData, EncryptionEnabled))
             {
-                Debug.Log("Juego Guardado!");
+                Debug.Log("Game Salvado");
             }
             else
             {
                 Debug.LogError("Could not save file");
             }
+        }
+        else
+        {
+            Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
         }
     }
 }

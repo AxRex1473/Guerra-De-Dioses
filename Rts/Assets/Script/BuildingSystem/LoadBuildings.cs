@@ -4,42 +4,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//Esto es lo que se guarda en el JSON
 [Serializable]
 public class BuildingsData
 {
+    public List<BuildingsInfo> Buildings = new List<BuildingsInfo>();
+}
 
+//Esta info servirá para poder guardar en la lista de BuildingsDat
+[Serializable]
+public class BuildingsInfo
+{       
     public string name;
     public string position;    
-    //public List<Vector3>position=new List<Vector3>();
     public string rotation;
 }
 
 public class LoadBuildings : MonoBehaviour
 {
-    public List<BuildingsData> estructureObjects;
+    //Esta parte del código es para salvar todas las estructuras del juego al iniciar el juego.
+    public static BuildingsData buildingsData = new BuildingsData();
     public void Start()
     {
-        // Find all objects with the "Estructure" tag and add them to the list
+        // Busca todos los objetos con tag Estructure
         GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
         foreach (GameObject obj in estructureArray)
         {
-            BuildingsData buildingData = new BuildingsData();
+            BuildingsInfo buildingData = new BuildingsInfo();
             buildingData.name = obj.name;
             //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
-            
-            string jsonpos=JsonConvert.SerializeObject(obj.transform.position,Formatting.Indented,new JsonSerializerSettings
+
+            string jsonpos = JsonConvert.SerializeObject(obj.transform.position, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling=ReferenceLoopHandling.Ignore               
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
             string jsonRot = JsonConvert.SerializeObject(obj.transform.rotation, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-             buildingData.position =jsonpos;
+            buildingData.position = jsonpos;
             buildingData.rotation = jsonRot;
-            estructureObjects.Add(buildingData);
+            buildingsData.Buildings.Add(buildingData);
         }
     }
 }
