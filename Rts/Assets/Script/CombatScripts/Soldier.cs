@@ -7,6 +7,8 @@ public class Soldier : SoldierBase
     [SerializeField] SoldierStats stats; //PORHACER: Analizar que tan limpio es esto
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    public float radius;
+    public LayerMask targetLayer;
 
     private void Awake()
     {
@@ -29,6 +31,24 @@ public class Soldier : SoldierBase
     private void Update()
     {
         Debug.Log(state);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+    public List<Transform> DetectUnits()
+    {
+        List<Transform> detectedUnits = new List<Transform>();
+
+        // Encuentra todas las unidades dentro del radio
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, targetLayer);
+        foreach (Collider col in colliders)
+        {
+            detectedUnits.Add(col.transform);
+        }
+
+        return detectedUnits;
     }
     public override void Seek()
     {
