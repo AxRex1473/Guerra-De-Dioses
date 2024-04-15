@@ -56,15 +56,29 @@ public class LoadGame : MonoBehaviour
             if (File.Exists(filePath))
             {
                 //PlayerBuildings Stuff, tengo que obtener su nombre, su posición y su rotación e instancear un prefab de dichas estrcutras si no es que ya estan isntanceadas.
-                string jsonData = File.ReadAllText(filePath); // Read JSON data from file
-                _buildingsData= JsonUtility.FromJson<BuildingsData>(jsonData); // Deserialize JSON data into StatCon object
+                string jsonData = File.ReadAllText(filePath); // Lee JSON 
+                _buildingsData= JsonUtility.FromJson<BuildingsData>(jsonData); // Desiraliza JSON
                 //Con estos hago que el Script obtenga lo datos que tengo en el JSON
-                StatCon.totalStone = _statConData.totalStone;
-                StatCon.totalFood = _statConData.totalFood;
-                //Tengo que hacer que se genere en el Script de Spawn la misma cantidad de Nativos que en el Script
-                StatCon.totalNative = _statConData.totalNative;
-
-                Debug.Log("Game data loaded successfully!");
+                foreach (var buildingInfo in _buildingsData.Buildings)
+                {
+                    string prefabPath = "Prefabs/Estructuras/" + buildingInfo.name;
+                    Debug.Log("Attempting to load prefab: " + prefabPath);
+                    // Load prefab based on name
+                    GameObject prefab = Resources.Load<GameObject>("Prefabs/Estructuras/" + buildingInfo.name);
+                    if (prefab != null)
+                    {
+                        // Se instancia prefab con la info específica del JSON
+                        Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
+                        Quaternion rotation = JsonConvert.DeserializeObject<Quaternion>(buildingInfo.rotation);
+                        Instantiate(prefab, position, rotation);
+                    }
+                    else
+                    {
+                        Debug.LogError("Prefab not found: " + buildingInfo.name);
+                        Debug.LogError("Prefab not found: " + prefabPath);
+                    }
+                    Debug.Log("Building Data loaded successfully!");
+                }
             }
             else
             {
