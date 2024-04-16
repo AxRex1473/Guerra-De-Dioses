@@ -27,6 +27,7 @@ public class LoadBuildings : MonoBehaviour
     public void Start()
     {
         // Busca todos los objetos con tag Estructure
+        //Aquí también tengo que cambiarlo para que busque los objetos con diferentes tags.
         GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
         foreach (GameObject obj in estructureArray)
         {

@@ -22,7 +22,8 @@ public class Selection : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.collider.gameObject.CompareTag("Estructure"))
+                //Este Script lo tengo que cambiar para que acepte multiples tags las cuales son necesarias para Resources.Load en LoadGame
+                if (hit.collider.gameObject.CompareTag("Estructure")||(hit.collider.gameObject.CompareTag("")))
                 {
                     Select(hit.collider.gameObject);
                 }

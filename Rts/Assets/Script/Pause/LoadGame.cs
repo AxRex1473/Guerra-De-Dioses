@@ -49,25 +49,20 @@ public class LoadGame : MonoBehaviour
 
     private void LoadGameBuildings()
     {
-        //Tengo que hacer una función con la que pueda cargar la cantidad de estructuras y su posición.
         try
         {
-            string filePath = Application.persistentDataPath + "/player-Buildings.json"; // Path to the JSON file
+            string filePath = Application.persistentDataPath + "/player-Buildings.json";
             if (File.Exists(filePath))
             {
-                //PlayerBuildings Stuff, tengo que obtener su nombre, su posición y su rotación e instancear un prefab de dichas estrcutras si no es que ya estan isntanceadas.
-                string jsonData = File.ReadAllText(filePath); // Lee JSON 
-                _buildingsData= JsonUtility.FromJson<BuildingsData>(jsonData); // Desiraliza JSON
-                //Con estos hago que el Script obtenga lo datos que tengo en el JSON
+                string jsonData = File.ReadAllText(filePath);
+                _buildingsData = JsonUtility.FromJson<BuildingsData>(jsonData);
+
                 foreach (var buildingInfo in _buildingsData.Buildings)
                 {
-                    string prefabPath = "Prefabs/Estructuras/" + buildingInfo.name;
-                    Debug.Log("Attempting to load prefab: " + prefabPath);
-                    // Load prefab based on name
-                    GameObject prefab = Resources.Load<GameObject>("Prefabs/Estructuras/" + buildingInfo.name);
+                    // Search for prefabs that contain the specified name as a substring
+                    GameObject prefab = FindPrefabByPartialName(buildingInfo.name);
                     if (prefab != null)
                     {
-                        // Se instancia prefab con la info específica del JSON
                         Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
                         Quaternion rotation = JsonConvert.DeserializeObject<Quaternion>(buildingInfo.rotation);
                         Instantiate(prefab, position, rotation);
@@ -75,9 +70,7 @@ public class LoadGame : MonoBehaviour
                     else
                     {
                         Debug.LogError("Prefab not found: " + buildingInfo.name);
-                        Debug.LogError("Prefab not found: " + prefabPath);
                     }
-                    Debug.Log("Building Data loaded successfully!");
                 }
             }
             else
@@ -89,6 +82,20 @@ public class LoadGame : MonoBehaviour
         {
             Debug.LogError("Could not load game data: " + e.Message);
         }
+    }
+
+    private GameObject FindPrefabByPartialName(string partialName)
+    {
+        GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/Estructuras");
+        foreach (var prefab in prefabs)
+        {
+            // Check if the name of the prefab contains the specified partial name
+            if (prefab.name.Contains(partialName))
+            {
+                return prefab;
+            }
+        }
+        return null; // Return null if no matching prefab is found
     }
 
 }

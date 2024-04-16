@@ -40,24 +40,7 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceObject()
     {
-        //LoadBuildings.estructureObjects.Add(pendingObject);
-        //Aquí añado la estructura a mi loadBuildings
-        BuildingsInfo buildingData = new BuildingsInfo();
-        buildingData.name = pendingObject.name;
-        //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
-
-        string jsonpos = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
-
-        string jsonRot = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
-        buildingData.position = jsonpos;
-        buildingData.rotation = jsonRot;
-        LoadBuildings.buildingsData.Buildings.Add(buildingData);
+        SendBuildingData();
         pendingObject = null;
 
     }
@@ -87,5 +70,27 @@ public class BuildingManager : MonoBehaviour
             pos += gridSize;
         }
         return pos;
+    }
+
+    private void SendBuildingData()
+    {
+        //LoadBuildings.estructureObjects.Add(pendingObject);
+        //Aquí añado la estructura a mi loadBuildings
+        BuildingsInfo buildingData = new BuildingsInfo();
+        buildingData.name = pendingObject.name;
+        //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
+
+        string jsonpos = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        });
+
+        string jsonRot = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        });
+        buildingData.position = jsonpos;
+        buildingData.rotation = jsonRot;
+        LoadBuildings.buildingsData.Buildings.Add(buildingData);
     }
 }
