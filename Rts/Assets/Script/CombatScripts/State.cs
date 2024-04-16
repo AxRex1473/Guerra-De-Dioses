@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class State : MonoBehaviour
+public class State 
 {
     public Action ActiveAction, OnEnterAction, OnExitAction;
 

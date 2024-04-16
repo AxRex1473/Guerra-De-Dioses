@@ -5,15 +5,17 @@ using UnityEngine.AI;
 public class Soldier : SoldierBase
 {
     [SerializeField] SoldierStats stats; //PORHACER: Analizar que tan limpio es esto
+    [SerializeField] StateMachine soldierState;
     private Animator animator;
-    private NavMeshAgent navMeshAgent;
+    private NavMeshAgent agent;
+
     public float radius;
     public LayerMask targetLayer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         Activate(stats);
     }
 
@@ -24,13 +26,17 @@ public class Soldier : SoldierBase
         attackRange = sData.attackRange;
         attackDamage = sData.attackDamage;
         attackRatio = sData.attackRatio;
-        navMeshAgent.speed = velocity;
-        state = States.Idle;
-        navMeshAgent.enabled = true;
+        enemyNear = sData.enemyNear;
+        inAttackRange = sData.inAttackRange;
+        changeMind = sData.changeMind;
+        agent.speed = velocity;
+        agent.enabled = true;
+        soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
     }
     private void Update()
     {
-        Debug.Log(state);
+        enemyNear = Vector3.Distance(transform.position, target.transform.position) < 40;
+        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < 1;
     }
     private void OnDrawGizmosSelected()
     {
@@ -50,6 +56,32 @@ public class Soldier : SoldierBase
 
         return detectedUnits;
     }
+    private void OnIdleEnter()
+    {
+        agent.ResetPath();
+    }
+    private void Idle()
+    {
+        changeMind -= Time.deltaTime;
+        Debug.Log("Esta idle");
+
+        if (enemyNear)
+        {
+            soldierState.PushState(Seek,OnSeekEnter,OnSeekExit);
+        }
+        else if (changeMind <= 0)
+        {
+
+        }
+    }
+    private void OnIdleExit()
+    {
+
+    }
+    private void OnSeekEnter()
+    {
+
+    }
     public override void Seek()
     {
         if(target == null)
@@ -57,31 +89,50 @@ public class Soldier : SoldierBase
             return;
         }
         base.Seek();
-        navMeshAgent.SetDestination(target.transform.position);
-        navMeshAgent.isStopped = false;
-        animator.SetBool("Caminando", true);  //Temporal hasta que sepa como se llama el estado de caminar
+        Debug.Log("Esta buscando");
+        agent.SetDestination(target.transform.position);
+        if(Vector3.Distance(transform.position,target.transform.position) > 40.5f)
+        {
+            soldierState.PopState();
+            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+        }
+        if (inAttackRange)
+        {
+            soldierState.PushState(Attack, OnAttackEnter, OnAttackExit);
+        }
     }
-    public override void StartAttack()
+    private void OnSeekExit()
     {
-        base.StartAttack();
-        navMeshAgent.isStopped = true;
-        animator.SetBool("IsMoving", false);
-        animator.SetTrigger("Attack");
-        transform.forward = (target.transform.position - transform.position).normalized;
+
+    }
+    private void OnAttackEnter()
+    {
+
+    }
+    public override void Attack()
+    {
+        //base.Attack();
+        //Debug.Log("Esta atacando");
+        //agent.isStopped = true;     //Reestructurar este metodo
+        //animator.SetBool("IsMoving", false);
+        //animator.SetTrigger("Attack");
+        //transform.forward = (target.transform.position - transform.position).normalized;
+    }
+    private void OnAttackExit()
+    {
+
     }
     public override void Stop()
     {
         base.Stop();
-        navMeshAgent.isStopped = true;
+        agent.isStopped = true;
         animator.SetBool("Caminando", false);  //Temporal hasta que sepa como se llama el estado de caminar
-
     }
 
     protected override void Die()
     {
         base.Die();
-        navMeshAgent.enabled = false;
+        agent.enabled = false;
         animator.SetTrigger("Murió"); //Temporal hasta que sepa como se llama el estado de morir
-
     }
 }

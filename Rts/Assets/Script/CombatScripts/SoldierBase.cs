@@ -19,14 +19,8 @@ public class SoldierBase : MonoBehaviour
         Melee,
         Ranged
     }
-    [HideInInspector] public Transform target; //Momentaneo
-
-    [Header("Proyectiles")] //Parte de este apartado podria vivir en el ScripObject pero lo sigo analizando 
-    public GameObject projectilePrefab; 
-    public Transform projectileSpawnPoint;
-    private Projectile projectile; //Codigo base para las flechas
-    protected AudioSource audioSource; //Tengo duda de si esto va aqui pero depende de como quieran manejar el audio
-    public UnityAction<SoldierBase> OnDealDamage, OnProjectileFired, OnDie;
+    public GameObject target; //Momentaneo
+    public UnityAction<SoldierBase> OnDealDamage, OnDie;
 
     [HideInInspector] public int health;
     [HideInInspector] public float velocity;
@@ -34,26 +28,27 @@ public class SoldierBase : MonoBehaviour
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRatio; 
     [HideInInspector] public float detectRange;
+    [HideInInspector] public float changeMind;
+    [HideInInspector] public bool enemyNear;
+    [HideInInspector] public bool inAttackRange;
+
     public virtual void SetTarget()
     {
+
     }
     public bool TargetInRange()
     {
-        return (transform.position - target.transform.position).sqrMagnitude <= attackRange * attackRange;
+        enemyNear = Vector3.Distance(transform.position, target.transform.position) < 5;
+        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < 1;
+        return enemyNear && inAttackRange;
     }
-    public virtual void StartAttack()
-    {
-        state = States.Attacking; 
-    }
-
-    public virtual void FireProjectile()
-    {
-
-    }
-
     public virtual void Seek()
     {
         state = States.Seeking;
+    }
+    public virtual void Attack()
+    {
+        state = States.Attacking; 
     }
     public virtual void Stop()
     {
