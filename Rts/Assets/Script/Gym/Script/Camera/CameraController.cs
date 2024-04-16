@@ -2,50 +2,40 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float panSpeed;
-    public float zoomSpeed;
-    public float minY;
-    public float maxY;
-    public float minX; 
-    public float maxX; 
-    public float minZ; 
-    public float maxZ; 
+    public float panSpeed = 20f;
+    public float panBorderThickness = 10f;
+    public Vector2 panLimit;
+    public float scrollSpeed = 20f;
+    public float minY = 20f;
+    public float maxY = 120f;
 
-
-    private void Update()
+    void Update()
     {
         Vector3 pos = transform.position;
 
-        if (Input.GetKey("w"))
+        if (Input.GetKey("a") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
-            pos.x += panSpeed * Time.deltaTime * moveSpeed;
+            pos.z += panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("s"))
+        if (Input.GetKey("d") || Input.mousePosition.y <= panBorderThickness)
         {
-            pos.x -= panSpeed * Time.deltaTime * moveSpeed;
+            pos.z -= panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey("w") || Input.mousePosition.x >= Screen.width - panBorderThickness)
         {
-            pos.z -= panSpeed * Time.deltaTime * moveSpeed;
+            pos.x += panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKey("s") || Input.mousePosition.x <= panBorderThickness)
         {
-            pos.z += panSpeed * Time.deltaTime * moveSpeed;
-        }
-
-        if (Input.GetKey("q"))
-        {
-            pos.y += zoomSpeed * Time.deltaTime * moveSpeed;
-        }
-        if (Input.GetKey("e"))
-        {
-            pos.y -= zoomSpeed * Time.deltaTime * moveSpeed;
+            pos.x -= panSpeed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+
+        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
+        pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
 
         transform.position = pos;
     }
