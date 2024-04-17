@@ -8,6 +8,12 @@ TagManager:
   - Enemy
   - AldeanoSoldado
   - CasaEstructure
+  - EsculturaEstructure
+  - CentroComEstructure
+  - ChinampaEstructure
+  - MineEstructure
+  - TemploEstructure
+  - GranjaEstructure
   layers:
   - Default
   - TransparentFX

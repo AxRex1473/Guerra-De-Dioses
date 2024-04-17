@@ -205,14 +205,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4894444760301637508}
     m_Modifications:
-    - target: {fileID: 640461791781200648, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751898059733973197, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
-      propertyPath: nativePrefab
-      value: 
-      objectReference: {fileID: 4657271383354382248, guid: 35981865a6c24fb418974f463d58f3d3, type: 3}
     - target: {fileID: 4879464174065900982, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1429.3004
@@ -256,14 +248,6 @@ PrefabInstance:
     - target: {fileID: 5259226335481497356, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
       propertyPath: m_Name
       value: Casa
-      objectReference: {fileID: 0}
-    - target: {fileID: 5259226335481497356, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5413309319274281567, guid: 57e4285f564118e43b435ce3f5dfe28e, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1151,14 +1135,6 @@ PrefabInstance:
     - target: {fileID: 1064108507515263910, guid: dfca148c10e34d64699c9beb6db772ee, type: 3}
       propertyPath: m_Name
       value: CentroComunitario
-      objectReference: {fileID: 0}
-    - target: {fileID: 1064108507515263910, guid: dfca148c10e34d64699c9beb6db772ee, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2121388877578287858, guid: dfca148c10e34d64699c9beb6db772ee, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2291,17 +2267,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4894444760301637508}
     m_Modifications:
-    - target: {fileID: 5446406722516993594, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7344581912817269995, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
       propertyPath: m_Name
       value: Templo
-      objectReference: {fileID: 0}
-    - target: {fileID: 7344581912817269995, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7973309756822201937, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
       propertyPath: m_LocalPosition.x
