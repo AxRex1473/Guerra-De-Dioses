@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Guerrero que ataca a Melee
   soldierPrefab: {fileID: 0}
   health: 100
-  velocity: 25
+  velocity: 20
   changeMind: 0
   attackDamage: 50
   attackRange: 5
