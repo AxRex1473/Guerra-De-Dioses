@@ -25,7 +25,7 @@ public class BuildingsInfo
 
 public class LoadBuildings : MonoBehaviour
 {
-    private GameObject[] _estructureArray;
+    private Tags[] _estructureArray;
     //Esta parte del código es para salvar todas las estructuras del juego al iniciar el juego.
     public static BuildingsData buildingsData = new BuildingsData();
     public void Start()
@@ -34,17 +34,18 @@ public class LoadBuildings : MonoBehaviour
         //Aquí también tengo que cambiarlo para que busque los objetos con diferentes tags.
 
         //_estructureArray = FindGameObjectsWithTag(new string[] {"CasaEstructure","TemploEstructure","GranjaEstructure" });
-        GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
-        
+        //GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
+
+        _estructureArray = FindObjectsOfType<Tags>();
         //Falta encontrar un método por el que reemplace el FindGameObjectsWithTag y que funcione con el nuevo sistema de Tags
-        /*if(estructureArray.TryGetComponent<Tags>(out var tags))
+        /*if (_estructureArray.TryGetComponent<Tags>(out var tags))
         {
             Debug.Log(tags.All.Select(t => t.Name));
             Debug.Log($"Has Casa{tags.HasTags("Casa")}");
         }*/
 
 
-        foreach (GameObject obj in estructureArray)
+        foreach (Tags obj in _estructureArray)
         {
             BuildingsInfo buildingData = new BuildingsInfo();
             buildingData.name = obj.name;
@@ -61,6 +62,12 @@ public class LoadBuildings : MonoBehaviour
             });
             buildingData.position = jsonpos;
             buildingData.rotation = jsonRot;
+           
+            if(obj.TryGetComponent<Tags>(out var tags))
+            {
+                buildingData.tag = string.Join(',',tags.All.Select(t=>t.Name));
+            }
+
             buildingsData.Buildings.Add(buildingData);
         }
     }

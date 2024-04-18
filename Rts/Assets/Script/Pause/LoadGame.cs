@@ -60,7 +60,10 @@ public class LoadGame : MonoBehaviour
                 foreach (var buildingInfo in _buildingsData.Buildings)
                 {
                     // Search for prefabs that contain the specified name as a substring
-                    GameObject prefab = FindPrefabByPartialName(buildingInfo.name);
+                    //GameObject prefab = FindPrefabByPartialName(buildingInfo.tag);
+                    //Aqui tengo que desarrollar una función para generar las estructuras en base a su tag en vez de su nombre
+                    string prefabPath = "Prefabs/Estructuras/" + buildingInfo.tag;
+                    GameObject prefab = Resources.Load<GameObject>(prefabPath);
                     if (prefab != null)
                     {
                         Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
@@ -69,7 +72,7 @@ public class LoadGame : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Prefab not found: " + buildingInfo.name);
+                        Debug.LogError("Prefab not found: " + buildingInfo.tag);
                     }
                 }
             }
@@ -84,18 +87,19 @@ public class LoadGame : MonoBehaviour
         }
     }
 
+    /*
     private GameObject FindPrefabByPartialName(string partialName)
     {
         GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/Estructuras");
         foreach (var prefab in prefabs)
         {
             // Check if the name of the prefab contains the specified partial name
-            if (prefab.name.Contains(partialName))
+            if (prefab.tag.Contains(partialName))
             {
                 return prefab;
             }
         }
         return null; // Return null if no matching prefab is found
-    }
+    }*/
 
 }
