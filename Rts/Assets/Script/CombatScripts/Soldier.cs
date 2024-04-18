@@ -29,14 +29,15 @@ public class Soldier : SoldierBase
         enemyNear = sData.enemyNear;
         inAttackRange = sData.inAttackRange;
         changeMind = sData.changeMind;
+        detectRange = sData.detectRange;
         agent.speed = velocity;
         agent.enabled = true;
         soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
     }
     private void Update()
     {
-        enemyNear = Vector3.Distance(transform.position, target.transform.position) < 40;
-        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < 1;
+        SetTarget(detectRange);
+        TargetInRange(attackRange);
     }
     private void OnDrawGizmosSelected()
     {
@@ -55,10 +56,11 @@ public class Soldier : SoldierBase
         }
 
         return detectedUnits;
-    }
+    } //PORHACER: hacer que detecte todas las unidades dentro de un rango y que ataque a la unidad que se encuentra en la cima de la lista
     private void OnIdleEnter()
     {
         agent.ResetPath();
+        //animator.SetBool("IsIdle", true); Incorporar una vez teniendo las animaciones
     }
     private void Idle()
     {
@@ -76,11 +78,11 @@ public class Soldier : SoldierBase
     }
     private void OnIdleExit()
     {
-
+        //animator.SetBool("IsIdle", false); Incorporar una vez teniendo las animaciones
     }
     private void OnSeekEnter()
     {
-
+        //animator.SetBool("IsMoving", true); Incorporar una vez teniendo las animaciones
     }
     public override void Seek()
     {
@@ -91,7 +93,7 @@ public class Soldier : SoldierBase
         base.Seek();
         Debug.Log("Esta buscando");
         agent.SetDestination(target.transform.position);
-        if(Vector3.Distance(transform.position,target.transform.position) > 40.5f)
+        if(Vector3.Distance(transform.position,target.transform.position) > detectRange +.5f)
         {
             soldierState.PopState();
             soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
@@ -103,20 +105,28 @@ public class Soldier : SoldierBase
     }
     private void OnSeekExit()
     {
-
+        //animator.SetBool("IsMoving", false); Incorporar una vez teniendo las animaciones
     }
     private void OnAttackEnter()
     {
-
+        agent.ResetPath();
     }
     public override void Attack()
     {
-        //base.Attack();
-        //Debug.Log("Esta atacando");
-        //agent.isStopped = true;     //Reestructurar este metodo
-        //animator.SetBool("IsMoving", false);
-        //animator.SetTrigger("Attack");
-        //transform.forward = (target.transform.position - transform.position).normalized;
+        base.Attack();
+        float attackTimer = 0;
+        attackTimer -= Time.deltaTime;
+        if (!inAttackRange)
+        {
+            soldierState.PopState();
+        }
+        else if (attackTimer <= 0)
+        {
+            Debug.Log("esta atacando");
+            //animator.SetTrigger("IsAttacking"); Incorporar una vez teniendo las animaciones
+            //target.funcionParaRecibirDaño(attackDamage);
+            attackTimer = attackRatio;
+        }
     }
     private void OnAttackExit()
     {
@@ -126,13 +136,19 @@ public class Soldier : SoldierBase
     {
         base.Stop();
         agent.isStopped = true;
-        animator.SetBool("Caminando", false);  //Temporal hasta que sepa como se llama el estado de caminar
     }
-
+    private void OnDieEnter()
+    {
+        //animator.SetTrigger("Murió"); Incorporar una vez teniendo las animaciones
+        agent.isStopped = true;
+    }
     protected override void Die()
     {
         base.Die();
         agent.enabled = false;
-        animator.SetTrigger("Murió"); //Temporal hasta que sepa como se llama el estado de morir
+    }
+    private void OnDieExit()
+    {
+        Destroy(this,5);//esto se puede cambiar si se implementa un objectPool 
     }
 }

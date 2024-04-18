@@ -32,15 +32,15 @@ public class SoldierBase : MonoBehaviour
     [HideInInspector] public bool enemyNear;
     [HideInInspector] public bool inAttackRange;
 
-    public virtual void SetTarget()
+    public virtual bool SetTarget(float detectRange)
     {
-
+        enemyNear = Vector3.Distance(transform.position, target.transform.position) < detectRange;
+        return enemyNear;
     }
-    public bool TargetInRange()
+    public bool TargetInRange(float attackRange)
     {
-        enemyNear = Vector3.Distance(transform.position, target.transform.position) < 5;
-        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < 1;
-        return enemyNear && inAttackRange;
+        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < attackRange;
+        return inAttackRange;
     }
     public virtual void Seek()
     {

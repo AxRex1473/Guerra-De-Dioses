@@ -18,6 +18,7 @@ public class SoldierStats : ScriptableObject
     public float attackDamage;
     public float attackRange; 
     public float detectRange; //Rango en el que la unidad va a poder detectar otros enemigos
+    //Mucho ojo con que el rango de ataque sea menor al de deteccion,
     public float attackRatio; //Tiempo entre ataques
 
     public bool enemyNear;
