@@ -17,7 +17,7 @@ public class PauseGame : MonoBehaviour
     private BuildingsData _buildingsData = new BuildingsData();
     private bool EncryptionEnabled;
 
-  
+
 
     public void ToggleEncryption(bool EncryptionEnabled)
     {
@@ -45,6 +45,13 @@ public class PauseGame : MonoBehaviour
         _canvasGame.SetActive(true);
         Time.timeScale = 1.0f;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Saliste");
+    }
+        
 
     public void SaveGame()
     {

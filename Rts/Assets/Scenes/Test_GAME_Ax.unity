@@ -1614,7 +1614,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6122444040107099516}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
-        m_MethodName: SaveGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
