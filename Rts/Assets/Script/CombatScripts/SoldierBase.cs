@@ -34,13 +34,23 @@ public class SoldierBase : MonoBehaviour
 
     public virtual bool SetTarget(float detectRange)
     {
-        enemyNear = Vector3.Distance(transform.position, target.transform.position) < detectRange;
-        return enemyNear;
+        if (target != null)
+        {
+            enemyNear = Vector3.Distance(transform.position, target.transform.position) < detectRange;
+            return enemyNear;
+        }
+        else
+            return false;
     }
     public bool TargetInRange(float attackRange)
     {
-        inAttackRange = Vector3.Distance(transform.position, target.transform.position) < attackRange;
-        return inAttackRange;
+        if (target != null)
+        {
+            inAttackRange = Vector3.Distance(transform.position, target.transform.position) < attackRange;
+            return inAttackRange;
+        }
+        else
+            return false;
     }
     public virtual void Seek()
     {

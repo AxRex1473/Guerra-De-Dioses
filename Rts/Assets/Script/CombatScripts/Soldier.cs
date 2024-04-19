@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 public class Soldier : SoldierBase
 {
-    [SerializeField] SoldierStats stats; //PORHACER: Analizar que tan limpio es esto
+    [SerializeField] SoldierStats stats; 
     [SerializeField] StateMachine soldierState;
+    [SerializeField] SoldierHealth targetHealth;
     private Animator animator;
     private NavMeshAgent agent;
-
-    public float radius;
-    public LayerMask targetLayer;
+    private float attackTimer = 0;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        targetHealth.OnHurt += OnDead; //PORHACER buscar otro metodo para manejar la vida, manejarlo asi causa que todos los soldados mueran al mismo tiempo 
         Activate(stats);
     }
 
@@ -34,29 +35,24 @@ public class Soldier : SoldierBase
         agent.enabled = true;
         soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
     }
+    private void OnDead()
+    {
+        soldierState.PushState(Die, OnDieEnter, OnDieExit);
+    }
     private void Update()
     {
         SetTarget(detectRange);
         TargetInRange(attackRange);
     }
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected() //Solo para debug
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-    public List<Transform> DetectUnits()
-    {
-        List<Transform> detectedUnits = new List<Transform>();
 
-        // Encuentra todas las unidades dentro del radio
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, targetLayer);
-        foreach (Collider col in colliders)
-        {
-            detectedUnits.Add(col.transform);
-        }
-
-        return detectedUnits;
-    } //PORHACER: hacer que detecte todas las unidades dentro de un rango y que ataque a la unidad que se encuentra en la cima de la lista
     private void OnIdleEnter()
     {
         agent.ResetPath();
@@ -114,7 +110,6 @@ public class Soldier : SoldierBase
     public override void Attack()
     {
         base.Attack();
-        float attackTimer = 0;
         attackTimer -= Time.deltaTime;
         if (!inAttackRange)
         {
@@ -124,7 +119,7 @@ public class Soldier : SoldierBase
         {
             Debug.Log("esta atacando");
             //animator.SetTrigger("IsAttacking"); Incorporar una vez teniendo las animaciones
-            //target.funcionParaRecibirDaño(attackDamage);
+            DealDamage();
             attackTimer = attackRatio;
         }
     }
@@ -137,6 +132,19 @@ public class Soldier : SoldierBase
         base.Stop();
         agent.isStopped = true;
     }
+    public void DealDamage()
+    {
+        targetHealth = target.GetComponent<SoldierHealth>();
+
+        if (targetHealth != null)
+        {
+            targetHealth.ReceiveDamage(attackDamage);
+        }
+        else if (targetHealth = null)
+        {
+            soldierState.PopState();
+        }
+    }
     private void OnDieEnter()
     {
         //animator.SetTrigger("Murió"); Incorporar una vez teniendo las animaciones
@@ -145,10 +153,9 @@ public class Soldier : SoldierBase
     protected override void Die()
     {
         base.Die();
-        agent.enabled = false;
     }
     private void OnDieExit()
     {
-        Destroy(this,5);//esto se puede cambiar si se implementa un objectPool 
+        Destroy(this.gameObject,5);//esto se puede cambiar si se implementa un objectPool 
     }
 }
