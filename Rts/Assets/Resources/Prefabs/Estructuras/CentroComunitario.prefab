@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: CentroComEstructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -189,5 +189,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tags:
-  - {fileID: 11400000, guid: 7c65ee2774cb9c24aae3d36f1619bfdc, type: 2}
   - {fileID: 11400000, guid: 2935b54499713964ca3a6f5aab65b11e, type: 2}

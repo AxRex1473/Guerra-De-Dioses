@@ -78,6 +78,7 @@ public class BuildingManager : MonoBehaviour
         //Aquí añado la estructura a mi loadBuildings
         BuildingsInfo buildingData = new BuildingsInfo();
         buildingData.name = pendingObject.name;
+        buildingData.tag = pendingObject.tag;
         //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
 
         string jsonpos = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
@@ -91,6 +92,7 @@ public class BuildingManager : MonoBehaviour
         });
         buildingData.position = jsonpos;
         buildingData.rotation = jsonRot;
+
         LoadBuildings.buildingsData.Buildings.Add(buildingData);
     }
 }

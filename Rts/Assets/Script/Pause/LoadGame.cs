@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class LoadGame : MonoBehaviour
 {
@@ -59,11 +60,8 @@ public class LoadGame : MonoBehaviour
 
                 foreach (var buildingInfo in _buildingsData.Buildings)
                 {
-                    // Search for prefabs that contain the specified name as a substring
-                    //GameObject prefab = FindPrefabByPartialName(buildingInfo.tag);
-                    //Aqui tengo que desarrollar una función para generar las estructuras en base a su tag en vez de su nombre
-                    string prefabPath = "Prefabs/Estructuras/" + buildingInfo.tag;
-                    GameObject prefab = Resources.Load<GameObject>(prefabPath);
+                    // Load prefab based on the tag instead of the name
+                    GameObject prefab = FindPrefabByTag(buildingInfo.tag);
                     if (prefab != null)
                     {
                         Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
@@ -72,7 +70,7 @@ public class LoadGame : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Prefab not found: " + buildingInfo.tag);
+                        Debug.LogError("Prefab not found for tag: " + buildingInfo.tag);
                     }
                 }
             }
@@ -87,19 +85,51 @@ public class LoadGame : MonoBehaviour
         }
     }
 
-    /*
-    private GameObject FindPrefabByPartialName(string partialName)
+    private GameObject FindPrefabByTag(string tag)
     {
         GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/Estructuras");
         foreach (var prefab in prefabs)
         {
-            // Check if the name of the prefab contains the specified partial name
-            if (prefab.tag.Contains(partialName))
+            // Check if the prefab has the specified tag
+            if (prefab.CompareTag(tag))
             {
                 return prefab;
             }
         }
         return null; // Return null if no matching prefab is found
-    }*/
+    }
+    /*
+    private GameObject[] FindPrefabByScriptableTag(string[] tagshida)
+    {
+        //Primero cargo todos los prefabs en el juego para después llamarlos
+        List<GameObject> prefabs = new List<GameObject>();
+        string prefabFolder = "Prefabs/Estructuras";
+        GameObject[] allPrefabs = Resources.LoadAll<GameObject>(prefabFolder);
+        foreach (var prefab in prefabs) //Checa por cada prefab dentro de la carpeta de estructuras
+        {
+            //Este imprime las tag, tengo que hacer que ahora lo pueda usar para comparar tags buildingData.tag = string.Join(',', tags.All.Select(t => t.Name));
+            if (prefab.TryGetComponent<Tags>(out var tags))
+            {
+                foreach (var tag in tagshida)
+                {
+                    if(tags.HasTag(tag))
+                    {
+                        prefabs.Add(prefab);
+                        break;
+                    }
+                }
+                /*
+                 //GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+                GameObject[] objects = tags.All.Select(t => t.Name);
+                prefabs.AddRange(objects);
+                //buildingData.tag = string.Join(',', tags.All.Select(t => t.Name));*/
+    /*  
+
+   }
+   //Return objectsWithTag.ToArray();
+   return prefabs.ToArray();
+}*/
 
 }
+
+

@@ -25,7 +25,7 @@ public class BuildingsInfo
 
 public class LoadBuildings : MonoBehaviour
 {
-    private Tags[] _estructureArray;
+    public Tags[] _estructureArray;
     //Esta parte del código es para salvar todas las estructuras del juego al iniciar el juego.
     public static BuildingsData buildingsData = new BuildingsData();
     public void Start()
@@ -49,6 +49,7 @@ public class LoadBuildings : MonoBehaviour
         {
             BuildingsInfo buildingData = new BuildingsInfo();
             buildingData.name = obj.name;
+            buildingData.tag= obj.tag;
             //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
 
             string jsonpos = JsonConvert.SerializeObject(obj.transform.position, Formatting.Indented, new JsonSerializerSettings
@@ -63,11 +64,6 @@ public class LoadBuildings : MonoBehaviour
             buildingData.position = jsonpos;
             buildingData.rotation = jsonRot;
            
-            if(obj.TryGetComponent<Tags>(out var tags))
-            {
-                buildingData.tag = string.Join(',',tags.All.Select(t=>t.Name));
-            }
-
             buildingsData.Buildings.Add(buildingData);
         }
     }
