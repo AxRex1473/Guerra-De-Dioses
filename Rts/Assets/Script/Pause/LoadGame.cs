@@ -55,15 +55,24 @@ public class LoadGame : MonoBehaviour
             string filePath = Application.persistentDataPath + "/player-Buildings.json";
             if (File.Exists(filePath))
             {
+
                 string jsonData = File.ReadAllText(filePath);
                 _buildingsData = JsonUtility.FromJson<BuildingsData>(jsonData);
 
                 foreach (var buildingInfo in _buildingsData.Buildings)
                 {
-                    // Load prefab based on the tag instead of the name
+                    //Esto es para evitar clones de estructuras pregeneradas
+                    GameObject existingObject = GameObject.Find(buildingInfo.name);
+                    if(existingObject != null)
+                    {
+                        Debug.LogWarning("Duplicate object found for name: " + buildingInfo.name + ". Skipping instantiation.");
+                        continue; //Se Skipea la instancea y continuá con la siguiente estructura
+                    }
+
                     GameObject prefab = FindPrefabByTag(buildingInfo.tag);
                     if (prefab != null)
                     {
+
                         Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
                         Quaternion rotation = JsonConvert.DeserializeObject<Quaternion>(buildingInfo.rotation);
                         Instantiate(prefab, position, rotation);
@@ -98,38 +107,6 @@ public class LoadGame : MonoBehaviour
         }
         return null; // Return null if no matching prefab is found
     }
-    /*
-    private GameObject[] FindPrefabByScriptableTag(string[] tagshida)
-    {
-        //Primero cargo todos los prefabs en el juego para después llamarlos
-        List<GameObject> prefabs = new List<GameObject>();
-        string prefabFolder = "Prefabs/Estructuras";
-        GameObject[] allPrefabs = Resources.LoadAll<GameObject>(prefabFolder);
-        foreach (var prefab in prefabs) //Checa por cada prefab dentro de la carpeta de estructuras
-        {
-            //Este imprime las tag, tengo que hacer que ahora lo pueda usar para comparar tags buildingData.tag = string.Join(',', tags.All.Select(t => t.Name));
-            if (prefab.TryGetComponent<Tags>(out var tags))
-            {
-                foreach (var tag in tagshida)
-                {
-                    if(tags.HasTag(tag))
-                    {
-                        prefabs.Add(prefab);
-                        break;
-                    }
-                }
-                /*
-                 //GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-                GameObject[] objects = tags.All.Select(t => t.Name);
-                prefabs.AddRange(objects);
-                //buildingData.tag = string.Join(',', tags.All.Select(t => t.Name));*/
-    /*  
-
-   }
-   //Return objectsWithTag.ToArray();
-   return prefabs.ToArray();
-}*/
-
 }
 
 

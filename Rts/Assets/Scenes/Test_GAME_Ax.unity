@@ -2333,6 +2333,14 @@ PrefabInstance:
       value: Templo
       objectReference: {fileID: 0}
     - target: {fileID: 7973309756822201937, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100.00004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973309756822201937, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100.00004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973309756822201937, guid: f9604b3c2c765964c8bb61a5030cbfdb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1457.471
       objectReference: {fileID: 0}
@@ -9208,12 +9216,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 922898409}
+  - {fileID: 1388040070}
   - {fileID: 54442368}
   - {fileID: 78853868}
   - {fileID: 278024217}
   - {fileID: 527524011}
-  - {fileID: 1388040070}
-  - {fileID: 922898409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &4897305161084308995

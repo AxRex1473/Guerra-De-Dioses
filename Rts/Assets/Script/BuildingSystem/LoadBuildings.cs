@@ -31,20 +31,9 @@ public class LoadBuildings : MonoBehaviour
     public void Start()
     {
         // Busca todos los objetos con tag Estructure
-        //Aquí también tengo que cambiarlo para que busque los objetos con diferentes tags.
-
-        //_estructureArray = FindGameObjectsWithTag(new string[] {"CasaEstructure","TemploEstructure","GranjaEstructure" });
-        //GameObject[] estructureArray = GameObject.FindGameObjectsWithTag("Estructure");
-
         _estructureArray = FindObjectsOfType<Tags>();
-        //Falta encontrar un método por el que reemplace el FindGameObjectsWithTag y que funcione con el nuevo sistema de Tags
-        /*if (_estructureArray.TryGetComponent<Tags>(out var tags))
-        {
-            Debug.Log(tags.All.Select(t => t.Name));
-            Debug.Log($"Has Casa{tags.HasTags("Casa")}");
-        }*/
 
-
+        //Aquí busco por cada obj que tenga el Scriptable Object Tag para que se instancien.
         foreach (Tags obj in _estructureArray)
         {
             BuildingsInfo buildingData = new BuildingsInfo();
@@ -67,6 +56,7 @@ public class LoadBuildings : MonoBehaviour
             buildingsData.Buildings.Add(buildingData);
         }
     }
+
 }
 
 
