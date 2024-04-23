@@ -6,6 +6,8 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Device;
 
+//Apesar de que diga LoadBuildings, este código termino siendo más como el equivalente de StatCon para las estructuras, siendo el código que recopila toda la info de las estructuras para que después se guarden en PauseGame y se carguen en el LoadGame
+
 //Esto es lo que se guarda en el JSON
 [Serializable]
 public class BuildingsData

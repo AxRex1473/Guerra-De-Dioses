@@ -77,6 +77,7 @@ public class BuildingManager : MonoBehaviour
         //LoadBuildings.estructureObjects.Add(pendingObject);
         //Aquí añado la estructura a mi loadBuildings
         BuildingsInfo buildingData = new BuildingsInfo();
+        pendingObject.gameObject.name=pendingObject.transform.position.ToString();
         buildingData.name = pendingObject.name;
         buildingData.tag = pendingObject.tag;
         //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop

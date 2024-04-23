@@ -12,12 +12,18 @@ public class LoadGame : MonoBehaviour
     //Aqui es donde guardo la data de los recursos y de todo lo que vaya a guardarse en el JSON
     private StatConData _statConData;
     private BuildingsData _buildingsData;
+    public static bool loadGameDone=false;
 
 
     private void Awake()
     {
-        LoadGameResources();
-        LoadGameBuildings();
+        if(!loadGameDone)
+        {
+            LoadGameResources();
+            LoadGameBuildings();
+            loadGameDone = true;
+        }
+       
     }
 
     public void LoadGameResources()

@@ -14,10 +14,14 @@ public class Spawn : MonoBehaviour
     //La función Start sirve gracias al bool nativesSpawned... con el cuál permite a otras casas que se añadan adicionalmente a continuar Spawneando 
     void Start()
     {
-        if(_nativesSpawnedAllAtOnce)
-        {
-            StartCoroutine(NativesSpawn());
-        }
+        //if(LoadGame.loadGameDone)
+        //{
+            if (_nativesSpawnedAllAtOnce)
+            {
+                StartCoroutine(NativesSpawn());
+            }
+        //}
+       
         
     }
 
