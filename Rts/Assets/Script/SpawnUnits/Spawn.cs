@@ -14,15 +14,30 @@ public class Spawn : MonoBehaviour
     //La función Start sirve gracias al bool nativesSpawned... con el cuál permite a otras casas que se añadan adicionalmente a continuar Spawneando 
     void Start()
     {
+        if(LoadGame.loadGameDone)
+        {
+           // CalculateNativesToSpawn();
+            SpawnAllNatives();
+        }
+        
         //if(LoadGame.loadGameDone)
         //{
-            if (_nativesSpawnedAllAtOnce)
+           /* if (_nativesSpawnedAllAtOnce)
             {
                 StartCoroutine(NativesSpawn());
-            }
+            }*/
         //}
        
         
+    }
+
+    private void CalculateNativesToSpawn()
+    {
+        int totalNatives = StatCon.totalNative;
+        int totalHouses = GameObject.FindGameObjectsWithTag("House").Length;
+
+        // Calculate the number of natives each house should spawn
+        _totalNativesSpawned = Mathf.CeilToInt((float)totalNatives / totalHouses);
     }
 
     public void SpawnAllNatives()
@@ -40,7 +55,7 @@ public class Spawn : MonoBehaviour
             }
             _nativesSpawnedAllAtOnce = true; // Set flag to true after all natives have been spawned at once                        
         }
-
+        StartCoroutine(NativesSpawn());
     }
 
     IEnumerator NativesSpawn()
