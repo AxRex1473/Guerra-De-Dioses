@@ -6,14 +6,15 @@ public class Selection : MonoBehaviour
     public GameObject selectedObject;
     private BuildingManager buildingManager;
     public GameObject objUi;
-    public Image targetImage;
+    public GameObject aldeanoPanel;
+    private Vector3 panelOffset;
 
     void Start()
     {
         buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
+        panelOffset = aldeanoPanel.transform.position - Camera.main.transform.position;
     }
 
-    // asi ya funciona bien
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,6 +26,10 @@ public class Selection : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Estructure"))
                 {
                     Select(hit.collider.gameObject);
+                }
+                else if (hit.collider.gameObject.CompareTag("Aldeano"))
+                {
+                    SelectAldeano(hit.collider.gameObject);
                 }
             }
         }
@@ -39,14 +44,24 @@ public class Selection : MonoBehaviour
     {
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
-        targetImage.sprite = obj.GetComponentInChildren<Image>().sprite;
         objUi.SetActive(true);
+        objUi.transform.position = obj.transform.position;
+        selectedObject = obj;
+    }
+
+    private void SelectAldeano(GameObject obj)
+    {
+        if (obj == selectedObject) return;
+        if (selectedObject != null) Deselect();
+        aldeanoPanel.SetActive(true);
+        aldeanoPanel.transform.position = Camera.main.transform.position + panelOffset;
         selectedObject = obj;
     }
 
     private void Deselect()
     {
         objUi.SetActive(false);
+        aldeanoPanel.SetActive(false);
         selectedObject = null;
     }
 
@@ -58,6 +73,7 @@ public class Selection : MonoBehaviour
     public void Delete()
     {
         objUi.SetActive(false);
+        aldeanoPanel.SetActive(false);
         GameObject objToDestroy = selectedObject;
         Deselect();
         Destroy(objToDestroy);
