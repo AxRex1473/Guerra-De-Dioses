@@ -1,73 +1,65 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Spawn : MonoBehaviour
 {
     public GameObject nativePrefab;
     public Transform spawnPoint;
-    private int _spawnIndex = 3;
-    private int _totalNativesSpawned = 0;
+    private int _spawnIndex = 3; // Maximum number of natives spawned per house
+    private int _totalNativesSpawned = 0; // Total number of natives spawned by this house
 
     // Flag to check if natives have been spawned
-    [SerializeField]private bool _nativesSpawnedAllAtOnce = false;
+    [SerializeField] private bool _nativesSpawnedAllAtOnce = false;
 
-    //La función Start sirve gracias al bool nativesSpawned... con el cuál permite a otras casas que se añadan adicionalmente a continuar Spawneando 
     void Start()
     {
-        if(LoadGame.loadGameDone)
+        if (LoadGame.loadGameDone)
         {
-           // CalculateNativesToSpawn();
-            SpawnAllNatives();
+            CalculateNativesToSpawn();
+            StartCoroutine(SpawnNatives());
         }
-        
-        //if(LoadGame.loadGameDone)
-        //{
-           /* if (_nativesSpawnedAllAtOnce)
-            {
-                StartCoroutine(NativesSpawn());
-            }*/
-        //}
-       
-        
     }
 
     private void CalculateNativesToSpawn()
     {
         int totalNatives = StatCon.totalNative;
-        int totalHouses = GameObject.FindGameObjectsWithTag("House").Length;
+        int totalHouses = FindObjectsOfType<Spawn>().Length;
 
         // Calculate the number of natives each house should spawn
-        _totalNativesSpawned = Mathf.CeilToInt((float)totalNatives / totalHouses);
-    }
+        _totalNativesSpawned = totalNatives / totalHouses;
 
-    public void SpawnAllNatives()
-    {
-        int totalNatives = StatCon.totalNative; // Get the total number of natives from StatCon
-        if (!_nativesSpawnedAllAtOnce)
+        // Ensure that no house spawns more than _spawnIndex natives
+        _totalNativesSpawned = Mathf.Min(_totalNativesSpawned, _spawnIndex);
+
+        float remainingNatives = totalNatives % totalHouses;
+
+        // If there are remaining natives, distribute them among the houses
+        if (remainingNatives > 0)
         {
-            // Se calcula cuántos nativos en promedio se tienen que generar por SpawnScript.
-            for (int i = 0; i < Mathf.Min(totalNatives, _spawnIndex); i++)
+            float houseIndex = 0;
+            foreach (var house in GameObject.FindObjectsOfType<Spawn>())
             {
-                Vector3 pos = spawnPoint.position;
-                Quaternion rot = spawnPoint.rotation;
-                Instantiate(nativePrefab, pos, rot);
-                _totalNativesSpawned++;
+                if (houseIndex < remainingNatives)
+                {
+                    _totalNativesSpawned++;
+                }
+                houseIndex++;
             }
-            _nativesSpawnedAllAtOnce = true; // Set flag to true after all natives have been spawned at once                        
         }
-        StartCoroutine(NativesSpawn());
     }
 
-    IEnumerator NativesSpawn()
+    IEnumerator SpawnNatives()
     {
-        while (_totalNativesSpawned < _spawnIndex)
+        // Spawn natives until the total count is reached
+        while (_totalNativesSpawned > 0)
         {
-            yield return new WaitForSeconds(3);
             Vector3 pos = spawnPoint.position;
             Quaternion rot = spawnPoint.rotation;
             Instantiate(nativePrefab, pos, rot);
-            _totalNativesSpawned++;
-            Debug.Log("Spawneando");
+            _totalNativesSpawned--;
+
+            yield return null; // Wait for the next frame
         }
     }
 }
