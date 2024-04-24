@@ -6,13 +6,12 @@ public class Selection : MonoBehaviour
     public GameObject selectedObject;
     private BuildingManager buildingManager;
     public GameObject objUi;
+    public Image targetImage;
     public GameObject aldeanoPanel;
-    private Vector3 panelOffset;
 
     void Start()
     {
         buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
-        panelOffset = aldeanoPanel.transform.position - Camera.main.transform.position;
     }
 
     void Update()
@@ -44,8 +43,8 @@ public class Selection : MonoBehaviour
     {
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
+        targetImage.sprite = obj.GetComponentInChildren<Image>().sprite;
         objUi.SetActive(true);
-        objUi.transform.position = obj.transform.position;
         selectedObject = obj;
     }
 
@@ -53,8 +52,13 @@ public class Selection : MonoBehaviour
     {
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
-        aldeanoPanel.SetActive(true);
-        aldeanoPanel.transform.position = Camera.main.transform.position + panelOffset;
+        // Desactivar la imagen si estaba activa
+        targetImage.gameObject.SetActive(false);
+        // Activar el objeto 3D del panel aldeano si estaba desactivado
+        if (!aldeanoPanel.activeSelf)
+        {
+            aldeanoPanel.SetActive(true);
+        }
         selectedObject = obj;
     }
 
