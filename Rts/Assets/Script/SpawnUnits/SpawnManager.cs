@@ -3,7 +3,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     int totalNatives;
-    float totalHouses;
+    int totalHouses;
+    int positiveRemainder;
 
     // Este código existe para hacer que se cargue la cantidad de nativos dentro del JSON, la cantidad exacta de cuántos nativos por casa se tienen que generar se calcula en Spawn Script
     void Start() //Solo funciona el Script si esta en Start
@@ -29,15 +30,26 @@ public class SpawnManager : MonoBehaviour
             }
 
             //Hace la división y llama a la función de SpawnAllNatives de acuerdo al resultado de la división de Nativos entre las casas disponibles
-            float manyNatives = totalNatives / totalHouses;
-            int nativesPerHouse=Mathf.RoundToInt(manyNatives);
-
-            foreach (Spawn spawnScript in spawnScripts)
+            positiveRemainder = totalNatives % totalHouses;
+            int manyNatives = Mathf.FloorToInt(totalNatives / totalHouses);
+            //int nativesPerHouse=Mathf.RoundToInt(manyNatives);
+            if(positiveRemainder==0 )
             {
-
-                spawnScript.SpawnAllNatives(nativesPerHouse);
-            
+                foreach (Spawn spawnScript in spawnScripts)
+                {
+                    spawnScript.SpawnAllNatives(manyNatives);
+                }
             }
+            
+            //Podría hacer un booleano adentro de cada spawn para hacer que siga generando aldeanos en base al positiveRemainder 
+            else
+            {
+                foreach (Spawn spawnScript in spawnScripts)
+                {
+                    spawnScript.SpawnAllNatives(positiveRemainder);
+                }
+            }
+            
         }
 
     }
