@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class SoldierBase : MonoBehaviour
@@ -9,6 +10,7 @@ public class SoldierBase : MonoBehaviour
     public enum States
     {
         Idle,
+        Moving,
         Seeking,
         Attacking,
         Dead,
@@ -19,8 +21,17 @@ public class SoldierBase : MonoBehaviour
         Melee,
         Ranged
     }
+    [HideInInspector] public SoldierTeam soldierTeam;
+    public enum SoldierTeam
+    {
+        AlliedTeam,
+        EnemyTeam
+    }
+    public Transform groundPosition;
     public GameObject target; //Momentaneo
-    public UnityAction<SoldierBase> OnDealDamage, OnDie;
+    public List<GameObject> targetsDetected = new List<GameObject>();
+    public LayerMask targetLayer;
+    public UnityAction<SoldierBase> OnDealDamage, OnDie; //Analizar si se va a usar
 
     [HideInInspector] public int health;
     [HideInInspector] public float velocity;
@@ -32,7 +43,7 @@ public class SoldierBase : MonoBehaviour
     [HideInInspector] public bool enemyNear;
     [HideInInspector] public bool inAttackRange;
 
-    public virtual bool SetTarget(float detectRange)
+    public virtual bool TargetInRange(float detectRange)
     {
         if (target != null)
         {
@@ -42,7 +53,7 @@ public class SoldierBase : MonoBehaviour
         else
             return false;
     }
-    public bool TargetInRange(float attackRange)
+    public bool TargetInAttackRange(float attackRange)
     {
         if (target != null)
         {
@@ -52,9 +63,46 @@ public class SoldierBase : MonoBehaviour
         else
             return false;
     }
+    public void SetTarget(float detectRadio)
+    {
+        targetsDetected.Clear();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectRadio, targetLayer);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject != gameObject) 
+            {
+                targetsDetected.Add(collider.gameObject);
+            }
+        }
+        if (targetsDetected.Count > 0) 
+        {
+            if (target == null || !targetsDetected.Contains(target))
+            {
+                target = targetsDetected[0];
+            }
+        }
+        else
+        {
+            target = null; 
+        }
+    }
+    public virtual void Move(Vector3 direction, float desiredSpeed, NavMeshAgent agent)
+    {
+        Vector3 movement = direction * desiredSpeed * Time.deltaTime;
+        agent.Move(movement);
+    }
+    public virtual void Idle()
+    {
+        state = States.Idle;
+    }
     public virtual void Seek()
     {
         state = States.Seeking;
+
+    }
+    public virtual void Moving()
+    {
+        state = States.Moving;
     }
     public virtual void Attack()
     {

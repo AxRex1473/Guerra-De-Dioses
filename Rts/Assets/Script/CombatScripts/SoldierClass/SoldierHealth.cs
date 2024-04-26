@@ -4,17 +4,16 @@ using UnityEngine;
 using System;
 public class SoldierHealth : MonoBehaviour
 {
-    public float currentHealth;
-    public SoldierStats stats;
-    public Action OnHurt { get; set; }
-
+    private float currentHealth; //Hacer privada terminando el testeo
+    private Soldier soldier;
     private void Start()
     {
+        soldier = GetComponent<Soldier>();
         SetHealth();
     }
     public void SetHealth()    
     {
-        currentHealth = stats.health;
+        currentHealth = soldier.health;
     }
 
     public void ReceiveDamage(float attackDamage)
@@ -22,10 +21,7 @@ public class SoldierHealth : MonoBehaviour
         currentHealth -= attackDamage;
         if (currentHealth <= 0)
         {
-            if (OnHurt != null)
-            {
-                OnHurt.Invoke();
-            }
+            soldier.OnDead();
         }
     }
 }

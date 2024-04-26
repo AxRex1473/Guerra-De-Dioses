@@ -5,21 +5,18 @@ using UnityEngine.AI;
 using System;
 public class Soldier : SoldierBase
 {
-    [SerializeField] SoldierStats stats; 
-    [SerializeField] StateMachine soldierState;
-    [SerializeField] SoldierHealth targetHealth;
+    [SerializeField] SoldierStats stats;
+    private StateMachine soldierState;
     private Animator animator;
     private NavMeshAgent agent;
     private float attackTimer = 0;
-
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        soldierState = GetComponent<StateMachine>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        targetHealth.OnHurt += OnDead; //PORHACER buscar otro metodo para manejar la vida, manejarlo asi causa que todos los soldados mueran al mismo tiempo 
         Activate(stats);
     }
-
     public void Activate(SoldierStats sData) //Metodo para llamarlo desde un manager, sin esto no se mueve padre santo
     {
         health = sData.health;
@@ -35,16 +32,25 @@ public class Soldier : SoldierBase
         agent.enabled = true;
         soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
     }
-    private void OnDead()
+    public void OnDead()
     {
         soldierState.PushState(Die, OnDieEnter, OnDieExit);
     }
+    public void OnMove()
+    {
+        soldierState.PushState(Moving, OnMoveEnter, OnMoveExit);
+    }
     private void Update()
     {
+        TargetInRange(detectRange);
+        TargetInAttackRange(attackRange);
         SetTarget(detectRange);
-        TargetInRange(attackRange);
+        if (target == null)
+        {
+            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+        }
     }
-    private void OnDrawGizmosSelected() //Solo para debug
+    private void OnDrawGizmosSelected() //Solo para debug, se puede borrar sin problemas
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
@@ -58,14 +64,13 @@ public class Soldier : SoldierBase
         agent.ResetPath();
         //animator.SetBool("IsIdle", true); Incorporar una vez teniendo las animaciones
     }
-    private void Idle()
+    public override void Idle()
     {
+        base.Idle();
         changeMind -= Time.deltaTime;
-        Debug.Log("Esta idle");
-
         if (enemyNear)
         {
-            soldierState.PushState(Seek,OnSeekEnter,OnSeekExit);
+            soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
         }
         else if (changeMind <= 0)
         {
@@ -76,33 +81,64 @@ public class Soldier : SoldierBase
     {
         //animator.SetBool("IsIdle", false); Incorporar una vez teniendo las animaciones
     }
+
     private void OnSeekEnter()
     {
-        //animator.SetBool("IsMoving", true); Incorporar una vez teniendo las animaciones
+        animator.SetBool("IsMoving", true); 
     }
     public override void Seek()
     {
-        if(target == null)
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+        if (distanceToTarget <= attackRange)
         {
-            return;
+            soldierState.PushState(Attack, OnAttackEnter, OnAttackExit);
         }
-        base.Seek();
-        Debug.Log("Esta buscando");
-        agent.SetDestination(target.transform.position);
-        if(Vector3.Distance(transform.position,target.transform.position) > detectRange +.5f)
+
+        else if (distanceToTarget > detectRange + 0.5f)
         {
             soldierState.PopState();
             soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
         }
-        if (inAttackRange)
+        else
         {
-            soldierState.PushState(Attack, OnAttackEnter, OnAttackExit);
+            float desiredSpeed = Mathf.Clamp(distanceToTarget, 0, velocity);
+            base.Move(direction, desiredSpeed, agent);
         }
     }
     private void OnSeekExit()
     {
+        animator.SetBool("IsMoving", false); 
+    }
+
+    private void OnMoveEnter()
+    {
+        //animator.SetBool("IsMoving", true); Incorporar una vez teniendo las animaciones
+    }
+    public override void Moving()
+    {
+        base.Moving();
+        Vector3 direction = (groundPosition.position - transform.position).normalized;
+        float distanceToGround = Vector3.Distance(transform.position, groundPosition.position);
+        float desiredSpeed = Mathf.Clamp(distanceToGround, 0, velocity);
+        base.Move(direction, desiredSpeed, agent);
+        if (enemyNear)
+        {
+            soldierState.PopState();
+            soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
+        }
+        else if (distanceToGround <= attackRange)
+        {
+            soldierState.PopState();
+            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+        }
+    }
+    private void OnMoveExit()
+    {
         //animator.SetBool("IsMoving", false); Incorporar una vez teniendo las animaciones
     }
+
     private void OnAttackEnter()
     {
         agent.ResetPath();
@@ -117,9 +153,16 @@ public class Soldier : SoldierBase
         }
         else if (attackTimer <= 0)
         {
-            Debug.Log("esta atacando");
             //animator.SetTrigger("IsAttacking"); Incorporar una vez teniendo las animaciones
-            DealDamage();
+            if (target == null)
+            {
+                return;
+            }
+            SoldierHealth targetHealth = target.GetComponent<SoldierHealth>();
+            if (targetHealth != null && targetHealth.gameObject != null)
+            {
+                targetHealth.ReceiveDamage(attackDamage);
+            }
             attackTimer = attackRatio;
         }
     }
@@ -127,24 +170,7 @@ public class Soldier : SoldierBase
     {
 
     }
-    public override void Stop()
-    {
-        base.Stop();
-        agent.isStopped = true;
-    }
-    public void DealDamage()
-    {
-        targetHealth = target.GetComponent<SoldierHealth>();
 
-        if (targetHealth != null)
-        {
-            targetHealth.ReceiveDamage(attackDamage);
-        }
-        else if (targetHealth = null)
-        {
-            soldierState.PopState();
-        }
-    }
     private void OnDieEnter()
     {
         //animator.SetTrigger("Murió"); Incorporar una vez teniendo las animaciones
@@ -156,6 +182,12 @@ public class Soldier : SoldierBase
     }
     private void OnDieExit()
     {
-        Destroy(this.gameObject,5);//esto se puede cambiar si se implementa un objectPool 
+        Destroy(this.gameObject, 5);//esto se puede cambiar si se implementa un objectPool 
+    }
+
+    public override void Stop()
+    {
+        base.Stop();
+        agent.isStopped = true;
     }
 }
