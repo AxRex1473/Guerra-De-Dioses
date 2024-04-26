@@ -20,7 +20,7 @@ MonoBehaviour:
   changeMind: 0
   attackDamage: 10
   attackRange: 10
-  detectRange: 60
+  detectRange: 100
   attackRatio: 2
   enemyNear: 0
   inAttackRange: 0

@@ -11,6 +11,10 @@ public class SoldierHealth : MonoBehaviour
         soldier = GetComponent<Soldier>();
         SetHealth();
     }
+    public float Health
+    {
+        get { return currentHealth; }
+    }
     public void SetHealth()    
     {
         currentHealth = soldier.health;

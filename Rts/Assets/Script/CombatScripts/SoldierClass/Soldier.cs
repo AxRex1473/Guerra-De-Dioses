@@ -10,6 +10,7 @@ public class Soldier : SoldierBase
     private Animator animator;
     private NavMeshAgent agent;
     private float attackTimer = 0;
+    private float rotationSpeed = 10;
     private void Awake()
     {
         soldierState = GetComponent<StateMachine>();
@@ -89,6 +90,8 @@ public class Soldier : SoldierBase
     public override void Seek()
     {
         Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         if (distanceToTarget <= attackRange)
@@ -153,14 +156,14 @@ public class Soldier : SoldierBase
         }
         else if (attackTimer <= 0)
         {
-            //animator.SetTrigger("IsAttacking"); Incorporar una vez teniendo las animaciones
             if (target == null)
             {
                 return;
             }
             SoldierHealth targetHealth = target.GetComponent<SoldierHealth>();
-            if (targetHealth != null && targetHealth.gameObject != null)
+            if (targetHealth != null && targetHealth.gameObject != null && targetHealth.Health > 0)
             {
+                animator.SetTrigger("IsAttacking"); 
                 targetHealth.ReceiveDamage(attackDamage);
             }
             attackTimer = attackRatio;
@@ -173,7 +176,7 @@ public class Soldier : SoldierBase
 
     private void OnDieEnter()
     {
-        //animator.SetTrigger("Murió"); Incorporar una vez teniendo las animaciones
+        animator.SetTrigger("IsDead"); 
         agent.isStopped = true;
     }
     protected override void Die()
@@ -182,7 +185,7 @@ public class Soldier : SoldierBase
     }
     private void OnDieExit()
     {
-        Destroy(this.gameObject, 5);//esto se puede cambiar si se implementa un objectPool 
+        Destroy(this.gameObject, 5);
     }
 
     public override void Stop()
