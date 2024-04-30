@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,14 +8,18 @@ public class UnitMovement : MonoBehaviour
     NavMeshAgent myAgent;
     public LayerMask ground;
     private Animator animator;
-    public float stoppingDistance = 10f;
-    public float separationDistance = 10f; // Distancia mínima entre unidades
+    public float stoppingDistance = 1f;
+    public float separationDistance = 5f; // Distancia mínima entre unidades
+    List<UnitMovement> allUnits = new List<UnitMovement>();
 
     void Start()
     {
         myCam = Camera.main;
         myAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        // Obtener referencias a todas las unidades en el inicio
+        allUnits.AddRange(FindObjectsOfType<UnitMovement>());
     }
 
     void Update()
@@ -27,27 +32,22 @@ public class UnitMovement : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
                 Vector3 destination = hit.point;
-                Vector3 closestUnitPosition = Vector3.zero;
-                float closestDistance = float.MaxValue;
+                Vector3 averageUnitPosition = Vector3.zero;
 
-                // Encuentra la posición de la unidad más cercana
-                foreach (var unit in FindObjectsOfType<UnitMovement>())
+                // Calcular la posición promedio de todas las unidades cercanas
+                foreach (var unit in allUnits)
                 {
                     if (unit != this)
                     {
-                        float distance = Vector3.Distance(unit.transform.position, destination);
-                        if (distance < closestDistance)
-                        {
-                            closestDistance = distance;
-                            closestUnitPosition = unit.transform.position;
-                        }
+                        averageUnitPosition += unit.transform.position;
                     }
                 }
+                averageUnitPosition /= allUnits.Count - 1;
 
-                // Si la unidad está lo suficientemente cerca de otra, se mueve hacia una posición alrededor de esa unidad
-                if (closestDistance < separationDistance)
+                // Si la unidad está lo suficientemente cerca de otras, se mueve hacia una posición alrededor de esas unidades
+                if (Vector3.Distance(transform.position, averageUnitPosition) < separationDistance)
                 {
-                    destination = closestUnitPosition + (destination - closestUnitPosition).normalized * separationDistance;
+                    destination = averageUnitPosition + (destination - averageUnitPosition).normalized * separationDistance;
                 }
 
                 NavMeshHit navHit;
