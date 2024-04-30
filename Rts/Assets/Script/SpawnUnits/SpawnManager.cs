@@ -29,27 +29,25 @@ public class SpawnManager : MonoBehaviour
                 return;
             }
 
+            int manyNatives = (totalNatives / totalHouses);
             //Hace la división y llama a la función de SpawnAllNatives de acuerdo al resultado de la división de Nativos entre las casas disponibles
             positiveRemainder = totalNatives % totalHouses;
-            int manyNatives = Mathf.FloorToInt(totalNatives / totalHouses);
+
             //int nativesPerHouse=Mathf.RoundToInt(manyNatives);
-            if(positiveRemainder==0 )
+            foreach (Spawn spawnScript in spawnScripts)
             {
-                foreach (Spawn spawnScript in spawnScripts)
+                if (positiveRemainder > 0)
+                {
+                    // If there is a remainder, spawn one additional native for this house
+                    spawnScript.SpawnAllNatives(manyNatives + 1);
+                    positiveRemainder--;
+                }
+                else
                 {
                     spawnScript.SpawnAllNatives(manyNatives);
                 }
             }
-            
-            //Podría hacer un booleano adentro de cada spawn para hacer que siga generando aldeanos en base al positiveRemainder 
-            else
-            {
-                foreach (Spawn spawnScript in spawnScripts)
-                {
-                    spawnScript.SpawnAllNatives(positiveRemainder);
-                }
-            }
-            
+
         }
 
     }
