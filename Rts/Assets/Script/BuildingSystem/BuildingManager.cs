@@ -74,26 +74,45 @@ public class BuildingManager : MonoBehaviour
 
     private void SendBuildingData()
     {
-        //LoadBuildings.estructureObjects.Add(pendingObject);
-        //Aquí añado la estructura a mi loadBuildings
-        BuildingsInfo buildingData = new BuildingsInfo();
-        pendingObject.gameObject.name=pendingObject.transform.position.ToString();
-        buildingData.name = pendingObject.name;
-        buildingData.tag = pendingObject.tag;
-        //Tengo que obtener una función que solo me saque los datos que necesito, o sea el X,Y,Z de la estructura ya que si hay transform.pos hay un reference loop
+        // Check if the building already exists in the buildings data list
+        string buildingName = pendingObject.name;
+        BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
 
-        string jsonpos = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+        if (existingBuilding != null)
         {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
-
-        string jsonRot = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+            // Create new building data if it doesn't exist
+            BuildingsInfo buildingData = new BuildingsInfo();
+            pendingObject.name = pendingObject.transform.position.ToString();
+            buildingData.name = pendingObject.name;
+            buildingData.tag = pendingObject.tag;
+            // Update the position and rotation of the existing building
+            existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            existingBuilding.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+        }
+        else
         {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
-        buildingData.position = jsonpos;
-        buildingData.rotation = jsonRot;
+            // Create new building data if it doesn't exist
+            BuildingsInfo buildingData = new BuildingsInfo();
+            pendingObject.name = pendingObject.transform.position.ToString();
+            buildingData.name = pendingObject.name;
+            buildingData.tag = pendingObject.tag;
+            buildingData.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            buildingData.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
 
-        LoadBuildings.buildingsData.Buildings.Add(buildingData);
+            // Add the new building data to the buildings data list
+            LoadBuildings.buildingsData.Buildings.Add(buildingData);
+        }
     }
 }
