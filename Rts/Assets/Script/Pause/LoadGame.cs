@@ -18,7 +18,7 @@ public class LoadGame : MonoBehaviour
     private void Awake()
     {
         if(!loadGameDone)
-        {
+        {          
             LoadGameResources();
             LoadGameBuildings();
             loadGameDone = true;
@@ -100,18 +100,19 @@ public class LoadGame : MonoBehaviour
         }
     }
 
+    //Funciona para checar si el prefab tiene una tag y así saber que tipo de estructuras generar
     private GameObject FindPrefabByTag(string tag)
     {
         GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/Estructuras");
         foreach (var prefab in prefabs)
         {
-            // Check if the prefab has the specified tag
+           
             if (prefab.CompareTag(tag))
             {
                 return prefab;
             }
         }
-        return null; // Return null if no matching prefab is found
+        return null; //Null si no hay un prefab con ese tag
     }
 }
 

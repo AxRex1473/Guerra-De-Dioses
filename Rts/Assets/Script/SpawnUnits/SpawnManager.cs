@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.IO;
+
 
 public class SpawnManager : MonoBehaviour
 {
@@ -13,11 +15,19 @@ public class SpawnManager : MonoBehaviour
        
         if (LoadGame.loadGameDone)
         {
+            string filePath = Application.persistentDataPath + "/player-Buildings.json";
+            if (!File.Exists(filePath))
+            {
+                // Set _nativesSpawnedAllAtOnce to true for all Spawn scripts
+                SetAllSpawnScriptsNativesSpawnedAllAtOnce(true);
+                return;
+            }
             //Empieza buscando la cantidad de casas precargadas en eljuego
             Spawn[] spawnScripts = FindObjectsOfType<Spawn>();
 
             if(spawnScripts.Length == 0 )
             {
+             
                 return;
             }
 
@@ -47,9 +57,16 @@ public class SpawnManager : MonoBehaviour
                     spawnScript.SpawnAllNatives(manyNatives);
                 }
             }
-
         }
-
     }
 
+    // Function to set _nativesSpawnedAllAtOnce for all Spawn scripts
+    private void SetAllSpawnScriptsNativesSpawnedAllAtOnce(bool value)
+    {
+        Spawn[] spawnScripts = FindObjectsOfType<Spawn>();
+        foreach (Spawn spawnScript in spawnScripts)
+        {
+            spawnScript.SetNativesSpawnedAllAtOnce(value);
+        }
+    }
 }

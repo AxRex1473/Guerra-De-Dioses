@@ -74,18 +74,18 @@ public class BuildingManager : MonoBehaviour
 
     private void SendBuildingData()
     {
-        // Check if the building already exists in the buildings data list
+        // Checa si ya hay una estructura con el mismo nombre para no escribir información nueva.
         string buildingName = pendingObject.name;
         BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
 
         if (existingBuilding != null)
         {
-            // Create new building data if it doesn't exist
+            // Crea una nueva estructura si es que no existe
             BuildingsInfo buildingData = new BuildingsInfo();
             pendingObject.name = pendingObject.transform.position.ToString();
             buildingData.name = pendingObject.name;
             buildingData.tag = pendingObject.tag;
-            // Update the position and rotation of the existing building
+            // Solo cambia la info de la posición y su rotación
             existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -97,7 +97,7 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            // Create new building data if it doesn't exist
+            // Crea nueva información de la estructura
             BuildingsInfo buildingData = new BuildingsInfo();
             pendingObject.name = pendingObject.transform.position.ToString();
             buildingData.name = pendingObject.name;
@@ -111,7 +111,7 @@ public class BuildingManager : MonoBehaviour
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
-            // Add the new building data to the buildings data list
+            // Añade nueva información a la lista.
             LoadBuildings.buildingsData.Buildings.Add(buildingData);
         }
     }
