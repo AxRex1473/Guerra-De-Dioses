@@ -74,13 +74,14 @@ public class LoadGame : MonoBehaviour
                         Debug.LogWarning("Duplicate object found for name: " + buildingInfo.name + ". Skipping instantiation.");
                         continue; //Se Skipea la instancea y continuá con la siguiente estructura
                     }
-
+                    //Cuándo se genera una estructura se checa que tipo de tag tiene, y se instancia con el mimso nombre con el que tenía al guardar el juego. Esto para evitar bugs
                     GameObject prefab = FindPrefabByTag(buildingInfo.tag);
                     if (prefab != null)
                     {
 
                         Vector3 position = JsonConvert.DeserializeObject<Vector3>(buildingInfo.position);
                         Quaternion rotation = JsonConvert.DeserializeObject<Quaternion>(buildingInfo.rotation);
+                        prefab.name=buildingInfo.name;
                         Instantiate(prefab, position, rotation);
                     }
                     else

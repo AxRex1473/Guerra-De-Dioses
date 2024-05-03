@@ -74,45 +74,43 @@ public class BuildingManager : MonoBehaviour
 
     private void SendBuildingData()
     {
-        // Checa si ya hay una estructura con el mismo nombre para no escribir información nueva.
-        string buildingName = pendingObject.name;
-        BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
-
-        if (existingBuilding != null)
+        if (pendingObject != null)
         {
-            // Crea una nueva estructura si es que no existe
-            BuildingsInfo buildingData = new BuildingsInfo();
-            pendingObject.name = pendingObject.transform.position.ToString();
-            buildingData.name = pendingObject.name;
-            buildingData.tag = pendingObject.tag;
-            // Solo cambia la info de la posición y su rotación
-            existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            existingBuilding.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-        }
-        else
-        {
-            // Crea nueva información de la estructura
-            BuildingsInfo buildingData = new BuildingsInfo();
-            pendingObject.name = pendingObject.transform.position.ToString();
-            buildingData.name = pendingObject.name;
-            buildingData.tag = pendingObject.tag;
-            buildingData.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            buildingData.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+            // Checa si ya existe la estructura
+            string buildingName = pendingObject.name;
+            BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
 
-            // Añade nueva información a la lista.
-            LoadBuildings.buildingsData.Buildings.Add(buildingData);
+            if (existingBuilding != null)
+            {
+                // Update the position and rotation of the existing building
+                existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                existingBuilding.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+            }
+            else
+            {
+                // Crea nueva estructura si no existe
+                BuildingsInfo buildingData = new BuildingsInfo();
+                pendingObject.gameObject.name = pendingObject.transform.position.ToString();
+                buildingData.name = pendingObject.name;
+                buildingData.tag = pendingObject.tag;
+                buildingData.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                buildingData.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // Lo añade a la lista
+                LoadBuildings.buildingsData.Buildings.Add(buildingData);
+            }
         }
     }
 }
