@@ -6,6 +6,8 @@ public class PanelController : MonoBehaviour
 {
     public GameObject firstPanel;
     public GameObject secondPanel;
+    public GameObject panel;
+    public KeyCode activationKey;
 
     void Start()
     {
@@ -26,6 +28,10 @@ public class PanelController : MonoBehaviour
         {
             firstPanel.SetActive(true);
             secondPanel.SetActive(false);
+        }
+        if(Input.GetButtonDown("Build"))
+        {
+            panel.SetActive(!panel.activeSelf);
         }
     }
 }

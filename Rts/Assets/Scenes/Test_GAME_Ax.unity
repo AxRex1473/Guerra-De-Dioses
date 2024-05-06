@@ -1191,6 +1191,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367457764}
   m_CullTransparentMesh: 1
+--- !u!1 &367894083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5285196007325522618, guid: 0f215bd9a181efe4390ed1452a43ba46, type: 3}
+  m_PrefabInstance: {fileID: 1279343824640764973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &393686420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,6 +3306,7 @@ GameObject:
   - component: {fileID: 1820902860}
   - component: {fileID: 1820902862}
   - component: {fileID: 1820902861}
+  - component: {fileID: 1820902863}
   m_Layer: 5
   m_Name: UnitAct
   m_TagString: Untagged
@@ -3366,6 +3372,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820902859}
   m_CullTransparentMesh: 1
+--- !u!114 &1820902863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820902859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f9333fc7c5ebd469f0b2e3fb060b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToActivate: {fileID: 367894083}
+  buttonToActivatePanel: {fileID: 1704589421}
 --- !u!1001 &1859732130
 PrefabInstance:
   m_ObjectHideFlags: 0
