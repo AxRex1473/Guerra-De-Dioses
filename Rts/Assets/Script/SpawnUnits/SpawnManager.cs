@@ -10,9 +10,7 @@ public class SpawnManager : MonoBehaviour
 
     // Este código existe para hacer que se cargue la cantidad de nativos dentro del JSON, la cantidad exacta de cuántos nativos por casa se tienen que generar se calcula en Spawn Script
     void Start() //Solo funciona el Script si esta en Start
-    {
-
-       
+    {       
         if (LoadGame.loadGameDone)
         {
             string filePath = Application.persistentDataPath + "/player-Buildings.json";
@@ -60,7 +58,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // Function to set _nativesSpawnedAllAtOnce for all Spawn scripts
+    // LLama a la función de SetNativesSpawned... adentro de todos los spawnOBjects para que tengan el valor positivo.
     private void SetAllSpawnScriptsNativesSpawnedAllAtOnce(bool value)
     {
         Spawn[] spawnScripts = FindObjectsOfType<Spawn>();

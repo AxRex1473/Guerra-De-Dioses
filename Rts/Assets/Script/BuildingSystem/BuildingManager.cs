@@ -82,7 +82,7 @@ public class BuildingManager : MonoBehaviour
 
             if (existingBuilding != null)
             {
-                // Update the position and rotation of the existing building
+                // Actualiza la posición de la estructura ya existente
                 existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
