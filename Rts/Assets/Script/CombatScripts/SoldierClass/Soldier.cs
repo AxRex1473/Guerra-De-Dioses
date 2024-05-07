@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+
+
 public class Soldier : SoldierBase
 {
     [SerializeField] SoldierStats stats;
@@ -35,20 +37,16 @@ public class Soldier : SoldierBase
     }
     public void OnDead()
     {
-        soldierState.PushState(Die, OnDieEnter, OnDieExit);
-    }
-    public void OnMove()
-    {
-        soldierState.PushState(Moving, OnMoveEnter, OnMoveExit);
+        soldierState.PushState(Die, OnDieEnter, null);
     }
     private void Update()
     {
         TargetInRange(detectRange);
         TargetInAttackRange(attackRange);
-        SetTarget(detectRange);
         if (target == null)
         {
-            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+            SetTarget(detectRange);
+            Debug.Log("Esta haciendo el seteto");
         }
     }
     private void OnDrawGizmosSelected() //Solo para debug, se puede borrar sin problemas
@@ -68,19 +66,14 @@ public class Soldier : SoldierBase
     public override void Idle()
     {
         base.Idle();
-        changeMind -= Time.deltaTime;
         if (enemyNear)
         {
             soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
         }
-        else if (changeMind <= 0)
-        {
-
-        }
     }
     private void OnIdleExit()
     {
-        //animator.SetBool("IsIdle", false); Incorporar una vez teniendo las animaciones
+        animator.SetBool("IsIdle", false); 
     }
 
     private void OnSeekEnter()
@@ -89,6 +82,7 @@ public class Soldier : SoldierBase
     }
     public override void Seek()
     {
+        base.Seek();
         Vector3 direction = (target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
@@ -96,7 +90,7 @@ public class Soldier : SoldierBase
 
         if (distanceToTarget <= attackRange)
         {
-            soldierState.PushState(Attack, OnAttackEnter, OnAttackExit);
+            soldierState.PushState(Attack, OnAttackEnter, null);
         }
 
         else if (distanceToTarget > detectRange + 0.5f)
@@ -115,33 +109,6 @@ public class Soldier : SoldierBase
         animator.SetBool("IsMoving", false); 
     }
 
-    private void OnMoveEnter()
-    {
-        //animator.SetBool("IsMoving", true); Incorporar una vez teniendo las animaciones
-    }
-    public override void Moving()
-    {
-        base.Moving();
-        Vector3 direction = (groundPosition.position - transform.position).normalized;
-        float distanceToGround = Vector3.Distance(transform.position, groundPosition.position);
-        float desiredSpeed = Mathf.Clamp(distanceToGround, 0, velocity);
-        base.Move(direction, desiredSpeed, agent);
-        if (enemyNear)
-        {
-            soldierState.PopState();
-            soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
-        }
-        else if (distanceToGround <= attackRange)
-        {
-            soldierState.PopState();
-            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
-        }
-    }
-    private void OnMoveExit()
-    {
-        //animator.SetBool("IsMoving", false); Incorporar una vez teniendo las animaciones
-    }
-
     private void OnAttackEnter()
     {
         agent.ResetPath();
@@ -150,11 +117,13 @@ public class Soldier : SoldierBase
     {
         base.Attack();
         attackTimer -= Time.deltaTime;
+
         if (!inAttackRange)
         {
             soldierState.PopState();
+            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
         }
-        else if (attackTimer <= 0)
+        else if (inAttackRange && attackTimer <= 0)
         {
             if (target == null)
             {
@@ -164,14 +133,15 @@ public class Soldier : SoldierBase
             if (targetHealth != null && targetHealth.gameObject != null && targetHealth.Health > 0)
             {
                 animator.SetTrigger("IsAttacking"); 
-                targetHealth.ReceiveDamage(attackDamage);
+                targetHealth.StartCoroutine(targetHealth.ReceiveDamage(attackDamage,1));
+            }
+            else if (targetHealth != null && targetHealth.Health <= 0) 
+            {
+                targetsDetected.RemoveAt(0);
+                targetHealth = null;
             }
             attackTimer = attackRatio;
         }
-    }
-    private void OnAttackExit()
-    {
-
     }
 
     private void OnDieEnter()
@@ -182,15 +152,7 @@ public class Soldier : SoldierBase
     protected override void Die()
     {
         base.Die();
-    }
-    private void OnDieExit()
-    {
-        Destroy(this.gameObject, 5);
+        Destroy(gameObject, 5);
     }
 
-    public override void Stop()
-    {
-        base.Stop();
-        agent.isStopped = true;
-    }
 }

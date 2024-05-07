@@ -15,19 +15,13 @@ public class SoldierBase : MonoBehaviour
         Attacking,
         Dead,
     }
-    [HideInInspector] public AttackType attackType;
-    public enum AttackType
-    {
-        Melee,
-        Ranged
-    }
     [HideInInspector] public SoldierTeam soldierTeam;
     public enum SoldierTeam
     {
         AlliedTeam,
         EnemyTeam
     }
-    public Transform groundPosition;
+    public Vector3 groundPosition;
     public GameObject target; //Momentaneo
     public List<GameObject> targetsDetected = new List<GameObject>();
     public LayerMask targetLayer;
@@ -51,7 +45,7 @@ public class SoldierBase : MonoBehaviour
             return enemyNear;
         }
         else
-            return false;
+            return enemyNear = false;
     }
     public bool TargetInAttackRange(float attackRange)
     {
@@ -61,7 +55,7 @@ public class SoldierBase : MonoBehaviour
             return inAttackRange;
         }
         else
-            return false;
+            return inAttackRange = false;
     }
     public void SetTarget(float detectRadio)
     {
