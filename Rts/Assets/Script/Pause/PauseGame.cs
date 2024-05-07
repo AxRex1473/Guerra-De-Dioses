@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
@@ -46,9 +47,17 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    public void Restart()
+    {
+        //_audioGame.Play();
+        //audioPause.Pause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void SaveGame()
     {
-        
+        //_audioGame.Play();
+        //audioPause.Pause();
         if (_statConData != null)
         {
             // Update StatConData with current stats

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LoadGame : MonoBehaviour
 {
@@ -83,6 +84,9 @@ public class LoadGame : MonoBehaviour
                         Quaternion rotation = JsonConvert.DeserializeObject<Quaternion>(buildingInfo.rotation);
                         prefab.name=buildingInfo.name;
                         Instantiate(prefab, position, rotation);
+                        //var preprefab=GameObject(prefab);
+                        //SceneManager.MoveGameObjectsToScene(preprefab, gameObject.scene);
+
                     }
                     else
                     {
