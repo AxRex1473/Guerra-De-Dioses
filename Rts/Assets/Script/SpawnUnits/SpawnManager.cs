@@ -13,6 +13,7 @@ public class SpawnManager : MonoBehaviour
     {       
         if (LoadGame.loadGameDone)
         {
+            //Esto es por si no tiene el JSON file, útil para el inicio de una partida sin datos guardados
             string filePath = Application.persistentDataPath + "/player-Buildings.json";
             if (!File.Exists(filePath))
             {
@@ -23,17 +24,20 @@ public class SpawnManager : MonoBehaviour
             //Empieza buscando la cantidad de casas precargadas en eljuego
             Spawn[] spawnScripts = FindObjectsOfType<Spawn>();
 
+            
             if(spawnScripts.Length == 0 )
             {
-             
+                
                 return;
             }
 
             totalHouses = spawnScripts.Length; 
             totalNatives = StatCon.totalNative;  //Obtiene la cantidad de nativos
 
-            if( totalNatives == 0 )
+            //Si tiene 0 nativos almacenados entonces se pone en true para que pueda seguir spawneando
+            if ( totalNatives == 0 )
             {
+                SetAllSpawnScriptsNativesSpawnedAllAtOnce(true);
                 return;
             }
 

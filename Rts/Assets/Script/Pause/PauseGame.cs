@@ -51,7 +51,10 @@ public class PauseGame : MonoBehaviour
     {
         //_audioGame.Play();
         //audioPause.Pause();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Limpiar la lista no hará nada, es necesario borrar a los monos para que funcione
+        //UnitSelections.Instance.UnitList.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);       
+        Time.timeScale = 1.0f;
     }
 
     public void SaveGame()

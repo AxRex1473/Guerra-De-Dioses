@@ -19,9 +19,9 @@ public class LoadGame : MonoBehaviour
     private void Awake()
     {
         if(!loadGameDone)
-        {          
-            LoadGameResources();
+        {
             LoadGameBuildings();
+            LoadGameResources();            
             loadGameDone = true;
         }
        

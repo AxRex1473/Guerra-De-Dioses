@@ -7,6 +7,7 @@ public class UnitSelections : MonoBehaviour
     public List<GameObject> unitsSelected = new List<GameObject>();
 
     private static UnitSelections _instance;
+    //Singleton, así que aún cambiando o reiniciando escenas se mantendrá
     public static UnitSelections Instance { get { return _instance; } }
 
     private void Awake()
