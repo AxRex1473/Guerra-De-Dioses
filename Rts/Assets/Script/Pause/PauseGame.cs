@@ -51,10 +51,39 @@ public class PauseGame : MonoBehaviour
     {
         //_audioGame.Play();
         //audioPause.Pause();
-        //Limpiar la lista no hará nada, es necesario borrar a los monos para que funcione
-        //UnitSelections.Instance.UnitList.Clear();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);       
-        Time.timeScale = 1.0f;
+        //Limpiar la lista no hará nada, es necesario borrar a los monos para que funcione O cambiar la lista Singleton
+        //Pero se necesitaría de una implementación más profunda para que funcione.
+        //UnitSelections.Instance.UnitList.Clear();              
+        //StartCoroutine(RestartLevel());
+        KillThemAll();
+        
+    }
+
+    public void KillThemAll()
+    {
+        KILLALLNATIVES();
+        bool areNativesGone = AreAllNativesGone();
+        if (areNativesGone)
+        {
+            // Load the scene again
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1.0f;
+        }
+    }
+
+    private void KILLALLNATIVES()
+    {
+        var objetivos = Object.FindObjectsOfType<Unit>();
+        foreach (var unit in objetivos)
+        {
+            Destroy(unit.gameObject);
+        }
+    }
+
+    private bool AreAllNativesGone()
+    {
+        var units = Object.FindObjectsOfType<Unit>();
+        return units.Length == 0;
     }
 
     public void SaveGame()
@@ -95,4 +124,16 @@ public class PauseGame : MonoBehaviour
             Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
         }
     }
+
+   
+
+    /*
+    IEnumerator RestartLevel()
+    {
+        KILLALLNATIVES();
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
+
+    }*/
 }

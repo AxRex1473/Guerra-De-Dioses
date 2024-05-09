@@ -1,8 +1,24 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+/* This is used to make a public List that other codes may access
+[Serializable]
+public class UnitListData
+{
+    public List<GameObject> unitListData = new List<GameObject>();
+}*/
+
 
 public class UnitSelections : MonoBehaviour
 {
+    //This are the replacements for the singleton
+    /*
+    public static UnitListData UnitList = new UnitListData();
+    public List<GameObject> unitsSelected = new List<GameObject>();*/
+    
+    
     public List<GameObject> UnitList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
 
@@ -24,6 +40,10 @@ public class UnitSelections : MonoBehaviour
             _instance = this;
         }
     }
+
+    //private static UnitSelections _instance;
+    //Singleton, así que aún cambiando o reiniciando escenas se mantendrá
+    //public static UnitSelections Instancelist;
 
     public void ClickSelect(GameObject unitToAdd)
     {

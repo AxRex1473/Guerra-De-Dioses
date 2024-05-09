@@ -25,7 +25,10 @@ public class UnitClick : MonoBehaviour
                 //if we hit a clickable object
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
+                    //This is a function trying to work with the new list
+                    //UnitSelections.UnitList.unitListData.ShiftClickSelect(hit.collider.gameObject);
                     //Shift clicked
+                    //UnitSelections.UnitList.ShiftClickSelect(hit.collider.gameObject); // Access UnitList directly
                     UnitSelections.Instance.ShiftClickSelect(hit.collider.gameObject);
                 }
                 else
