@@ -12,7 +12,8 @@ public class Soldier : SoldierBase
     private Animator animator;
     private NavMeshAgent agent;
     private float attackTimer = 0;
-    private float rotationSpeed = 10;
+    public bool canMove = false;
+    public bool groundTarget = false;
     private void Awake()
     {
         soldierState = GetComponent<StateMachine>();
@@ -31,6 +32,7 @@ public class Soldier : SoldierBase
         inAttackRange = sData.inAttackRange;
         changeMind = sData.changeMind;
         detectRange = sData.detectRange;
+        rotationSpeed = 10;
         agent.speed = velocity;
         agent.enabled = true;
         soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
@@ -43,11 +45,7 @@ public class Soldier : SoldierBase
     {
         TargetInRange(detectRange);
         TargetInAttackRange(attackRange);
-        if (target == null)
-        {
-            SetTarget(detectRange);
-            Debug.Log("Esta haciendo el seteto");
-        }
+        Set();
     }
     private void OnDrawGizmosSelected() //Solo para debug, se puede borrar sin problemas
     {
@@ -66,7 +64,7 @@ public class Soldier : SoldierBase
     public override void Idle()
     {
         base.Idle();
-        if (enemyNear)
+        if (enemyNear || canMove && target != null)
         {
             soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
         }
@@ -83,17 +81,16 @@ public class Soldier : SoldierBase
     public override void Seek()
     {
         base.Seek();
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        Vector3 direction = (target.transform.position - transform.position).normalized;    
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-        if (distanceToTarget <= attackRange)
+        if (distanceToTarget <= attackRange && !groundTarget)
         {
             soldierState.PushState(Attack, OnAttackEnter, null);
+            canMove = false;
         }
 
-        else if (distanceToTarget > detectRange + 0.5f)
+        else if (distanceToTarget > detectRange + 0.5f && !canMove)
         {
             soldierState.PopState();
             soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
@@ -101,7 +98,15 @@ public class Soldier : SoldierBase
         else
         {
             float desiredSpeed = Mathf.Clamp(distanceToTarget, 0, velocity);
-            base.Move(direction, desiredSpeed, agent);
+            Move(direction, desiredSpeed, agent);
+            if (distanceToTarget <= attackRange && groundTarget)
+            {
+                groundTarget = false;
+                canMove = false;
+                target = null;
+                soldierState.PopState();
+                soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+            }
         }
     }
     private void OnSeekExit()
@@ -137,13 +142,12 @@ public class Soldier : SoldierBase
             }
             else if (targetHealth != null && targetHealth.Health <= 0) 
             {
-                targetsDetected.RemoveAt(0);
+                //targetsDetected.RemoveAt(0); //En teoria esto es necesario, pero funciona bien sin usarlo ¿?¿?
                 targetHealth = null;
             }
             attackTimer = attackRatio;
         }
     }
-
     private void OnDieEnter()
     {
         animator.SetTrigger("IsDead"); 
@@ -154,5 +158,14 @@ public class Soldier : SoldierBase
         base.Die();
         Destroy(gameObject, 5);
     }
-
+    [ContextMenu("no hagas nada")]
+    public override void Stop()
+    {
+        base.Stop();
+        soldierState.PushState(nohacenada, null, null);
+    }
+    void nohacenada()
+    {
+        Debug.Log("nohacenada");
+    }
 }

@@ -36,6 +36,7 @@ public class SoldierBase : MonoBehaviour
     [HideInInspector] public float changeMind;
     [HideInInspector] public bool enemyNear;
     [HideInInspector] public bool inAttackRange;
+    [HideInInspector] public float rotationSpeed;
 
     public virtual bool TargetInRange(float detectRange)
     {
@@ -80,10 +81,27 @@ public class SoldierBase : MonoBehaviour
             target = null; 
         }
     }
-    public virtual void Move(Vector3 direction, float desiredSpeed, NavMeshAgent agent)
+    public void Set()
+    {
+        if (target == null)
+        {
+            SetTarget(detectRange);
+        }
+        else
+        {
+            LookAt(target.transform.position, rotationSpeed);
+        }
+    }
+    public void Move(Vector3 direction, float desiredSpeed, NavMeshAgent agent)
     {
         Vector3 movement = direction * desiredSpeed * Time.deltaTime;
         agent.Move(movement);
+    }
+    public void LookAt(Vector3 targetPosition, float rotationSpeed)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
     public virtual void Idle()
     {
