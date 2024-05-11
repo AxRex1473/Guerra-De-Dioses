@@ -50,26 +50,20 @@ public class PauseGame : MonoBehaviour
     public void Restart()
     {
         //_audioGame.Play();
-        //audioPause.Pause();
-        //Limpiar la lista no hará nada, es necesario borrar a los monos para que funcione O cambiar la lista Singleton
-        //Pero se necesitaría de una implementación más profunda para que funcione.
-        //UnitSelections.Instance.UnitList.Clear();              
-        //StartCoroutine(RestartLevel());
-        KillThemAll();
+        //audioPause.Pause();         
+        //Esta función vacía la lista Singleton y después reinicia el nivel después de menos de un décimo de segundo.
+        StartCoroutine(RestartLevel());
         
     }
-
-    public void KillThemAll()
-    {
+  
+   IEnumerator RestartLevel()
+   {
+        //Se restablece el tiempo porque de lo contrario no funciona el IEnumerator
+        Time.timeScale = 1.0f;
         KILLALLNATIVES();
-        bool areNativesGone = AreAllNativesGone();
-        if (areNativesGone)
-        {
-            // Load the scene again
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1.0f;
-        }
-    }
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+   }
 
     private void KILLALLNATIVES()
     {
@@ -78,12 +72,6 @@ public class PauseGame : MonoBehaviour
         {
             Destroy(unit.gameObject);
         }
-    }
-
-    private bool AreAllNativesGone()
-    {
-        var units = Object.FindObjectsOfType<Unit>();
-        return units.Length == 0;
     }
 
     public void SaveGame()
@@ -123,17 +111,5 @@ public class PauseGame : MonoBehaviour
         {
             Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
         }
-    }
-
-   
-
-    /*
-    IEnumerator RestartLevel()
-    {
-        KILLALLNATIVES();
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1.0f;
-
-    }*/
+    }      
 }
