@@ -923,6 +923,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
   m_PrefabInstance: {fileID: 1237869307}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1045424022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4891958290298119875, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
+  m_PrefabInstance: {fileID: 6841871020276790264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1045424024
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045424022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28783dfca2331604fbeff2e3d4844231, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1069712395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
@@ -6185,6 +6211,9 @@ MonoBehaviour:
   Stone: {fileID: 5192296060604327298}
   Food: {fileID: 3134681523498809479}
   Native: {fileID: 484239629088152178}
+  StoneAnim: {fileID: 9005723168236960749}
+  FoodAnim: {fileID: 6663073022539307424}
+  NativeAnim: {fileID: 5244368554845121294}
 --- !u!224 &3576688219955092632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10504,6 +10533,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1306410056}
     m_Modifications:
+    - target: {fileID: 32106645863606649, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1238514188882152385, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -10519,6 +10552,10 @@ PrefabInstance:
     - target: {fileID: 1238514188882152385, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -114.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031409817229243971, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2738111589218500294, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10598,7 +10635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116347695324243931, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.999939
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3116347695324243931, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10616,10 +10653,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4041813813885935039, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
-      propertyPath: m_OverridePixelPerfect
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4088759819818422652, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10628,18 +10661,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6122444040107099516}
-    - target: {fileID: 4993922885853059511, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Restart
-      objectReference: {fileID: 0}
     - target: {fileID: 5571275360194784558, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6122444040107099516}
-    - target: {fileID: 5617485545827517625, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
-      propertyPath: m_text
-      value: Restart Level
-      objectReference: {fileID: 0}
     - target: {fileID: 7109574933951394697, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -10687,7 +10712,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4891958290298119875, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1045424024}
   m_SourcePrefab: {fileID: 100100000, guid: 3e1c347a91face348b50c578d21a7618, type: 3}
 --- !u!1001 &6941786442920066813
 PrefabInstance:
