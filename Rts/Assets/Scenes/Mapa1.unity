@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2722.4846, g: 2739.7346, b: 3873.1802, a: 1}
+  m_IndirectSpecularColor: {r: 2718.3928, g: 2757.1604, b: 3967.6333, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2582,7 +2582,7 @@ GameObject:
   - component: {fileID: 212931146}
   - component: {fileID: 212931145}
   - component: {fileID: 212931147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain_0_0_d0be6e7e-d97f-49d8-9c04-edb5dbf9fb05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22954,12 +22954,8 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 6216062112416296686, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7c8bdbaa712886b4787286521442e19f, type: 3}
-    - target: {fileID: 6216062112416296686, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
-      propertyPath: m_Color.a
-      value: 1
+      propertyPath: m_Color.b
+      value: 0.08627451
       objectReference: {fileID: 0}
     - target: {fileID: 7392885777256590256, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
       propertyPath: panelToActivate
