@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public Stack<State> States { get; set;}
+    public Stack<State> States { get; set; }
     private void Awake()
     {
         States = new Stack<State>();
     }
+    private void OnEnable()
+    {
+        
+    }
+
     private void Update()
     {
         if (GetCurrentState() != null)
@@ -18,6 +23,7 @@ public class StateMachine : MonoBehaviour
     }
     public void PushState(System.Action active, System.Action onEnter, System.Action onExit) //Metodo para agregar un nuevo estado a la pila
     {
+
         if (GetCurrentState() != null)
             GetCurrentState().OnExit();
 

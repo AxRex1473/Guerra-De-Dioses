@@ -12,15 +12,17 @@ public class Soldier : SoldierBase
     private Animator animator;
     private NavMeshAgent agent;
     private float attackTimer = 0;
-    public bool canMove = false;
-    public bool groundTarget = false;
-    private void Awake()
+    public bool canMove = false; //Variable para mover al soldado sin que haya detectado a un enemigo
+    public bool groundTarget = false; //Variable para diferenciar si el objetivo es un soldado o marca en el piso
+    
+    private void Start()
     {
         soldierState = GetComponent<StateMachine>();
         animator = transform.GetChild(0).GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         Activate(stats);
     }
+
     public void Activate(SoldierStats sData) //Metodo para llamarlo desde un manager, sin esto no se mueve padre santo
     {
         health = sData.health;
@@ -142,7 +144,7 @@ public class Soldier : SoldierBase
             }
             else if (targetHealth != null && targetHealth.Health <= 0) 
             {
-                //targetsDetected.RemoveAt(0); //En teoria esto es necesario, pero funciona bien sin usarlo ¿?¿?
+                target = null;
                 targetHealth = null;
             }
             attackTimer = attackRatio;
@@ -157,15 +159,14 @@ public class Soldier : SoldierBase
     {
         base.Die();
         Destroy(gameObject, 5);
+        //StartCoroutine(OffSelf());
     }
-    [ContextMenu("no hagas nada")]
-    public override void Stop()
+
+    IEnumerator OffSelf()
     {
-        base.Stop();
-        soldierState.PushState(nohacenada, null, null);
-    }
-    void nohacenada()
-    {
-        Debug.Log("nohacenada");
+        target = null;
+        targetsDetected.Clear();
+        yield return new WaitForSeconds(5);
+        gameObject.SetActive(false);
     }
 }
