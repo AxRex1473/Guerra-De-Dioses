@@ -8,6 +8,7 @@ public class PauseGame : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasPause;
     [SerializeField] private GameObject _canvasGame;
+    [SerializeField] private Animator _pauseAnimator;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
 
@@ -33,18 +34,24 @@ public class PauseGame : MonoBehaviour
         //_audioPause.Play(); 
         _canvasPause.SetActive(true);
         _canvasGame.SetActive(false);
+        _pauseAnimator.SetTrigger("MenuAction");
         Time.timeScale = 0.0f;
 
     }
 
-    //Aquí se resume el juego y se desactiva el canvas
+    //La idea es que se reproduzca la animación, después se lanza un Event Animation en TestingAnim cuándo ese Evento sea triggereado AnimDone se ejecutará.
     public void Resume()
+    {        
+        _pauseAnimator.SetTrigger("MenuAction");
+
+    }
+
+    //Aquí se resume el juego y se desactiva el canvas
+    public void AnimDone()
     {
-        //_audioGame.Play();
-        //audioPause.Pause();
-        _canvasPause.SetActive(false);
-        _canvasGame.SetActive(true);
-        Time.timeScale = 1.0f;
+            _canvasPause.SetActive(false);
+            _canvasGame.SetActive(true);
+            Time.timeScale = 1.0f;        
     }
 
     public void Restart()
