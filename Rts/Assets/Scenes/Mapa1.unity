@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2714.1038, g: 2759.1682, b: 3994.0864, a: 1}
+  m_IndirectSpecularColor: {r: 2718.385, g: 2757.137, b: 3967.602, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21365,7 +21365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4296190112201131705, guid: c9040e0c60a7e904daf9eb548c82ef0c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6326067188185275104, guid: c9040e0c60a7e904daf9eb548c82ef0c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -24971,9 +24971,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statConData:
-    totalStone: 0
-    totalFood: 0
-    totalNative: 0
+    totalStone: 3
+    totalFood: 2
+    totalNative: 5
 --- !u!114 &696292790139934446
 MonoBehaviour:
   m_ObjectHideFlags: 0

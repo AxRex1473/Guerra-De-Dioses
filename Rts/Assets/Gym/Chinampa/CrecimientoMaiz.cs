@@ -19,7 +19,7 @@ public class CrecimientoMaiz : MonoBehaviour
             _timer = 0f;
 
             Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
-            new WaitForSeconds(10);
+            new WaitForSeconds(20);
 
             _prefabIndex++;
         }
