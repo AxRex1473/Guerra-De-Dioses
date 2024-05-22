@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2718.385, g: 2757.137, b: 3967.602, a: 1}
+  m_IndirectSpecularColor: {r: 2718.3928, g: 2757.1565, b: 3967.6333, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29647,7 +29647,7 @@ MonoBehaviour:
   panBorderThickness: 10
   panLimit: {x: 250, y: 250}
   scrollSpeed: 50
-  minY: -50
+  minY: -80
   maxY: 0
 --- !u!222 &9026812137681728575
 CanvasRenderer:
