@@ -5,41 +5,13 @@ using TMPro;
 
 public class TestingAnim : MonoBehaviour
 {
-    TMP_Text textMesh;
+    //Este código va para DinamicPauseCanvas, para que pueda hacer la función y le diga al objeto con el código PauseGame que ya terminó la animación.
+    [SerializeField] private PauseGame gameUIref;
 
-    Mesh mesh;
-
-    Vector3[] vertices;
-
-    [SerializeField] private float _intensity=3.3f;
-
-    // Start is called before the first frame update
-    void Start()
+    //Una vez que termine la animación se ejecuta la Función AnimDone() en el PauseGame.
+    public void AnimationDoDone()
     {
-        textMesh = GetComponent<TMP_Text>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        textMesh.ForceMeshUpdate();
-        mesh = textMesh.mesh;
-        vertices = mesh.vertices;
-
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            Vector3 offset = Wobble(Time.time + i);
-
-            vertices[i] = vertices[i] + offset;
-        }
-
-        mesh.vertices = vertices;
-        textMesh.canvasRenderer.SetMesh(mesh);
-    }
-
-    Vector2 Wobble(float time)
-    {
-        return new Vector2(Mathf.Sin(time * _intensity), Mathf.Cos(time * 2.5f));
+        gameUIref.AnimDone();
     }
 
 }
