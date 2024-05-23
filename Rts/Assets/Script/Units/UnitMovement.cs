@@ -51,7 +51,7 @@ public class UnitMovement : MonoBehaviour
                 }
 
                 NavMeshHit navHit;
-                if (NavMesh.SamplePosition(destination, out navHit, 5f, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(destination, out navHit, 10f, NavMesh.AllAreas))
                 {
                     myAgent.SetDestination(navHit.position);
                 }
@@ -77,6 +77,4 @@ public class UnitMovement : MonoBehaviour
             myAgent.isStopped = false;
         }
     }
-
-
 }
