@@ -9,6 +9,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject _canvasPause;
     [SerializeField] private GameObject _canvasGame;
     [SerializeField] private Animator _pauseAnimator;
+    [SerializeField] private Animator _bgAnimator;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
 
@@ -35,6 +36,7 @@ public class PauseGame : MonoBehaviour
         _canvasPause.SetActive(true);
         _canvasGame.SetActive(false);
         _pauseAnimator.SetTrigger("MenuAction");
+        _bgAnimator.SetTrigger("Fade");
         Time.timeScale = 0.0f;
 
     }
@@ -43,6 +45,7 @@ public class PauseGame : MonoBehaviour
     public void Resume()
     {        
         _pauseAnimator.SetTrigger("MenuAction");
+        _bgAnimator.SetTrigger("Fade");
 
     }
 
