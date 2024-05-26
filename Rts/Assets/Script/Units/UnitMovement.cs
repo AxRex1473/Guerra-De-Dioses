@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,13 +9,17 @@ public class UnitMovement : MonoBehaviour
     public LayerMask ground;
     private Animator animator;
     public float stoppingDistance = 1f;
-    public float separationDistance = 2f; // Distancia mínima entre unidades
+    public float separationDistance = 5f; // Distancia mínima entre unidades
+    List<UnitMovement> allUnits = new List<UnitMovement>();
 
     void Start()
     {
         myCam = Camera.main;
         myAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        // Obtener referencias a todas las unidades en el inicio
+        allUnits.AddRange(FindObjectsOfType<UnitMovement>());
     }
 
     void Update()
@@ -27,16 +32,26 @@ public class UnitMovement : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
                 Vector3 destination = hit.point;
-                foreach (var unit in FindObjectsOfType<UnitMovement>())
+                Vector3 averageUnitPosition = Vector3.zero;
+
+                // Calcular la posición promedio de todas las unidades cercanas
+                foreach (var unit in allUnits)
                 {
-                    if (unit != this && Vector3.Distance(unit.transform.position, destination) < separationDistance)
+                    if (unit != this)
                     {
-                        destination = unit.transform.position - (destination - unit.transform.position).normalized * separationDistance;
+                        averageUnitPosition += unit.transform.position;
                     }
+                }
+                averageUnitPosition /= allUnits.Count - 1;
+
+                // Si la unidad está lo suficientemente cerca de otras, se mueve hacia una posición alrededor de esas unidades
+                if (Vector3.Distance(transform.position, averageUnitPosition) < separationDistance)
+                {
+                    destination = averageUnitPosition + (destination - averageUnitPosition).normalized * separationDistance;
                 }
 
                 NavMeshHit navHit;
-                if (NavMesh.SamplePosition(destination, out navHit, 5f, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(destination, out navHit, 10f, NavMesh.AllAreas))
                 {
                     myAgent.SetDestination(navHit.position);
                 }

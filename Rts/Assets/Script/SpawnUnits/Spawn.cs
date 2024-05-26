@@ -5,7 +5,7 @@ public class Spawn : MonoBehaviour
 {
     public GameObject nativePrefab;
     public Transform spawnPoint;
-    private int _spawnIndex = 3;
+    private int _spawnIndex = 1;
     private int _totalNativesSpawned = 0;
 
     // Flag to check if natives have been spawned
