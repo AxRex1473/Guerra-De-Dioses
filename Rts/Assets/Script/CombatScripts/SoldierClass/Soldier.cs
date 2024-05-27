@@ -10,7 +10,7 @@ public class Soldier : SoldierBase
     [SerializeField] SoldierStats stats;
     private StateMachine soldierState;
     private Animator animator;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     private float attackTimer = 0;
     public bool canMove = false; //Variable para mover al soldado sin que haya detectado a un enemigo
     public bool groundTarget = false; //Variable para diferenciar si el objetivo es un soldado o marca en el piso
@@ -37,11 +37,7 @@ public class Soldier : SoldierBase
         rotationSpeed = 10;
         agent.speed = velocity;
         agent.enabled = true;
-        soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
-    }
-    public void OnDead()
-    {
-        soldierState.PushState(Die, OnDieEnter, null);
+        soldierState.PushState(Idle, OnIdleEnter, null);
     }
     private void Update()
     {
@@ -57,78 +53,98 @@ public class Soldier : SoldierBase
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
     private void OnIdleEnter()
     {
         agent.ResetPath();
-        //animator.SetBool("IsIdle", true); Incorporar una vez teniendo las animaciones
     }
     public override void Idle()
     {
         base.Idle();
-        if (enemyNear || canMove && target != null)
+        if (enemyNear && target != null)
         {
             soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
+            animator.SetBool("IsIdle", false);
         }
-    }
-    private void OnIdleExit()
-    {
-        animator.SetBool("IsIdle", false); 
     }
 
     private void OnSeekEnter()
     {
+        agent.ResetPath();
+        agent.speed = velocity;
         animator.SetBool("IsMoving", true); 
     }
+
     public override void Seek()
     {
         base.Seek();
-        Vector3 direction = (target.transform.position - transform.position).normalized;    
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         if (distanceToTarget <= attackRange && !groundTarget)
         {
-            soldierState.PushState(Attack, OnAttackEnter, null);
-            canMove = false;
+            soldierState.PushState(Attack, null, null);
         }
 
         else if (distanceToTarget > detectRange + 0.5f && !canMove)
         {
             soldierState.PopState();
-            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+            soldierState.PushState(Idle, OnIdleEnter, null);
         }
         else
         {
+            Vector3 direction = (target.transform.position - transform.position).normalized;    
             float desiredSpeed = Mathf.Clamp(distanceToTarget, 0, velocity);
             Move(direction, desiredSpeed, agent);
-            if (distanceToTarget <= attackRange && groundTarget)
-            {
-                groundTarget = false;
-                canMove = false;
-                target = null;
-                soldierState.PopState();
-                soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
-            }
         }
     }
+
     private void OnSeekExit()
     {
         animator.SetBool("IsMoving", false); 
     }
 
-    private void OnAttackEnter()
+    private void OnMoveEnter()
     {
-        agent.ResetPath();
+        agent.speed = velocity;
+        animator.SetBool("IsMoving", true);
     }
+
+    public override void Move()
+    {
+        base.Move();
+        float distanceToTarget = Vector3.Distance(transform.position, groundPosition);
+        if (enemyNear && target != null)
+        {
+            soldierState.PopState();
+            soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
+        }
+        else if (distanceToTarget < 20)
+        {
+            agent.isStopped = true;
+            agent.speed = 0;
+            soldierState.PopState();
+            soldierState.PushState(Idle, OnIdleEnter, null);
+        }
+        else
+        {
+            ClickMove(groundPosition, agent);
+        }
+    }
+
+    private void OnMoveExit()
+    {
+        animator.SetBool("IsMoving", false);
+    }
+
     public override void Attack()
     {
         base.Attack();
+        agent.ResetPath();
         attackTimer -= Time.deltaTime;
 
         if (!inAttackRange)
         {
             soldierState.PopState();
-            soldierState.PushState(Idle, OnIdleEnter, OnIdleExit);
+            soldierState.PushState(Idle, OnIdleEnter, null);
         }
         else if (inAttackRange && attackTimer <= 0)
         {
@@ -150,23 +166,23 @@ public class Soldier : SoldierBase
             attackTimer = attackRatio;
         }
     }
-    private void OnDieEnter()
+
+    public void OnMove()
     {
-        animator.SetTrigger("IsDead"); 
-        agent.isStopped = true;
+        soldierState.PushState(Move,OnMoveEnter,OnMoveExit);
     }
+
+    public void OnDead()
+    {
+        soldierState.PushState(Die, null, null);
+    }
+
     protected override void Die()
     {
         base.Die();
+        agent.isStopped = true;
+        animator.SetTrigger("IsDead");
         Destroy(gameObject, 5);
-        //StartCoroutine(OffSelf());
     }
 
-    IEnumerator OffSelf()
-    {
-        target = null;
-        targetsDetected.Clear();
-        yield return new WaitForSeconds(5);
-        gameObject.SetActive(false);
-    }
 }

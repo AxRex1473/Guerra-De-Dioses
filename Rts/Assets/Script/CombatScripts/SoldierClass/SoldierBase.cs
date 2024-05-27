@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -10,16 +11,10 @@ public class SoldierBase : MonoBehaviour
     public enum States
     {
         Idle,
-        Moving,
+        Move,
         Seeking,
         Attacking,
         Dead,
-    }
-    [HideInInspector] public SoldierTeam soldierTeam;
-    public enum SoldierTeam
-    {
-        AlliedTeam,
-        EnemyTeam
     }
     public Vector3 groundPosition;
     public GameObject target; //Momentaneo
@@ -97,6 +92,11 @@ public class SoldierBase : MonoBehaviour
         Vector3 movement = direction * desiredSpeed * Time.deltaTime;
         agent.Move(movement);
     }
+    public void ClickMove(Vector3 position, NavMeshAgent agent)
+    {
+        agent.autoBraking = true;
+        agent.SetDestination(position);
+    }
     public void LookAt(Vector3 targetPosition, float rotationSpeed)
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
@@ -112,9 +112,9 @@ public class SoldierBase : MonoBehaviour
         state = States.Seeking;
 
     }
-    public virtual void Moving()
+    public virtual void Move()
     {
-        state = States.Moving;
+        state = States.Move;
     }
     public virtual void Attack()
     {

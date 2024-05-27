@@ -46,16 +46,15 @@ public class SoldierSelection : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     selectedSoldier.target = hit.collider.gameObject;
-                    selectedSoldier.canMove = true;
-                    Debug.Log("Se va a mover.");
                 }
                 else if (hit.collider.gameObject.layer == 7)
                 {
+                    selectedSoldier.groundPosition = hit.point;
+                    Debug.Log(hit.point);
                     groundMarker.transform.position = hit.point;
-                    selectedSoldier.target = groundMarker;
-                    selectedSoldier.groundTarget = true;
-                    selectedSoldier.canMove = true;
-                    //StartCoroutine(DeactivateMarker(selectedSoldier));
+                    groundMarker.gameObject.SetActive(true);
+                    GroundIcon.Activate();
+                    selectedSoldier.OnMove();
                 }
                 else
                 {
@@ -65,7 +64,6 @@ public class SoldierSelection : MonoBehaviour
             }
         }
     }
-
     void DeselectSoldier()
     {
         if (selectedSoldier != null)
@@ -73,10 +71,5 @@ public class SoldierSelection : MonoBehaviour
             selectedSoldier.transform.GetChild(2).gameObject.SetActive(false);
             selectedSoldier = null;
         }
-    }
-    IEnumerator DeactivateMarker(Soldier soldado)
-    {
-        yield return new WaitForSeconds(2f);
-        groundMarker.gameObject.SetActive(false);
     }
 }

@@ -8,6 +8,7 @@ public class SoldierSpawner : MonoBehaviour
     public Vector3 offsetSpawn;
     public int spawnRatio;
     public int soldierCount;
+    public int soldierMaxAmount;
     public GameObject soldierPrefab;
 
     [ContextMenu("Spawnea")]
