@@ -731,6 +731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1072,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1439,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1571,6 +1583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1702,6 +1718,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2073,6 +2093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2220,6 +2244,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2629,6 +2657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Granja
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c77287d2029ae824f9f499ad8db953be, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2834,6 +2866,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3049,6 +3085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3118,6 +3158,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3328,6 +3372,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3609,6 +3657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3806,6 +3858,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_PROP_ROCK_CABEZACLAVA (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4445,6 +4501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5059,6 +5119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_PROP_ROCK_CABEZACLAVA (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5269,6 +5333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5404,6 +5472,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5762,6 +5834,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6839,6 +6915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7123,6 +7203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7254,6 +7338,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
       propertyPath: m_Name
       value: Aztecas_Maestro 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7473,6 +7561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7603,6 +7695,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8098,6 +8194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuerreroDistancia 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da4ced4eca0a3b04581c71b77c14b5c1, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8163,6 +8263,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8604,6 +8708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8670,10 +8778,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aztecas_Maestro 1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882481912}
   m_SourcePrefab: {fileID: 100100000, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
 --- !u!4 &837203948 stripped
 Transform:
@@ -8805,6 +8920,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9526,6 +9645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_PROP_ROCK_CABEZACLAVA (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9587,6 +9710,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
       propertyPath: m_Name
       value: Aztecas_Maestro 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9662,6 +9789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9727,6 +9858,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10362,6 +10497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10583,6 +10722,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12591,6 +12734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12664,6 +12811,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12956,6 +13107,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13443,6 +13598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13730,6 +13889,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14233,6 +14396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14299,6 +14466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14364,6 +14535,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14706,6 +14881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_PROP_ROCK_CABEZACLAVA (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14977,6 +15156,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15472,6 +15655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aztecas_Maestro
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 649b6560bb32e384b862a7abe903e5d8, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15837,6 +16024,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16382,6 +16573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16769,6 +16964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16830,6 +17029,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 649b6560bb32e384b862a7abe903e5d8, type: 3}
       propertyPath: m_Name
       value: Aztecas_Maestro (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 649b6560bb32e384b862a7abe903e5d8, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17188,6 +17391,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c77287d2029ae824f9f499ad8db953be, type: 3}
       propertyPath: m_Name
       value: Granja (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c77287d2029ae824f9f499ad8db953be, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18201,6 +18408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18761,6 +18972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19040,6 +19255,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19885,6 +20104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20164,6 +20387,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20609,6 +20836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mina (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2baac51db3fc32944b9067b9d04f425f, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20841,6 +21072,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1657325121553188381, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
   m_PrefabInstance: {fileID: 1882216037}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1882481909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4b4f0084a40136b4e806422a87a52c21, type: 3}
+  m_PrefabInstance: {fileID: 837203947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1882481912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882481909}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.40201563, y: 0.45991838, z: 0.23983027}
+  m_Center: {x: -0.00000023841858, y: 0.042772546, z: -0.04291796}
 --- !u!1001 &1888825514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21465,6 +21722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mina
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2baac51db3fc32944b9067b9d04f425f, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21666,6 +21927,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2baac51db3fc32944b9067b9d04f425f, type: 3}
       propertyPath: m_Name
       value: Mina (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2baac51db3fc32944b9067b9d04f425f, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22739,6 +23004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22957,6 +23226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasaNuetral (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23170,6 +23443,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23672,6 +23949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASSETMODEL_PROP_ROCK_CABEZACLAVA (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75dbe6ec884ed3f429e41a483c508c69, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23745,6 +24026,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
       propertyPath: m_Name
       value: ASSETMODEL_ESCULTURA_CABEZA (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23885,6 +24170,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
       propertyPath: m_Name
       value: CasaNuetral (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d7b00e36ce1fc741bdb8ef8c6d887b4, type: 3}
+      propertyPath: m_TagString
+      value: Estructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24046,6 +24335,10 @@ PrefabInstance:
     - target: {fileID: 5351353937571336980, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6647234460247865510, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7392885777256590256, guid: 7643b8181de55ff4eb5507a28d87f0f6, type: 3}
       propertyPath: panelToActivate
