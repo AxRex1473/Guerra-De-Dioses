@@ -1,24 +1,25 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    // Variables públicas que se pueden configurar desde el inspector de Unity.
+    // Variables pï¿½blicas que se pueden configurar desde el inspector de Unity.
     public GameObject[] objects; // Array de objetos que se pueden construir.
-    public GameObject pendingObject; // Objeto que está pendiente de ser colocado.
-    public Canvas ConstructionUI; // Interfaz de usuario para la construcción.
+    public GameObject pendingObject; // Objeto que estï¿½ pendiente de ser colocado.
+    public Canvas ConstructionUI; // Interfaz de usuario para la construcciï¿½n.
 
-    private Vector3 pos; // Posición calculada del objeto a colocar.
+    private Vector3 pos; // Posiciï¿½n calculada del objeto a colocar.
 
-    [SerializeField] private LayerMask LayerMask; // Capa de colisión para el raycast.
+    [SerializeField] private LayerMask LayerMask; // Capa de colisiï¿½n para el raycast.
 
     // Referencia al script 'LoadBuildings' para guardar datos de las estructuras.
     [SerializeField] private LoadBuildings loadBuilding;
 
-    public float gridSize; // Tamaño de la cuadrícula para alinear los objetos.
+    public float gridSize; // Tamaï¿½o de la cuadrï¿½cula para alinear los objetos.
 
     void Update()
     {
-        // Alternar la visibilidad de la interfaz de construcción al presionar la tecla R.
+        // Alternar la visibilidad de la interfaz de construcciï¿½n al presionar la tecla R.
         if (Input.GetKeyDown(KeyCode.R))
         {
             ConstructionUI.gameObject.SetActive(!ConstructionUI.gameObject.activeSelf);
@@ -27,14 +28,14 @@ public class BuildingManager : MonoBehaviour
         // Si hay un objeto pendiente de colocar.
         if (pendingObject != null)
         {
-            // Ajustar la posición del objeto a la cuadrícula más cercana.
+            // Ajustar la posiciï¿½n del objeto a la cuadrï¿½cula mï¿½s cercana.
             pendingObject.transform.position = new Vector3(
                 RoundToNearestGrid(pos.x),
                 RoundToNearestGrid(pos.y),
                 RoundToNearestGrid(pos.z)
             );
 
-            // Colocar el objeto al hacer clic con el botón izquierdo del ratón.
+            // Colocar el objeto al hacer clic con el botï¿½n izquierdo del ratï¿½n.
             if (Input.GetMouseButtonDown(0))
             {
                 PlaceObject();
@@ -42,42 +43,84 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    // Método para colocar el objeto pendiente.
+    // Mï¿½todo para colocar el objeto pendiente.
     public void PlaceObject()
     {
-        // El objeto pendiente se agrega a una lista en 'LoadBuildings' (comentado).
-        // LoadBuildings.estructureObjects.Add(pendingObject);
-        pendingObject = null; // El objeto pendiente se resetea a null.
+        SendBuildingData();
+        pendingObject = null;
+
     }
 
     private void FixedUpdate()
     {
-        // Lanzar un rayo desde la cámara a la posición del ratón.
+        // Lanzar un rayo desde la cï¿½mara a la posiciï¿½n del ratï¿½n.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         // Si el rayo golpea algo en la capa especificada.
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask))
         {
-            pos = hit.point; // Guardar la posición del golpe.
+            pos = hit.point; // Guardar la posiciï¿½n del golpe.
         }
     }
 
-    // Método para seleccionar un objeto del array para colocar.
+    // Mï¿½todo para seleccionar un objeto del array para colocar.
     public void SelectedObject(int index)
     {
-        pendingObject = Instantiate(objects[index], pos, transform.rotation); // Instanciar el objeto en la posición calculada.
+        pendingObject = Instantiate(objects[index], pos, transform.rotation); // Instanciar el objeto en la posiciï¿½n calculada.
     }
 
-    // Método para redondear una posición a la cuadrícula más cercana.
+    // Mï¿½todo para redondear una posiciï¿½n a la cuadrï¿½cula mï¿½s cercana.
     float RoundToNearestGrid(float pos)
     {
-        float xDiff = pos % gridSize; // Calcular la diferencia con el tamaño de la cuadrícula.
-        pos -= xDiff; // Ajustar la posición restando la diferencia.
-        if (xDiff > (gridSize / 2)) // Si la diferencia es mayor que la mitad de la cuadrícula.
+        float xDiff = pos % gridSize; // Calcular la diferencia con el tamaï¿½o de la cuadrï¿½cula.
+        pos -= xDiff; // Ajustar la posiciï¿½n restando la diferencia.
+        if (xDiff > (gridSize / 2)) // Si la diferencia es mayor que la mitad de la cuadrï¿½cula.
         {
-            pos += gridSize; // Ajustar la posición sumando una cuadrícula completa.
+            pos += gridSize; // Ajustar la posiciï¿½n sumando una cuadrï¿½cula completa.
         }
-        return pos; // Devolver la posición ajustada.
+        return pos; // Devolver la posiciï¿½n ajustada.
+    }
+
+    private void SendBuildingData()
+    {
+        if (pendingObject != null)
+        {
+            // Checa si ya existe la estructura
+            string buildingName = pendingObject.name;
+            BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
+
+            if (existingBuilding != null)
+            {
+                // Actualiza la posiciï¿½n de la estructura ya existente
+                existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                existingBuilding.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+            }
+            else
+            {
+                // Crea nueva estructura si no existe
+                BuildingsInfo buildingData = new BuildingsInfo();
+                pendingObject.gameObject.name = pendingObject.transform.position.ToString();
+                buildingData.name = pendingObject.name;
+                buildingData.tag = pendingObject.tag;
+                buildingData.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                buildingData.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // Lo aï¿½ade a la lista
+                LoadBuildings.buildingsData.Buildings.Add(buildingData);
+            }
+        }
     }
 }
