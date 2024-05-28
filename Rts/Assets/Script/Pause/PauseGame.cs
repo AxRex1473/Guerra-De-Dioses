@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasPause;
     [SerializeField] private GameObject _canvasGame;
-    [SerializeField] private Animator _pauseAnimator;
-    [SerializeField] private Animator _bgAnimator;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
 
@@ -17,7 +14,7 @@ public class PauseGame : MonoBehaviour
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
     private StatConData _statConData = new StatConData();
-    //private BuildingsData _buildingsData = new BuildingsData();
+    private BuildingsData _buildingsData = new BuildingsData();
     private bool EncryptionEnabled;
 
 
@@ -35,53 +32,18 @@ public class PauseGame : MonoBehaviour
         //_audioPause.Play(); 
         _canvasPause.SetActive(true);
         _canvasGame.SetActive(false);
-        _pauseAnimator.SetTrigger("MenuAction");
-        _bgAnimator.SetTrigger("Fade");
         Time.timeScale = 0.0f;
 
     }
 
-    //La idea es que se reproduzca la animación, después se lanza un Event Animation en TestingAnim cuándo ese Evento sea triggereado AnimDone se ejecutará.
-    public void Resume()
-    {        
-        _pauseAnimator.SetTrigger("MenuAction");
-        _bgAnimator.SetTrigger("Fade");
-
-    }
-
     //Aquí se resume el juego y se desactiva el canvas
-    public void AnimDone()
-    {
-            _canvasPause.SetActive(false);
-            _canvasGame.SetActive(true);
-            Time.timeScale = 1.0f;        
-    }
-
-    public void Restart()
+    public void Resume()
     {
         //_audioGame.Play();
-        //audioPause.Pause();         
-        //Esta función vacía la lista Singleton y después reinicia el nivel después de menos de un décimo de segundo.
-        StartCoroutine(RestartLevel());
-        
-    }
-  
-   IEnumerator RestartLevel()
-   {
-        //Se restablece el tiempo porque de lo contrario no funciona el IEnumerator
+        //audioPause.Pause();
+        _canvasPause.SetActive(false);
+        _canvasGame.SetActive(true);
         Time.timeScale = 1.0f;
-        KILLALLNATIVES();
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-   }
-
-    private void KILLALLNATIVES()
-    {
-        var objetivos = Object.FindObjectsOfType<Unit>();
-        foreach (var unit in objetivos)
-        {
-            Destroy(unit.gameObject);
-        }
     }
 
     public void QuitGame()
@@ -93,8 +55,7 @@ public class PauseGame : MonoBehaviour
 
     public void SaveGame()
     {
-        //_audioGame.Play();
-        //audioPause.Pause();
+        
         if (_statConData != null)
         {
             // Update StatConData with current stats
@@ -113,20 +74,16 @@ public class PauseGame : MonoBehaviour
                 Debug.LogError("Could not save file");
             }
         }
-        if (LoadBuildings.buildingsData != null && LoadBuildings.buildingsData.Buildings.Count > 0)
+        if(_buildingsData != null)
         {
-            if (DataService.SaveData("/player-Buildings.json", LoadBuildings.buildingsData, EncryptionEnabled))
+            if (DataService.SaveData("/player-Buildings.json", _buildingsData, EncryptionEnabled))
             {
-                Debug.Log("Game Salvado");
+                Debug.Log("Juego Guardado!");
             }
             else
             {
                 Debug.LogError("Could not save file");
             }
         }
-        else
-        {
-            Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
-        }
-    }      
+    }
 }
