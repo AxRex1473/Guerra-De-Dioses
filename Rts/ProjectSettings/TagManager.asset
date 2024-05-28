@@ -7,14 +7,8 @@ TagManager:
   - Estructure
   - Enemy
   - AldeanoSoldado
-  - CasaEstructure
-  - EsculturaEstructure
-  - CentroComEstructure
-  - ChinampaEstructure
-  - MineEstructure
-  - TemploEstructure
-  - GranjaEstructure
-  - VallaEstructure
+  - Marker
+  - Aldeano
   layers:
   - Default
   - TransparentFX
@@ -24,7 +18,7 @@ TagManager:
   - UI
   - Clickable
   - Ground
-  - 
+  - Soldier
   - 
   - 
   - 
