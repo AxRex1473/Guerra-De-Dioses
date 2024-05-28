@@ -6,36 +6,25 @@ using static UnityEngine.GraphicsBuffer;
 
 public class GroundIcon : MonoBehaviour
 {
-    public delegate void ActivationAction();
+    private Coroutine deactivateCoroutine;
 
-    public static event ActivationAction ActivateIcon;
-
-    public static void Activate()
+    // Métodopara activar el ícono y reiniciar el temporizador
+    public void ActivateAndResetTimer()
     {
-        if (ActivateIcon != null)
+        gameObject.SetActive(true); 
+
+        if (deactivateCoroutine != null)
         {
-            ActivateIcon();
+            StopCoroutine(deactivateCoroutine);
         }
-    }
-    void OnEnable()
-    {
-        GroundIcon.ActivateIcon += ActivateObject;
+
+        deactivateCoroutine = StartCoroutine(Deactivate());
     }
 
-    void OnDisable()
+    private IEnumerator Deactivate()
     {
-        GroundIcon.ActivateIcon -= ActivateObject;
-    }
-
-    // Método que se ejecuta cuando se invoca el evento
-    void ActivateObject()
-    {
-        StartCoroutine(Deactivate());
-    }
-
-    IEnumerator Deactivate()
-    {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2); 
         gameObject.SetActive(false);
+        deactivateCoroutine = null; 
     }
 }

@@ -858,7 +858,11 @@ MonoBehaviour:
   spawnRatio: 3
   soldierCount: 1
   soldierMaxAmount: 0
-  soldierPrefab: {fileID: 5578181069345535203, guid: abda5657ccddb294784c69cdf88010af, type: 3}
+  soldierPrefabs:
+  - {fileID: 6086815969994216633, guid: 874d90b530a300348b915b21cfb09e0d, type: 3}
+  - {fileID: 5578181069345535203, guid: abda5657ccddb294784c69cdf88010af, type: 3}
+  - {fileID: 5833304095359879318, guid: 0576365e93e99fc4ab6d4ce74bb4b9a5, type: 3}
+  selectedPrefabIndex: 2
 --- !u!65 &1681259504
 BoxCollider:
   m_ObjectHideFlags: 0

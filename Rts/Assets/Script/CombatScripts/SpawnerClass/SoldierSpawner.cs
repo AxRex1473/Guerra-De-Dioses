@@ -9,8 +9,8 @@ public class SoldierSpawner : MonoBehaviour
     public int spawnRatio;
     public int soldierCount;
     public int soldierMaxAmount;
-    public GameObject soldierPrefab;
-
+    public GameObject[] soldierPrefabs;  // Arreglo para múltiples prefabs
+    public int selectedPrefabIndex = 0;  // Índice del prefab seleccionado
     [ContextMenu("Spawnea")]
     private void Spawn()
     {
@@ -27,9 +27,16 @@ public class SoldierSpawner : MonoBehaviour
     {
         for (int i = 0; i < soldierCount; i++)
         {
-            Vector3 randomPosition = GetRandomPosition();
-            Instantiate(soldierPrefab, randomPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnRatio);
+            Vector3 randomPosition = GetRandomPosition();
+            if (soldierPrefabs.Length > 0 && selectedPrefabIndex >= 0 && selectedPrefabIndex < soldierPrefabs.Length)
+            {
+                Instantiate(soldierPrefabs[selectedPrefabIndex], randomPosition, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("No existe un prefab con ese index");
+            }
         }
     }
 

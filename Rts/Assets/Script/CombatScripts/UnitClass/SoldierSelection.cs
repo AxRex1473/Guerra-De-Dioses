@@ -28,13 +28,11 @@ public class SoldierSelection : MonoBehaviour
                     DeselectSoldier();
                     selectedSoldier = newSelectedSoldier;
                     selectedSoldier.transform.GetChild(2).gameObject.SetActive(true);
-                    Debug.Log(selectedSoldier.gameObject.name + " seleccionado.");
                 }
             }
             else // Si el clic no golpea un soldado, deseleccionar todo
             {
                 DeselectSoldier();
-                Debug.Log("Se deseleccionó.");
             }
         }
         if (Input.GetMouseButtonUp(1) && selectedSoldier != null)
@@ -50,16 +48,13 @@ public class SoldierSelection : MonoBehaviour
                 else if (hit.collider.gameObject.layer == 7)
                 {
                     selectedSoldier.groundPosition = hit.point;
-                    Debug.Log(hit.point);
                     groundMarker.transform.position = hit.point;
-                    groundMarker.gameObject.SetActive(true);
-                    GroundIcon.Activate();
+                    groundMarker.GetComponent<GroundIcon>().ActivateAndResetTimer();
                     selectedSoldier.OnMove();
                 }
                 else
                 {
                     DeselectSoldier();
-                    Debug.Log("Se deseleccionó.");
                 }
             }
         }
