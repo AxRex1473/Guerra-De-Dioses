@@ -14,4 +14,9 @@ public class TestingAnim : MonoBehaviour
         gameUIref.AnimDone();
     }
 
+    //Termina la animación de Opcion Cerrar nos regresamos a PauseGame
+    public void AnimationOptionDone()
+    {
+        gameUIref.OptionDone();
+    }
 }
