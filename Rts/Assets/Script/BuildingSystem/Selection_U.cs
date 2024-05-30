@@ -11,7 +11,12 @@ public class Selection_U : MonoBehaviour
 
     void Start()
     {
-        buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>(); // Obtener referencia al manager de edificios
+        // Obtener referencia al manager de edificios
+        buildingManager = GameObject.Find("BuildingManager")?.GetComponent<BuildingManager>();
+        if (buildingManager == null)
+        {
+            Debug.LogError("BuildingManager no encontrado o no tiene un componente BuildingManager.");
+        }
     }
 
     void Update()
@@ -47,8 +52,38 @@ public class Selection_U : MonoBehaviour
     {
         if (obj == selectedObject) return;    // Si el objeto ya está seleccionado, no hacer nada
         if (selectedObject != null) Deselect(); // Si hay un objeto seleccionado, deseleccionarlo
-        targetImage.sprite = obj.GetComponentInChildren<Image>().sprite; // Actualizar la imagen de la UI con la imagen del objeto seleccionado
-        objUi.SetActive(true);                // Mostrar el panel de UI
+
+        // Buscar el componente Image en todos los hijos del objeto seleccionado
+        Image imageComponent = obj.GetComponentInChildren<Image>();
+
+        // Si no se encuentra el componente Image en el objeto seleccionado, buscar en BuildingSystem
+        if (imageComponent == null)
+        {
+            Debug.Log("El objeto seleccionado no tiene un componente Image hijo. Buscando en BuildingSystem...");
+            imageComponent = GameObject.Find("BuildingSystem")?.GetComponentInChildren<Image>();
+        }
+
+        if (imageComponent == null)
+        {
+            Debug.LogError("No se encontró un componente Image ni en el objeto seleccionado ni en BuildingSystem.");
+            return;
+        }
+
+        targetImage.sprite = imageComponent.sprite; // Actualizar la imagen de la UI con la imagen del objeto seleccionado
+        if (targetImage.sprite == null)
+        {
+            Debug.LogError("El sprite del Image es null.");
+        }
+
+        if (objUi != null)
+        {
+            objUi.SetActive(true);                // Mostrar el panel de UI
+        }
+        else
+        {
+            Debug.LogError("objUi es null.");
+        }
+
         selectedObject = obj;                 // Establecer el objeto seleccionado como el objeto actual
     }
 
@@ -56,30 +91,63 @@ public class Selection_U : MonoBehaviour
     {
         if (obj == selectedObject) return;    // Si el objeto ya está seleccionado, no hacer nada
         if (selectedObject != null) Deselect(); // Si hay un objeto seleccionado, deseleccionarlo
-        targetImage.gameObject.SetActive(false); // Ocultar la imagen de la UI
-        if (!aldeanoPanel.activeSelf)         // Si el panel de aldeano está desactivado, activarlo
+
+        if (targetImage != null)
+        {
+            targetImage.gameObject.SetActive(false); // Ocultar la imagen de la UI
+        }
+        else
+        {
+            Debug.LogError("targetImage es null.");
+        }
+
+        if (aldeanoPanel != null && !aldeanoPanel.activeSelf)         // Si el panel de aldeano está desactivado, activarlo
         {
             aldeanoPanel.SetActive(true);
         }
+        else if (aldeanoPanel == null)
+        {
+            Debug.LogError("aldeanoPanel es null.");
+        }
+
         selectedObject = obj;                 // Establecer el objeto seleccionado como el objeto actual
     }
 
     private void Deselect()
     {
-        objUi.SetActive(false);               // Ocultar el panel de UI
-        aldeanoPanel.SetActive(false);        // Ocultar el panel de aldeano
+        if (objUi != null)
+        {
+            objUi.SetActive(false);               // Ocultar el panel de UI
+        }
+
+        if (aldeanoPanel != null)
+        {
+            aldeanoPanel.SetActive(false);        // Ocultar el panel de aldeano
+        }
+
         selectedObject = null;                // Desseleccionar el objeto actual
     }
 
     public void Move()
     {
-        buildingManager.pendingObject = selectedObject; // Establecer el objeto seleccionado como el objeto pendiente en el manager de edificios
+        if (buildingManager != null)
+        {
+            buildingManager.pendingObject = selectedObject; // Establecer el objeto seleccionado como el objeto pendiente en el manager de edificios
+        }
     }
-
+    
     public void Delete()
     {
-        objUi.SetActive(false);               // Ocultar el panel de UI
-        aldeanoPanel.SetActive(false);        // Ocultar el panel de aldeano
+        if (objUi != null)
+        {
+            objUi.SetActive(false);               // Ocultar el panel de UI
+        }
+
+        if (aldeanoPanel != null)
+        {
+            aldeanoPanel.SetActive(false);        // Ocultar el panel de aldeano
+        }
+
         GameObject objToDestroy = selectedObject; // Obtener referencia al objeto seleccionado
         Deselect();                            // Deseleccionar el objeto
         Destroy(objToDestroy);                // Destruir el objeto
