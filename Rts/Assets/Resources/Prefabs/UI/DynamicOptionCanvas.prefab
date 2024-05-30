@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5631900634321100625}
   - component: {fileID: 2063633720789239530}
   m_Layer: 0
-  m_Name: Resume(Button)
+  m_Name: Graphics (BTN)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,9 +34,9 @@ RectTransform:
   - {fileID: 6068164459482456406}
   m_Father: {fileID: 5629731128886645209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3904819038728535703
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 7147029563752142018}
   - component: {fileID: 7294213175468003740}
   m_Layer: 0
-  m_Name: Save&Exit(Button) (1)
+  m_Name: Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,9 +569,9 @@ RectTransform:
   - {fileID: 8757207264933614913}
   m_Father: {fileID: 5629731128886645209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -548.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6680642898363407164
@@ -655,7 +655,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7147029563752142018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
+        m_MethodName: BackToPauseCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3580870653404386811
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +887,7 @@ GameObject:
   - component: {fileID: 3343868729812886664}
   - component: {fileID: 5321457803442853772}
   m_Layer: 0
-  m_Name: Options (Button)
+  m_Name: Brightness (BTN)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,9 +908,9 @@ RectTransform:
   - {fileID: 8431280170572794111}
   m_Father: {fileID: 5629731128886645209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -192.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5428346875475875685
@@ -1007,6 +1019,8 @@ GameObject:
   - component: {fileID: 2925107995603616785}
   - component: {fileID: 2972441013705810879}
   - component: {fileID: 1827756022218332701}
+  - component: {fileID: 7556971417258372601}
+  - component: {fileID: 8353408773393927853}
   m_Layer: 5
   m_Name: MovingOptions
   m_TagString: Untagged
@@ -1098,6 +1112,40 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &7556971417258372601
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6546778260314277788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1536535cc50ed74f8cc28a4df5ef492, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8353408773393927853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6546778260314277788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159388a21cd4bde4c89cd443251ce1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUIref: {fileID: 0}
 --- !u!1 &6658337838029102811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1368,7 @@ GameObject:
   - component: {fileID: 1826593595108769623}
   - component: {fileID: 4246538821916983402}
   m_Layer: 0
-  m_Name: Restart(Button)
+  m_Name: Other (BTN)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1341,9 +1389,9 @@ RectTransform:
   - {fileID: 7579037757993434160}
   m_Father: {fileID: 5629731128886645209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -370.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8873813825549544998
@@ -1586,14 +1634,13 @@ GameObject:
   - component: {fileID: 8674790753967983230}
   - component: {fileID: 3397746503022897131}
   - component: {fileID: 2730221225442002501}
-  - component: {fileID: 3080907528468496798}
   m_Layer: 5
   m_Name: DynamicOptionCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1976911298515945080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1679,27 +1726,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!95 &3080907528468496798
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8427097422776532815}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d572054f77b95741897436099674d5f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8689117096379338738
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,9 +12,9 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private GameObject _canvasGame;
     [SerializeField] private Animator _pauseAnimator;
     [SerializeField] private Animator _bgAnimator;
-    [SerializeField] private Animator _partofPauseAnimator;
+    //[SerializeField] private Animator _partofPauseAnimator;
     [SerializeField] private Animator _optionAnim;
-    [SerializeField] private Animator _textAnim;
+    //[SerializeField] private Animator _textAnim;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
 
@@ -103,27 +103,21 @@ public class PauseGame : MonoBehaviour
 
     }
 
+    public void Restart()
+    {
+        //_audioGame.Play();
+        //audioPause.Pause();         
+        //Esta función vacía la lista Singleton y después reinicia el nivel después de menos de un décimo de segundo.
+        StartCoroutine(RestartLevel());
+
+    }
+
     //La idea es que se reproduzca la animación, después se lanza un Event Animation en TestingAnim cuándo ese Evento sea triggereado AnimDone se ejecutará.
     public void Resume()
     {
         _pauseAnimator.SetTrigger("MenuAction");
         _bgAnimator.SetTrigger("Fade");
 
-    }
-
-
-    public void OptionShow()
-    {
-        //Aquí hace animación de ocultar la parte del PauseCanvas y después la animación que muestra las opciones
-        _partofPauseAnimator.SetTrigger("OptionsChange");
-        _optionAnim.SetTrigger("OptionsChange");
-        //_pauseAnimator.SetTrigger("MenuAction");
-    }
-
-    public void BackToPauseCanvas()
-    {
-        //Se hace la animación de ocultar el OptionAnim, pasamos al código TestinAnim
-        _optionAnim.SetTrigger("OptionsChange");
     }
 
     //Aquí se resume el juego y se desactiva el canvas
@@ -134,22 +128,36 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    //Hace la otra animación del menú de pausa para que se cierre y así en Testing Anim de la señal para hacer el OptionShow
+    public void OptionBtn()
+    {
+        _pauseAnimator.SetTrigger("MenuOptions");
+    }
+
+    public void OptionShow()
+    {
+        //Aquí hace animación de ocultar la parte del PauseCanvas y después la animación que muestra las opciones
+        _canvasPartofPause.SetActive(false);
+        _canvasOptions.SetActive(true);
+        _optionAnim.SetTrigger("NewOptions");
+        //_pauseAnimator.SetTrigger("MenuAction");
+    }
+
+    public void BackToPauseCanvas()
+    {
+        //Se hace la animación de ocultar el OptionAnim, pasamos al código TestinAnim
+        _optionAnim.SetTrigger("NewOptions");
+        
+    }
 
     public void OptionDone()
     {
         //Se desactiva el canvas Option, se activa la parte del canvas de Pausa y se hace la animación de regreso del canvas de pausa.
         _canvasOptions.SetActive(false);
         _canvasPartofPause.SetActive(true);
-        _partofPauseAnimator.SetTrigger("OptionsChange");
-
+        _pauseAnimator.SetTrigger("MenuOptions");
+        //_partofPauseAnimator.SetTrigger("OptionsChange");
     }
 
-    public void Restart()
-    {
-        //_audioGame.Play();
-        //audioPause.Pause();         
-        //Esta función vacía la lista Singleton y después reinicia el nivel después de menos de un décimo de segundo.
-        StartCoroutine(RestartLevel());
 
-    }
 }
