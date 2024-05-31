@@ -157,7 +157,7 @@ public class Selection_U : MonoBehaviour
     {
         if (selectedObject != null)
         {
-            selectedObject.transform.Rotate(0, 45, 0); // Rotar el objeto seleccionado 45 grados en el eje Y
+            selectedObject.transform.Rotate(0, 0, 45); // Rotar el objeto seleccionado 45 grados en el eje Y
         }
     }
 }
