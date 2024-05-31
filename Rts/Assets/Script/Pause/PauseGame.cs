@@ -14,7 +14,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private Animator _bgAnimator;
     //[SerializeField] private Animator _partofPauseAnimator;
     [SerializeField] private Animator _optionAnim;
-    //[SerializeField] private Animator _textAnim;
+    [SerializeField] private Animator _textOptionAnim;
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
 
@@ -137,17 +137,21 @@ public class PauseGame : MonoBehaviour
     public void OptionShow()
     {
         //Aquí hace animación de ocultar la parte del PauseCanvas y después la animación que muestra las opciones
-        _canvasPartofPause.SetActive(false);
+       
         _canvasOptions.SetActive(true);
+        // _canvasPartofPause.SetActive(false);
+        _textOptionAnim.SetTrigger("Texting");
         _optionAnim.SetTrigger("NewOptions");
+
         //_pauseAnimator.SetTrigger("MenuAction");
     }
 
     public void BackToPauseCanvas()
     {
         //Se hace la animación de ocultar el OptionAnim, pasamos al código TestinAnim
+        _textOptionAnim.SetTrigger("Texting");
         _optionAnim.SetTrigger("NewOptions");
-        
+
     }
 
     public void OptionDone()

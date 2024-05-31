@@ -1698,6 +1698,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
   m_PrefabInstance: {fileID: 1253745106}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1938787811 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1086716585989873232, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
+  m_PrefabInstance: {fileID: 6497198775322813683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1957505778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
@@ -8333,14 +8338,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2063633720789239530, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6122444040107099516}
-    - target: {fileID: 4246538821916983402, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6122444040107099516}
     - target: {fileID: 7294213175468003740, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8351,12 +8348,8 @@ PrefabInstance:
       objectReference: {fileID: 6122444040107099516}
     - target: {fileID: 8427097422776532815, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
       propertyPath: m_Name
-      value: DynamicOptionCanvas
+      value: OptionCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 9124127945054706410, guid: fa66cb6c5709ce34698ade7d3216a59f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6122444040107099517}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10555,6 +10548,10 @@ PrefabInstance:
       propertyPath: _pauseAnimator
       value: 
       objectReference: {fileID: 1045424024}
+    - target: {fileID: 1446312602256231502, guid: 075e67cc816eb8148acf0f25613ed70c, type: 3}
+      propertyPath: _textOptionAnim
+      value: 
+      objectReference: {fileID: 1938787811}
     - target: {fileID: 1446312602256231502, guid: 075e67cc816eb8148acf0f25613ed70c, type: 3}
       propertyPath: _canvasPartofPause
       value: 
