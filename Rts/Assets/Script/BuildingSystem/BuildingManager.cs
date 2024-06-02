@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
@@ -39,7 +40,7 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceObject()
     {
-        //LoadBuildings.estructureObjects.Add(pendingObject);
+        SendBuildingData();
         pendingObject = null;
 
     }
@@ -69,5 +70,47 @@ public class BuildingManager : MonoBehaviour
             pos += gridSize;
         }
         return pos;
+    }
+
+    private void SendBuildingData()
+    {
+        if (pendingObject != null)
+        {
+            // Checa si ya existe la estructura
+            string buildingName = pendingObject.name;
+            BuildingsInfo existingBuilding = LoadBuildings.buildingsData.Buildings.Find(b => b.name == buildingName);
+
+            if (existingBuilding != null)
+            {
+                // Actualiza la posición de la estructura ya existente
+                existingBuilding.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                existingBuilding.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+            }
+            else
+            {
+                // Crea nueva estructura si no existe
+                BuildingsInfo buildingData = new BuildingsInfo();
+                pendingObject.gameObject.name = pendingObject.transform.position.ToString();
+                buildingData.name = pendingObject.name;
+                buildingData.tag = pendingObject.tag;
+                buildingData.position = JsonConvert.SerializeObject(pendingObject.transform.position, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                buildingData.rotation = JsonConvert.SerializeObject(pendingObject.transform.rotation, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // Lo añade a la lista
+                LoadBuildings.buildingsData.Buildings.Add(buildingData);
+            }
+        }
     }
 }
