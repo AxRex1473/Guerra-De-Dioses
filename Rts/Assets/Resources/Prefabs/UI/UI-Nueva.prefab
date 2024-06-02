@@ -117,9 +117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasPause: {fileID: 0}
+  _canvasPartofPause: {fileID: 0}
+  _canvasOptions: {fileID: 0}
   _canvasGame: {fileID: 389756001266194651}
   _pauseAnimator: {fileID: 0}
   _bgAnimator: {fileID: 0}
+  _optionAnim: {fileID: 0}
 --- !u!114 &8720221724900158381
 MonoBehaviour:
   m_ObjectHideFlags: 0

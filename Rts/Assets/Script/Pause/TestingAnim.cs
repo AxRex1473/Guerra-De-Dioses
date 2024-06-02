@@ -11,7 +11,18 @@ public class TestingAnim : MonoBehaviour
     //Una vez que termine la animación se ejecuta la Función AnimDone() en el PauseGame.
     public void AnimationDoDone()
     {
+       // if(Opti)
         gameUIref.AnimDone();
     }
 
+    public void AnimationPartOfMenuDone()
+    {
+        gameUIref.OptionShow();
+    }
+
+    //Termina la animación de Opcion Cerrar nos regresamos a PauseGame
+    public void AnimationOptionDone()
+    {
+        gameUIref.OptionDone();
+    }
 }
