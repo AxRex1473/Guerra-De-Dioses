@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class SoldierBase : MonoBehaviour
 {
-    [HideInInspector] public States state = States.Idle;
+    public States state = States.Idle;
     public enum States
     {
         Idle,
@@ -19,34 +19,50 @@ public class SoldierBase : MonoBehaviour
         Melee,
         Ranged
     }
-    [HideInInspector] public SoldierBase target;
+    public GameObject target; //Momentaneo
+    public UnityAction<SoldierBase> OnDealDamage, OnDie;
 
-    [Header("Flechas")] //Parte de este apartado podria vivir en el ScripObject pero lo sigo analizando 
-    public GameObject arrowPrefab; //Le puse arrow pero tambien pueden ser lanzas?
-    public Transform arrowSpawnPoint;
-    //private Flechas flechas; PORHACER: Implementacion de futuro ataque a distancia
-    protected AudioSource audioSource; //Tengo duda de si esto va aqui pero depende de como quieran manejar el audio
-    public UnityAction<SoldierBase> OnDealDamage, OnProjectileFired, OnDie;
+    [HideInInspector] public int health;
+    [HideInInspector] public float velocity;
+    [HideInInspector] public float attackRange;
+    [HideInInspector] public float attackDamage;
+    [HideInInspector] public float attackRatio; 
+    [HideInInspector] public float detectRange;
+    [HideInInspector] public float changeMind;
+    [HideInInspector] public bool enemyNear;
+    [HideInInspector] public bool inAttackRange;
 
-
-    public virtual void SetTarget()
+    public virtual bool SetTarget(float detectRange)
     {
-
+        if (target != null)
+        {
+            enemyNear = Vector3.Distance(transform.position, target.transform.position) < detectRange;
+            return enemyNear;
+        }
+        else
+            return false;
     }
-    public virtual void StartAttack()
+    public bool TargetInRange(float attackRange)
     {
-        state = States.Attacking; 
+        if (target != null)
+        {
+            inAttackRange = Vector3.Distance(transform.position, target.transform.position) < attackRange;
+            return inAttackRange;
+        }
+        else
+            return false;
     }
-
-    public void FireArrow()
-    {
-
-    }
-
-
     public virtual void Seek()
     {
         state = States.Seeking;
+    }
+    public virtual void Attack()
+    {
+        state = States.Attacking; 
+    }
+    public virtual void Stop()
+    {
+        state = States.Idle;
     }
     protected virtual void Die()
     {
