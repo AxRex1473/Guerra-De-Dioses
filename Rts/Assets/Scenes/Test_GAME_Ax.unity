@@ -8037,7 +8037,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.426605
+      value: 31.729996
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8045,7 +8045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -113.686195
+      value: 9.210007
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9964,7 +9964,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.80658
+      value: 26.10997
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9972,7 +9972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -113.086205
+      value: 9.809998
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16803,7 +16803,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 00c2995ae8a1e7d4f825084f2d8e3512, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a9c1ded64c1539041a8974fa665f6f53, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &1191667502
 TerrainCollider:
@@ -18399,7 +18399,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.80658
+      value: 28.10997
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18407,7 +18407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -109.3962
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29601,7 +29601,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.426605
+      value: 31.73
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29609,7 +29609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -109.3962
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 4943153910689468911, guid: 747fffdbe11f19c41871bac140ab2853, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31050,6 +31050,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6473758472624920733, guid: 72fef2767ca11ae49a036bf3e518057e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 95.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473758472624920733, guid: 72fef2767ca11ae49a036bf3e518057e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 82
+      objectReference: {fileID: 0}
     - target: {fileID: 6801149036399341285, guid: 72fef2767ca11ae49a036bf3e518057e, type: 3}
       propertyPath: m_Name
       value: CameraController
@@ -31553,7 +31561,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 42
+  field of view: 37.81367
   orthographic: 0
   orthographic size: 68.35
   m_Depth: 0
