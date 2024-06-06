@@ -14,7 +14,7 @@ public class CrecimientoMaiz : MonoBehaviour
 
         _timer += Time.deltaTime;
 
-        if( _timer > _changeInter && _prefabIndex < maiz.Length)
+        if (_timer > _changeInter && _prefabIndex < maiz.Length)
         {
             _timer = 0f;
 
