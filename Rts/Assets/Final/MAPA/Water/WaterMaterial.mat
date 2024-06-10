@@ -24,7 +24,7 @@ Material:
   - TransparentDepthPostpass
   - TransparentBackface
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Speed
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -59,7 +59,7 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
-    - _Noise: 0.5
+    - _Noise: 0.05
     - _OpaqueCullMode: 2
     - _Power: 8
     - _RenderQueueType: 1
@@ -91,7 +91,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _OndasColro: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 0.25, g: 0.25, b: 0, a: 0}
-    - _WaterColor: {r: 0.35243857, g: 0.6295637, b: 0.754717, a: 0}
+    - _WaterColor: {r: 0.31461376, g: 0.4590799, b: 0.6603774, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1818118912414550309
 MonoBehaviour:
