@@ -14,7 +14,6 @@ public class PauseGame : MonoBehaviour
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
     private StatConData _statConData = new StatConData();
-    //private BuildingsData _buildingsData = new BuildingsData();
     private bool EncryptionEnabled;
 
   
@@ -95,10 +94,14 @@ public class PauseGame : MonoBehaviour
     public void Restart()
     {
         //_audioGame.Play();
-        //audioPause.Pause();         
-        //Esta función vacía la lista Singleton y después reinicia el nivel después de menos de un décimo de segundo.
+        //audioPause.Pause();                
         StartCoroutine(RestartLevel());
+     
+    }
 
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
 }
