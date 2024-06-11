@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - AldeanoSoldado
   - Marker
+  - Ally
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - Clickable
   - Ground
-  - Soldier
+  - EnemySoldier
   - 
-  - 
+  - AllySoldier
   - 
   - 
   - 

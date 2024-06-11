@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IconPooling : MonoBehaviour
+public class ArrowPooling : MonoBehaviour
 {
-    public static IconPooling instance;
+    public static ArrowPooling instance;
     private List<GameObject> pooledObjects = new List<GameObject>(); //Objetos que voy a reciclar
     public int amountToPool; 
-    [SerializeField] private GameObject iconPrefab;
+    [SerializeField] private GameObject arrowPrefab;
 
 
     private void Awake()
@@ -21,7 +21,7 @@ public class IconPooling : MonoBehaviour
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            GameObject obj = Instantiate(iconPrefab);
+            GameObject obj = Instantiate(arrowPrefab);
             obj.SetActive(false);
             pooledObjects.Add(obj);
         }

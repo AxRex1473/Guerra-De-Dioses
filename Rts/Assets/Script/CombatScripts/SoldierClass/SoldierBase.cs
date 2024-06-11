@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -16,12 +17,10 @@ public class SoldierBase : MonoBehaviour
         Attacking,
         Dead,
     }
-    public Vector3 groundPosition;
-    public GameObject target; //Momentaneo
-    public List<GameObject> targetsDetected = new List<GameObject>();
     public LayerMask targetLayer;
-    public UnityAction<SoldierBase> OnDealDamage, OnDie; //Analizar si se va a usar
-
+    [HideInInspector] public Vector3 groundPosition;
+    [HideInInspector] public GameObject target; //Momentaneo
+    [HideInInspector] public List<GameObject> targetsDetected = new List<GameObject>();
     [HideInInspector] public int health;
     [HideInInspector] public float velocity;
     [HideInInspector] public float attackRange;
@@ -32,6 +31,7 @@ public class SoldierBase : MonoBehaviour
     [HideInInspector] public bool enemyNear;
     [HideInInspector] public bool inAttackRange;
     [HideInInspector] public float rotationSpeed;
+    [HideInInspector] public float attackTimer;
 
     public virtual bool TargetInRange(float detectRange)
     {
@@ -102,6 +102,15 @@ public class SoldierBase : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
+    public IEnumerator Updater(float detectRange, float attackRange)
+    {
+        while (true)
+        {
+            TargetInAttackRange(attackRange);
+            TargetInRange(detectRange);
+            yield return new WaitForSeconds(1);
+        }
     }
     public virtual void Idle()
     {

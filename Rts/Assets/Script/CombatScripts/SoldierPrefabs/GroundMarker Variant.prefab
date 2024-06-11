@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074028445455566456, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5151136690728425893, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_LocalScale.x
@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5151136690728425893, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -56.23387
       objectReference: {fileID: 0}
     - target: {fileID: 5151136690728425893, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: -1.4380481e-15
       objectReference: {fileID: 0}
     - target: {fileID: 5151136690728425893, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -218.4
+      value: 64.76392
       objectReference: {fileID: 0}
     - target: {fileID: 5151136690728425893, guid: 2ce491f7c4646904dbb29f62a2009abb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -113,4 +113,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cb154b3dd54ab4b8298a791879495f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierAsigned: {fileID: 0}
