@@ -5,15 +5,13 @@ using TMPro;
 
 public class TestingAnim : MonoBehaviour
 {
-    //Este código va para DinamicPauseCanvas, para que pueda hacer la función y le diga al objeto con el código PauseGame que ya terminó la animación.
-    [SerializeField] private PauseGame gameUIref;
+    //Este código sirve para todos los eventos al terminar una animación.
     [SerializeField] private CustomAnimationsMenu animMenu;
 
     //Una vez que termine la animación se ejecuta la Función AnimDone() en el PauseGame.
     public void AnimationDoDone()
     {
-       // if(Opti)
-        //gameUIref.AnimDone();
+
         animMenu.ResumeAnimDone();  
     }
 
@@ -26,5 +24,11 @@ public class TestingAnim : MonoBehaviour
     public void AnimationOptionDone()
     {
         animMenu.OptionDone();
+    }
+
+    //Termina la animación del PopUP para regresarnos al PauseGame
+    public void AnimationPopUpDone()
+    {
+        animMenu.PopUpExitDone();
     }
 }
