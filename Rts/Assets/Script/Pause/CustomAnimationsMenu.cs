@@ -8,7 +8,7 @@ public class CustomAnimationsMenu : MonoBehaviour
     [SerializeField] private Animator _pauseAnimator, _bgAnimator, _optionAnim,_textOptionAnim,_popUpAnimator;
 
     //Para que una animación nueva funcione tiene que cumplir varias cosas.
-    //1- Animator con Update Mode Unscaled Time para que funcione aúnque este pausado el juego
+    //1- Animator con Update Mode Unscaled Time para que funcione aúnque este pausado el juego y animaciones que no esten en Loop
     //2- Un estado "Idle" donde empiece el Animator pero con una animación en la que no haga nada
     // Esto es solo para que pueda hacer la transición a la animación inicial con el trigger designado.
     //3- Mínimo 3 funciones en este código y 1 en TestingAnim: Una para activar el objeto y hacer la animación inicial
