@@ -12,7 +12,6 @@ public class PrefabSelector : MonoBehaviour
         {
             soldierSpawner.selectedPrefabIndex = index;
             soldierSpawner.Spawn();
-            Debug.Log("Prefab seleccionado: " + index);
         }
         else
         {

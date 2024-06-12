@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class DistanceShoot : MonoBehaviour
 {
     private GameObject target;
     public Transform shootTransform;
@@ -28,9 +28,9 @@ public class Projectile : MonoBehaviour
         Rigidbody rb = flecha.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(direccion * 30f, ForceMode.Impulse);
+            rb.AddForce(direccion * 60f, ForceMode.Impulse);
         }
-        StartCoroutine(DesactivarFlechaDespuesDeTiempo(flecha, 2f));
+        StartCoroutine(DesactivarFlechaDespuesDeTiempo(flecha, 1f));
     }
 
     IEnumerator DesactivarFlechaDespuesDeTiempo(GameObject flecha, float tiempo)
