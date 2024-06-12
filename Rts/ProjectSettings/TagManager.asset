@@ -9,6 +9,7 @@ TagManager:
   - AldeanoSoldado
   - Marker
   - Aldeano
+  - Ally
   layers:
   - Default
   - TransparentFX
