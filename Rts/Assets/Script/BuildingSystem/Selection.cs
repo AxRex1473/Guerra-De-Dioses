@@ -64,4 +64,9 @@ public class Selection : MonoBehaviour
         Deselect();
         Destroy(objToDestroy);
     }
+
+    public void Rotate()
+    {
+        selectedObject.transform.Rotate(0, 45, 0);
+    }
 }

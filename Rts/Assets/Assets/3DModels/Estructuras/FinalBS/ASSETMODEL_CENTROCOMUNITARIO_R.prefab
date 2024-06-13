@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}
       propertyPath: m_TagString
-      value: Estructure
+      value: CentroComunEstructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -141,6 +141,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2966696043841220122}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5092190393840132259}
   m_SourcePrefab: {fileID: 100100000, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}
 --- !u!1 &7131525229098565256 stripped
 GameObject:
@@ -168,6 +171,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.315463, y: 0.19254495, z: 0.38962072}
   m_Center: {x: 0.0034124032, y: 0.09627246, z: -0.0017510426}
+--- !u!114 &5092190393840132259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131525229098565256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb004b8304c0fc499b50b71673149e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - {fileID: 11400000, guid: 2935b54499713964ca3a6f5aab65b11e, type: 2}
 --- !u!4 &7616594972025267250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0109c1b6dd4dce946baba07f06b395c5, type: 3}

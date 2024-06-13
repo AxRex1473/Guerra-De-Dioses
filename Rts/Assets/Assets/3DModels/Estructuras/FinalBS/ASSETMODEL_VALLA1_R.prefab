@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
       propertyPath: m_TagString
-      value: Estructure
+      value: VallaEstructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -141,6 +141,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3483606074692186821}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5302789782006137190}
   m_SourcePrefab: {fileID: 100100000, guid: 4989e56e7f6f04b4ca0b84caae92c615, type: 3}
 --- !u!4 &7461658588826008132 stripped
 Transform:
@@ -173,3 +176,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01216637, y: 0.05168715, z: 0.055435132}
   m_Center: {x: -0.0006168843, y: 0.02486983, z: -0.0007803262}
+--- !u!114 &-5302789782006137190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838218693141537022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb004b8304c0fc499b50b71673149e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - {fileID: 11400000, guid: ebf8327358eeb3c499068196b706fe99, type: 2}

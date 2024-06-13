@@ -10,6 +10,15 @@ TagManager:
   - Marker
   - Aldeano
   - Ally
+  - CentroComunEstructure
+  - ChinampaEstructure
+  - EsculturaEstructure
+  - GranjaEstructure
+  - MinaEstructure
+  - PiramideEstructure
+  - TemploEstructure
+  - VallaEstructure
+  - CasaEstructure
   layers:
   - Default
   - TransparentFX

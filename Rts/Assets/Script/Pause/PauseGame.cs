@@ -63,17 +63,17 @@ public class PauseGame : MonoBehaviour
                 Debug.LogError("Could not save file");
             }
         }
-        //if (LoadBuildings.buildingsData != null && LoadBuildings.buildingsData.Buildings.Count > 0)
-        //{
-        //    if (DataService.SaveData("/player-Buildings.json", LoadBuildings.buildingsData, EncryptionEnabled))
-        //    {
-        //        Debug.Log("Game Salvado");
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("Could not save file");
-        //    }
-        //}
+        if (LoadBuildings.buildingsData != null && LoadBuildings.buildingsData.Buildings.Count > 0)
+        {
+            if (DataService.SaveData("/player-Buildings.json", LoadBuildings.buildingsData, EncryptionEnabled))
+            {
+                Debug.Log("Game Salvado");
+            }
+            else
+            {
+                Debug.LogError("Could not save file");
+            }
+        }
         else
         {
             Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");

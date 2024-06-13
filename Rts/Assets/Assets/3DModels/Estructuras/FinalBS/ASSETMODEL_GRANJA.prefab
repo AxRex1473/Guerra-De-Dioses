@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 947844a3f6bf27946a64211cc4debdeb, type: 3}
       propertyPath: m_TagString
-      value: Estructure
+      value: GranjaEstructure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -141,6 +141,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 947844a3f6bf27946a64211cc4debdeb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5922368010727849268}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 947844a3f6bf27946a64211cc4debdeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7594405885567798391}
   m_SourcePrefab: {fileID: 100100000, guid: 947844a3f6bf27946a64211cc4debdeb, type: 3}
 --- !u!1 &3538090942717877598 stripped
 GameObject:
@@ -166,8 +169,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 27.285477, y: 9.685188, z: 29.542507}
+  m_Center: {x: -0.44290543, y: 4.342594, z: -0.31128883}
+--- !u!114 &7594405885567798391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3538090942717877598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb004b8304c0fc499b50b71673149e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - {fileID: 11400000, guid: 4ee336bd620f5054792cc18811297afb, type: 2}
 --- !u!4 &4202423995997980644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 947844a3f6bf27946a64211cc4debdeb, type: 3}
