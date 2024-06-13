@@ -12,15 +12,12 @@ public class SoldierStats : ScriptableObject
     [Header("Soldier Stats")]
     public int health;
     public float velocity;
-    public float changeMind; //Tiempo entre cambio de estados 
 
     [Header("Attack Settings")]
     public float attackDamage;
+    public float attackRatio; //Tiempo entre ataques
     public float attackRange; 
     public float detectRange; //Rango en el que la unidad va a poder detectar otros enemigos
-    //Mucho ojo con que el rango de ataque sea menor al de deteccion,
-    public float attackRatio; //Tiempo entre ataques
 
-    public bool enemyNear;
-    public bool inAttackRange; 
+
 }

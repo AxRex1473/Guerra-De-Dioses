@@ -15,12 +15,9 @@ MonoBehaviour:
   soldierName: Guerrero Jaguar
   description: Guerrero que ataca a Melee
   soldierPrefab: {fileID: 0}
-  health: 20
-  velocity: 20
-  changeMind: 0
-  attackDamage: 10
-  attackRange: 10
-  detectRange: 40
-  attackRatio: 2
-  enemyNear: 0
-  inAttackRange: 0
+  health: 100
+  velocity: 25
+  attackDamage: 50
+  attackRatio: 3
+  attackRange: 5
+  detectRange: 20
