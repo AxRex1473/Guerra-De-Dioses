@@ -12,7 +12,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private LayerMask LayerMask;
 
     //Referencia del código donde podré obtener una lista de las estructuras las cuales después podré usar para guardar los datos
-    [SerializeField] private LoadBuildings loadBuilding;
+    //[SerializeField] private LoadBuildings loadBuilding;
 
     public float gridSize;
 
