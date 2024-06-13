@@ -10,11 +10,8 @@ public class Soldier : SoldierBase
     [SerializeField] SoldierStats stats;
     private StateMachine soldierState;
     private Animator animator;
-    public NavMeshAgent agent;
-    private float attackTimer = 0;
-    public bool canMove = false; //Variable para mover al soldado sin que haya detectado a un enemigo
-    public bool groundTarget = false; //Variable para diferenciar si el objetivo es un soldado o marca en el piso
-    
+    private NavMeshAgent agent;
+
     private void Start()
     {
         soldierState = GetComponent<StateMachine>();
@@ -22,7 +19,10 @@ public class Soldier : SoldierBase
         agent = GetComponent<NavMeshAgent>();
         Activate(stats);
     }
-
+    private void Update()
+    {
+        Set();
+    }
     public void Activate(SoldierStats sData) //Metodo para llamarlo desde un manager, sin esto no se mueve padre santo
     {
         health = sData.health;
@@ -35,17 +35,14 @@ public class Soldier : SoldierBase
         changeMind = sData.changeMind;
         detectRange = sData.detectRange;
         rotationSpeed = 10;
+        attackTimer = 0;
         agent.speed = velocity;
         agent.enabled = true;
+        
         soldierState.PushState(Idle, OnIdleEnter, null);
+        StartCoroutine(Updater(detectRange,attackRange));
     }
-    private void Update()
-    {
-        TargetInRange(detectRange);
-        TargetInAttackRange(attackRange);
-        Set();
-    }
-    private void OnDrawGizmosSelected() //Solo para debug, se puede borrar sin problemas
+    private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectRange);
@@ -71,7 +68,7 @@ public class Soldier : SoldierBase
     {
         agent.ResetPath();
         agent.speed = velocity;
-        animator.SetBool("IsMoving", true); 
+        animator.SetBool("IsMoving", true);
     }
 
     public override void Seek()
@@ -79,19 +76,19 @@ public class Soldier : SoldierBase
         base.Seek();
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-        if (distanceToTarget <= attackRange && !groundTarget)
+        if (distanceToTarget <= attackRange)
         {
             soldierState.PushState(Attack, null, null);
         }
 
-        else if (distanceToTarget > detectRange + 0.5f && !canMove)
-        {
-            soldierState.PopState();
-            soldierState.PushState(Idle, OnIdleEnter, null);
-        }
+        //else if (distanceToTarget > detectRange + 0.5f)
+        //{
+        //    soldierState.PopState();
+        //    soldierState.PushState(Idle, OnIdleEnter, null);
+        //}
         else
         {
-            Vector3 direction = (target.transform.position - transform.position).normalized;    
+            Vector3 direction = (target.transform.position - transform.position).normalized;
             float desiredSpeed = Mathf.Clamp(distanceToTarget, 0, velocity);
             Move(direction, desiredSpeed, agent);
         }
@@ -99,7 +96,7 @@ public class Soldier : SoldierBase
 
     private void OnSeekExit()
     {
-        animator.SetBool("IsMoving", false); 
+        animator.SetBool("IsMoving", false);
     }
 
     private void OnMoveEnter()
@@ -155,10 +152,10 @@ public class Soldier : SoldierBase
             SoldierHealth targetHealth = target.GetComponent<SoldierHealth>();
             if (targetHealth != null && targetHealth.gameObject != null && targetHealth.Health > 0)
             {
-                animator.SetTrigger("IsAttacking"); 
-                targetHealth.StartCoroutine(targetHealth.ReceiveDamage(attackDamage,1));
+                animator.SetTrigger("IsAttacking");
+                targetHealth.StartCoroutine(targetHealth.ReceiveDamage(attackDamage, 1));
             }
-            else if (targetHealth != null && targetHealth.Health <= 0) 
+            else if (targetHealth != null && targetHealth.Health <= 0)
             {
                 target = null;
                 targetHealth = null;
@@ -169,9 +166,12 @@ public class Soldier : SoldierBase
 
     public void OnMove()
     {
-        soldierState.PushState(Move,OnMoveEnter,OnMoveExit);
+        soldierState.PushState(Move, OnMoveEnter, OnMoveExit);
     }
-
+    public void OnSeek()
+    {
+        soldierState.PushState(Seek, OnSeekEnter, OnSeekExit);
+    }
     public void OnDead()
     {
         soldierState.PushState(Die, null, null);
@@ -182,6 +182,7 @@ public class Soldier : SoldierBase
         base.Die();
         agent.isStopped = true;
         animator.SetTrigger("IsDead");
+        StopCoroutine(Updater(detectRange,attackRange));
         Destroy(gameObject, 5);
     }
 

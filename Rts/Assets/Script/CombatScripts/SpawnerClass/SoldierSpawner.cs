@@ -4,17 +4,74 @@ using UnityEngine;
 
 public class SoldierSpawner : MonoBehaviour
 {
-    public Vector3 areaSpawn;
-    public Vector3 offsetSpawn;
-    public int spawnRatio;
+    [SerializeField] private Vector3 areaSpawn;
+    [SerializeField] Vector3 offsetSpawn;
+    [SerializeField] int spawnRatio;
+    [SerializeField] bool AllyBase;
     public int soldierCount;
     public int soldierMaxAmount;
     public GameObject[] soldierPrefabs;  // Arreglo para múltiples prefabs
     public int selectedPrefabIndex = 0;  // Índice del prefab seleccionado
+
+
+    private Queue<int> spawnQueue = new Queue<int>(); // Cola de spawneo
+    private Coroutine spawnCoroutine;
+
     [ContextMenu("Spawnea")]
-    private void Spawn()
+    public void Spawn()
     {
-        StartCoroutine(SpawnSoldiers());
+        EnqueueSoldiers(soldierCount);
+
+        if (spawnCoroutine == null)
+        {
+            spawnCoroutine = StartCoroutine(ProcessSpawnQueue());
+        }
+    }
+
+    private void EnqueueSoldiers(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            spawnQueue.Enqueue(selectedPrefabIndex);
+        }
+    }
+
+    private IEnumerator ProcessSpawnQueue()
+    {
+        while (spawnQueue.Count > 0)
+        {
+            if (soldierMaxAmount > 0)
+            {
+                int prefabIndex = spawnQueue.Dequeue();
+                yield return new WaitForSeconds(spawnRatio);
+                SpawnSoldier(prefabIndex);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        // Detenemos la corrutina cuando la cola esté vacía
+        spawnCoroutine = null;
+    }
+
+    private void SpawnSoldier(int prefabIndex)
+    {
+        Vector3 randomPosition = GetRandomPosition();
+        if (soldierPrefabs.Length > 0 && prefabIndex >= 0 && prefabIndex < soldierPrefabs.Length)
+        {
+            GameObject soldier = Instantiate(soldierPrefabs[prefabIndex], randomPosition, Quaternion.identity);
+            if (!AllyBase)
+            {
+                Identifier(soldier);
+            }
+            soldierMaxAmount--;
+        }
+        else
+        {
+            Debug.LogWarning("No existe un prefab con ese index");
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -22,24 +79,6 @@ public class SoldierSpawner : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position + offsetSpawn, areaSpawn);
     }
-
-    IEnumerator SpawnSoldiers()
-    {
-        for (int i = 0; i < soldierCount; i++)
-        {
-            yield return new WaitForSeconds(spawnRatio);
-            Vector3 randomPosition = GetRandomPosition();
-            if (soldierPrefabs.Length > 0 && selectedPrefabIndex >= 0 && selectedPrefabIndex < soldierPrefabs.Length)
-            {
-                Instantiate(soldierPrefabs[selectedPrefabIndex], randomPosition, Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogWarning("No existe un prefab con ese index");
-            }
-        }
-    }
-
     Vector3 GetRandomPosition()
     {
         Vector3 randomPosition = new Vector3(
@@ -49,5 +88,18 @@ public class SoldierSpawner : MonoBehaviour
         );
         return randomPosition;
     }
-
+    private void Identifier(GameObject soldier)
+    {
+        Soldier soldierScript = soldier.GetComponent<Soldier>();
+        if (soldierScript != null)
+        {
+            soldierScript.targetLayer = LayerMask.GetMask(LayerMask.LayerToName(10));
+            soldierScript.gameObject.tag = "Enemy";
+            soldierScript.gameObject.layer = 8;
+        }
+        else
+        {
+            Debug.LogWarning("El objeto instanciado no tiene el componente Soldier.");
+        }
+    }
 }

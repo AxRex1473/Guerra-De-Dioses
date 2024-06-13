@@ -50,7 +50,7 @@ public class ReadmeEditor : Editor {
 		{
 			var readmeObject = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(ids[0]));
 			
-			Selection.objects = new UnityEngine.Object[]{readmeObject};
+			//Selection.objects = new UnityEngine.Object[]{readmeObject};
 			
 			return (Readme)readmeObject;
 		}
