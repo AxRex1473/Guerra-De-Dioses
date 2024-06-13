@@ -19,8 +19,8 @@ MonoBehaviour:
   velocity: 10
   changeMind: 0
   attackDamage: 30
-  attackRange: 10
-  detectRange: 100
+  attackRange: 5
+  detectRange: 50
   attackRatio: 4
   enemyNear: 0
   inAttackRange: 0

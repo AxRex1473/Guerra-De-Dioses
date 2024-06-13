@@ -297,8 +297,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 78.6, y: 0, z: -48.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 166858540677102068}
   - {fileID: 7808823793309010840}
@@ -363,12 +363,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  groundPosition: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
-  targetsDetected: []
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  groundPosition: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  targetsDetected: []
   health: 0
   velocity: 0
   attackRange: 0

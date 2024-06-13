@@ -6,16 +6,20 @@ public class SoldierSelection : MonoBehaviour
 {
     private Camera mainCamera;
     public LayerMask targetLayer;
+    public LayerMask militaryLayer; // Capa para las "MilitaryBases"
     public GameObject groundMarker;
     public RectTransform selectionBox;
     private Vector2 startPosition;
 
     private List<Soldier> selectedSoldiers = new List<Soldier>();
 
+    public GameObject militaryBaseButtons; // Referencia a los botones de la base militar
+
     void Start()
     {
         mainCamera = Camera.main;
         selectionBox.gameObject.SetActive(false);
+        militaryBaseButtons.SetActive(false); // Asegurarse de que los botones estén ocultos al inicio
     }
 
     void Update()
@@ -23,7 +27,7 @@ public class SoldierSelection : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer))
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer | militaryLayer))
             {
                 Soldier clickedSoldier = hit.transform.gameObject.GetComponent<Soldier>();
                 if (clickedSoldier != null)
@@ -31,6 +35,12 @@ public class SoldierSelection : MonoBehaviour
                     DeselectAllSoldiers();
                     selectedSoldiers.Add(clickedSoldier);
                     clickedSoldier.transform.GetChild(2).gameObject.SetActive(true);
+                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si un soldado es seleccionado
+                }
+                else if (((1 << hit.transform.gameObject.layer) & militaryLayer) != 0) // Verificar si el objeto pertenece a la capa de "MilitaryBase"
+                {
+                    DeselectAllSoldiers();
+                    ShowMilitaryBaseButtons(); // Mostrar los botones de la base militar si la base es seleccionada
                 }
                 else
                 {
@@ -58,24 +68,29 @@ public class SoldierSelection : MonoBehaviour
                 if (!soldiersSelected)
                 {
                     DeselectAllSoldiers();
+                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si no se seleccionaron soldados
                 }
                 selectionBox.gameObject.SetActive(false);
             }
             else
             {
-                // Deseleccionar si no se seleccionó un soldado
                 RaycastHit hit;
-                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer))
+                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer | militaryLayer))
                 {
                     Soldier clickedSoldier = hit.transform.gameObject.GetComponent<Soldier>();
                     if (clickedSoldier == null)
                     {
                         DeselectAllSoldiers();
+                        if (((1 << hit.transform.gameObject.layer) & militaryLayer) == 0 && hit.transform.gameObject.layer == 7)
+                        {
+                            HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en el suelo
+                        }
                     }
                 }
                 else
                 {
                     DeselectAllSoldiers();
+                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en otro lugar
                 }
             }
         }
@@ -103,6 +118,7 @@ public class SoldierSelection : MonoBehaviour
                     }
                     groundMarker.transform.position = hit.point;
                     groundMarker.GetComponent<GroundIcon>().ActivateAndResetTimer();
+                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en el suelo
                 }
                 else
                 {
@@ -135,7 +151,7 @@ public class SoldierSelection : MonoBehaviour
             if (screenPosition.x >= min.x && screenPosition.x <= max.x && screenPosition.y >= min.y && screenPosition.y <= max.y)
             {
                 selectedSoldiers.Add(soldier);
-                soldier.transform.GetChild(2).gameObject.SetActive(true); 
+                soldier.transform.GetChild(2).gameObject.SetActive(true);
                 anySoldierSelected = true;
             }
         }
@@ -150,5 +166,15 @@ public class SoldierSelection : MonoBehaviour
             soldier.transform.GetChild(2).gameObject.SetActive(false);
         }
         selectedSoldiers.Clear();
+    }
+
+    void ShowMilitaryBaseButtons()
+    {
+        militaryBaseButtons.SetActive(true);
+    }
+
+    void HideMilitaryBaseButtons()
+    {
+        militaryBaseButtons.SetActive(false);
     }
 }
