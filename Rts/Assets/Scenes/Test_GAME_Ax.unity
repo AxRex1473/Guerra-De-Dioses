@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01e6f4a00d179b645998e9eae87f0be0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5454,7 +5458,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &377654496
 RectTransform:
@@ -7453,6 +7457,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01e6f4a00d179b645998e9eae87f0be0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7646,7 +7654,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &522694663
 RectTransform:
@@ -9245,6 +9253,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 59f985c7b1e224e4eb0b52448381b8e3, type: 3}
       propertyPath: m_Name
       value: Muro1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 59f985c7b1e224e4eb0b52448381b8e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12676,6 +12688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muro2 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e27e507f85ca6d42a8dd16b055d72ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13420,6 +13436,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ccb066bc25f6c44ca72d0da4e8ed972, type: 3}
       propertyPath: m_Name
       value: Muro5 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ccb066bc25f6c44ca72d0da4e8ed972, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16863,6 +16883,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Estructure
       objectReference: {fileID: 0}
+    - target: {fileID: 5267552214468816345, guid: c06aef7f56c220941be691f676c3f9f2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17490,7 +17514,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a9c1ded64c1539041a8974fa665f6f53, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d21e0c8549948cd42af8eccf796920d5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &1191667502
 TerrainCollider:
@@ -19905,6 +19929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1631202786}
     m_Modifications:
+    - target: {fileID: 919132148593052279, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1657325121553188381, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.8527584
@@ -19960,6 +19988,14 @@ PrefabInstance:
     - target: {fileID: 2012551599703661276, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
       propertyPath: m_Name
       value: RockSmallA (139)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012551599703661276, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355308167434530687, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20267,84 +20303,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1657325121553188381, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
   m_PrefabInstance: {fileID: 1374422180}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1383287979
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1631202786}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 340.34836
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -80.7311
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -60.54973
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.63767797
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.6022905
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.30556008
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.3704674
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -84.007
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 32.802
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_Name
-      value: Muro3 (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
---- !u!4 &1383287980 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
-  m_PrefabInstance: {fileID: 1383287979}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &1396518727 stripped
 Animator:
@@ -23168,6 +23126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1631202786}
     m_Modifications:
+    - target: {fileID: 919132148593052279, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1657325121553188381, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.6625566
@@ -23223,6 +23185,14 @@ PrefabInstance:
     - target: {fileID: 2012551599703661276, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
       propertyPath: m_Name
       value: RockSmallA (136)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012551599703661276, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355308167434530687, guid: 092a4707f8b589a439a015aeb164de54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24360,7 +24330,6 @@ Transform:
   - {fileID: 1916732186}
   - {fileID: 108407490}
   - {fileID: 307337351}
-  - {fileID: 1383287980}
   - {fileID: 1008276627}
   - {fileID: 1328247567}
   - {fileID: 882594786}
@@ -24550,6 +24519,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
       propertyPath: m_Name
       value: Muro3 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5ca845ccdf4b4aa4d8477327293a6ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28201,6 +28174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muro1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 59f985c7b1e224e4eb0b52448381b8e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30513,7 +30490,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2081593322
 RectTransform:
@@ -31244,7 +31221,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2120393075
 RectTransform:
