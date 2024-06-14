@@ -42,7 +42,7 @@ public class LoadGame : MonoBehaviour
                 //Tengo que hacer que se genere en el Script de Spawn la misma cantidad de Nativos que en el Script
                 StatCon.totalNative = _statConData.totalNative;
 
-                Debug.Log("Game data loaded successfully!");
+                //Debug.Log("Game data loaded successfully!");
             }
             else
             {

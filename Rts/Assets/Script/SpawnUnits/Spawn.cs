@@ -48,7 +48,7 @@ public class Spawn : MonoBehaviour
             Quaternion rot = spawnPoint.rotation;
             Instantiate(nativePrefab, pos, rot);
             _totalNativesSpawned++;
-            Debug.Log("Spawneando");
+            //Debug.Log("Spawneando");
         }
     }
 }
