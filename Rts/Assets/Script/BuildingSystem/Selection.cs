@@ -31,6 +31,8 @@ public class Selection : MonoBehaviour
             }
         }
 
+       
+
         if (Input.GetMouseButtonDown(1) && selectedObject != null)
         {
             Deselect();

@@ -19,4 +19,5 @@ public class UnitAct : MonoBehaviour
         // Activa el panel especificado
         panelToActivate.SetActive(true);
     }
+
 }
