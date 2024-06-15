@@ -5,23 +5,22 @@ using UnityEngine;
 public class CrecimientoMaiz : MonoBehaviour
 {
     public GameObject[] maiz;
-    private int _prefabIndex = 0;
-    private float _timer = 10f;
-    private float _changeInter = 5f;
+    public int _prefabIndex = 0;
+    public float _timer = 0f;
+    public float _changeInter = 5f;
 
     private void Update()
     {
-
         _timer += Time.deltaTime;
 
-        if (_timer > _changeInter && _prefabIndex < maiz.Length)
+        if (_timer > _changeInter)
         {
             _timer = 0f;
 
             Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
-            new WaitForSeconds(20);
 
-            _prefabIndex++;
+            // Incrementar el índice y reiniciarlo si es necesario
+            _prefabIndex = (_prefabIndex + 1) % maiz.Length;
         }
     }
 }
