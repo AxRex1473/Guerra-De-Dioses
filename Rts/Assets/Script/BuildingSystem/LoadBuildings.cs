@@ -27,10 +27,17 @@ public class BuildingsInfo
 
 public class LoadBuildings : MonoBehaviour
 {
+
     public Tags[] _estructureArray;
     //Esta parte del código es para salvar todas las estructuras del juego al iniciar el juego.
     public static BuildingsData buildingsData = new BuildingsData();
     public void Start()
+    {
+        //No es necesaria la función solo es para debug. Las estructuras ya se guardan en PauseGame
+        //FindObjects();
+    }
+
+    private void FindObjects()
     {
         // Busca todos los objetos con tag Estructure
         _estructureArray = FindObjectsOfType<Tags>();

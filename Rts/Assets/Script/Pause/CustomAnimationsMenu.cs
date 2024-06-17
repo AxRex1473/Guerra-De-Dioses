@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CustomAnimationsMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _canvasPause,_canvasOptions,_canvasGame,_popUpObject;
-    [SerializeField] private Animator _pauseAnimator, _bgAnimator, _optionAnim,_textOptionAnim,_popUpAnimator;
+    [SerializeField] private GameObject _canvasPause,_canvasOptions,_canvasGame,_popUpObject,_popUpRestartLV;
+    [SerializeField] private Animator _pauseAnimator, _bgAnimator, _optionAnim,_textOptionAnim,_popUpAnimator,_popUpRestartAnim;
 
     //Para que una animación nueva funcione tiene que cumplir varias cosas.
     //1- Animator con Update Mode Unscaled Time para que funcione aúnque este pausado el juego y animaciones que no esten en Loop
@@ -100,6 +100,22 @@ public class CustomAnimationsMenu : MonoBehaviour
     public void PopUpExitDone()
     {
         _popUpObject.SetActive(false);
+    }
+
+    public void SureRestartBtn()
+    {
+        _popUpRestartLV.SetActive(true);
+        _popUpRestartAnim.SetTrigger("RestartPopUp");
+    }
+
+    public void NotSureRestart()
+    {
+        _popUpRestartAnim.SetTrigger("RestartPopUp");
+    }
+
+    public void RestartPopUpDone()
+    {
+        _popUpRestartLV.SetActive(false);
     }
 
 

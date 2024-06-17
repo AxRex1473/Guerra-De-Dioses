@@ -17,6 +17,7 @@ public class StatCon : MonoBehaviour
     public static int totalFood = 0;
     public static int totalNative = 0;
 
+   /*
     public TextMeshProUGUI stoneTextComponent; 
     public TextMeshProUGUI foodTextComponent;  
     public TextMeshProUGUI nativeTextComponent; 
@@ -39,11 +40,11 @@ public class StatCon : MonoBehaviour
             totalFood += 10;
             totalNative += 10;
 
-            stoneTextComponent.text = "Total Stone: " + totalStone;
-            foodTextComponent.text = "Total Food: " + totalFood;
-            nativeTextComponent.text = "Total Native: " + totalNative;
+            stoneTextComponent.text = " " + totalStone;
+            foodTextComponent.text = " " + totalFood;
+            nativeTextComponent.text = " " + totalNative;
 
             yield return new WaitForSeconds(10);
         }
-    }
+    }*/
 }
