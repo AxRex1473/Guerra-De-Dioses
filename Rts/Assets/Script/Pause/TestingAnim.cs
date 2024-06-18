@@ -31,4 +31,10 @@ public class TestingAnim : MonoBehaviour
     {
         animMenu.PopUpExitDone();
     }
+
+
+    public void RestartPopUpDone()
+    {
+        animMenu.RestartPopUpDone();
+    }
 }
