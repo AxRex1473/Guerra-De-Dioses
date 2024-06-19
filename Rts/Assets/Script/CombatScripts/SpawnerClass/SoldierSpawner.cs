@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoldierSpawner : MonoBehaviour
 {
@@ -10,12 +11,12 @@ public class SoldierSpawner : MonoBehaviour
     [SerializeField] bool AllyBase;
     public int soldierCount;
     public int soldierMaxAmount;
-    public GameObject[] soldierPrefabs;  // Arreglo para múltiples prefabs
-    public int selectedPrefabIndex = 0;  // Índice del prefab seleccionado
+    public GameObject[] soldierPrefabs;
+    public int selectedPrefabIndex = 0;
 
-
-    private Queue<int> spawnQueue = new Queue<int>(); // Cola de spawneo
+    private Queue<int> spawnQueue = new Queue<int>();
     private Coroutine spawnCoroutine;
+    [SerializeField] private Slider spawnRatioSlider;
 
     [ContextMenu("Spawnea")]
     public void Spawn()
@@ -24,6 +25,7 @@ public class SoldierSpawner : MonoBehaviour
 
         if (spawnCoroutine == null)
         {
+            spawnRatioSlider.value = 1f; // Resetear el valor del slider al inicio
             spawnCoroutine = StartCoroutine(ProcessSpawnQueue());
         }
     }
@@ -43,6 +45,8 @@ public class SoldierSpawner : MonoBehaviour
             if (soldierMaxAmount > 0)
             {
                 int prefabIndex = spawnQueue.Dequeue();
+                StartCoroutine(UpdateSpawnRatioSlider(spawnRatio));
+
                 yield return new WaitForSeconds(spawnRatio);
                 SpawnSoldier(prefabIndex);
             }
@@ -52,7 +56,7 @@ public class SoldierSpawner : MonoBehaviour
             }
         }
 
-        // Detenemos la corrutina cuando la cola esté vacía
+        spawnRatioSlider.value = 1f;// Resetear el valor del slider al final
         spawnCoroutine = null;
     }
 
@@ -79,6 +83,7 @@ public class SoldierSpawner : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position + offsetSpawn, areaSpawn);
     }
+
     Vector3 GetRandomPosition()
     {
         Vector3 randomPosition = new Vector3(
@@ -88,6 +93,7 @@ public class SoldierSpawner : MonoBehaviour
         );
         return randomPosition;
     }
+
     private void Identifier(GameObject soldier)
     {
         Soldier soldierScript = soldier.GetComponent<Soldier>();
@@ -96,10 +102,23 @@ public class SoldierSpawner : MonoBehaviour
             soldierScript.targetLayer = LayerMask.GetMask(LayerMask.LayerToName(10));
             soldierScript.gameObject.tag = "Enemy";
             soldierScript.gameObject.layer = 8;
+            soldierScript.isEnemy = true;
         }
         else
         {
             Debug.LogWarning("El objeto instanciado no tiene el componente Soldier.");
         }
+    }
+
+    private IEnumerator UpdateSpawnRatioSlider(float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            spawnRatioSlider.value = 1 - (elapsedTime / duration);
+            yield return null;
+        }
+        spawnRatioSlider.value = 0f;
     }
 }

@@ -11,7 +11,7 @@ public class Soldier : SoldierBase
     private StateMachine soldierState;
     private Animator animator;
     private NavMeshAgent agent;
-
+    public bool isEnemy;
     private void Start()
     {
         soldierState = GetComponent<StateMachine>();

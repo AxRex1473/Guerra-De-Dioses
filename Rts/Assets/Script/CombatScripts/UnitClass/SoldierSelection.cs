@@ -15,6 +15,8 @@ public class SoldierSelection : MonoBehaviour
 
     public GameObject militaryBaseButtons; // Referencia a los botones de la base militar
 
+    private const int groundLayer = 7;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -24,35 +26,14 @@ public class SoldierSelection : MonoBehaviour
 
     void Update()
     {
+        HandleMouseInput();
+    }
+
+    void HandleMouseInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer | militaryLayer))
-            {
-                Soldier clickedSoldier = hit.transform.gameObject.GetComponent<Soldier>();
-                if (clickedSoldier != null)
-                {
-                    DeselectAllSoldiers();
-                    selectedSoldiers.Add(clickedSoldier);
-                    clickedSoldier.transform.GetChild(2).gameObject.SetActive(true);
-                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si un soldado es seleccionado
-                }
-                else if (((1 << hit.transform.gameObject.layer) & militaryLayer) != 0) // Verificar si el objeto pertenece a la capa de "MilitaryBase"
-                {
-                    DeselectAllSoldiers();
-                    ShowMilitaryBaseButtons(); // Mostrar los botones de la base militar si la base es seleccionada
-                }
-                else
-                {
-                    startPosition = Input.mousePosition;
-                    selectionBox.gameObject.SetActive(true);
-                }
-            }
-            else
-            {
-                startPosition = Input.mousePosition;
-                selectionBox.gameObject.SetActive(true);
-            }
+            OnLeftMouseButtonDown();
         }
 
         if (Input.GetMouseButton(0))
@@ -62,70 +43,143 @@ public class SoldierSelection : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (selectionBox.gameObject.activeSelf)
-            {
-                bool soldiersSelected = SelectSoldiers();
-                if (!soldiersSelected)
-                {
-                    DeselectAllSoldiers();
-                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si no se seleccionaron soldados
-                }
-                selectionBox.gameObject.SetActive(false);
-            }
-            else
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 500, targetLayer | militaryLayer))
-                {
-                    Soldier clickedSoldier = hit.transform.gameObject.GetComponent<Soldier>();
-                    if (clickedSoldier == null)
-                    {
-                        DeselectAllSoldiers();
-                        if (((1 << hit.transform.gameObject.layer) & militaryLayer) == 0 && hit.transform.gameObject.layer == 7)
-                        {
-                            HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en el suelo
-                        }
-                    }
-                }
-                else
-                {
-                    DeselectAllSoldiers();
-                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en otro lugar
-                }
-            }
+            OnLeftMouseButtonUp();
         }
 
         if (Input.GetMouseButtonUp(1) && selectedSoldiers.Count > 0)
         {
-            RaycastHit hit;
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            OnRightMouseButtonUp();
+        }
+    }
+
+    void OnLeftMouseButtonDown()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 1500, targetLayer | militaryLayer))
+        {
+            Soldier clickedSoldier = hit.transform.gameObject.GetComponent<Soldier>();
+            if (clickedSoldier != null && !clickedSoldier.isEnemy)
             {
-                if (hit.collider.gameObject.CompareTag("Enemy"))
-                {
-                    foreach (Soldier soldier in selectedSoldiers)
-                    {
-                        soldier.target = hit.collider.gameObject;
-                        soldier.OnSeek();
-                    }
-                }
-                else if (hit.collider.gameObject.layer == 7)
-                {
-                    foreach (Soldier soldier in selectedSoldiers)
-                    {
-                        soldier.groundPosition = hit.point;
-                        soldier.OnMove();
-                    }
-                    groundMarker.transform.position = hit.point;
-                    groundMarker.GetComponent<GroundIcon>().ActivateAndResetTimer();
-                    HideMilitaryBaseButtons(); // Ocultar los botones de la base militar si se hace clic en el suelo
-                }
-                else
-                {
-                    DeselectAllSoldiers();
-                }
+                SelectSingleSoldier(clickedSoldier);
+            }
+            else if (IsMilitaryBase(hit.transform.gameObject))
+            {
+                SelectMilitaryBase();
+            }
+            else
+            {
+                StartSelectionBox(Input.mousePosition);
             }
         }
+        else
+        {
+            StartSelectionBox(Input.mousePosition);
+        }
+    }
+
+    void OnLeftMouseButtonUp()
+    {
+        if (selectionBox.gameObject.activeSelf)
+        {
+            if (!SelectSoldiers())
+            {
+                DeselectAllSoldiers();
+                HideMilitaryBaseButtons();
+            }
+            selectionBox.gameObject.SetActive(false);
+        }
+        else
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 1500, targetLayer | militaryLayer))
+            {
+                if (hit.transform.gameObject.GetComponent<Soldier>() == null)
+                {
+                    DeselectAllSoldiers();
+                    if (!IsMilitaryBase(hit.transform.gameObject) && hit.transform.gameObject.layer == groundLayer)
+                    {
+                        HideMilitaryBaseButtons();
+                    }
+                }
+            }
+            else
+            {
+                DeselectAllSoldiers();
+                HideMilitaryBaseButtons();
+            }
+        }
+    }
+
+    void OnRightMouseButtonUp()
+    {
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                SetSoldiersTarget(hit.collider.gameObject);
+            }
+            else if (hit.collider.gameObject.layer == groundLayer)
+            {
+                MoveSoldiersTo(hit.point);
+                SetGroundMarker(hit.point);
+                HideMilitaryBaseButtons();
+            }
+            else
+            {
+                DeselectAllSoldiers();
+            }
+        }
+    }
+
+    void SetSoldiersTarget(GameObject target)
+    {
+        foreach (Soldier soldier in selectedSoldiers)
+        {
+            soldier.target = target;
+            soldier.OnSeek();
+        }
+    }
+
+    void MoveSoldiersTo(Vector3 position)
+    {
+        foreach (Soldier soldier in selectedSoldiers)
+        {
+            soldier.groundPosition = position;
+            soldier.OnMove();
+        }
+    }
+
+    void SetGroundMarker(Vector3 position)
+    {
+        groundMarker.transform.position = position;
+        groundMarker.GetComponent<GroundIcon>().ActivateAndResetTimer();
+    }
+
+    void StartSelectionBox(Vector2 mousePosition)
+    {
+        startPosition = mousePosition;
+        selectionBox.gameObject.SetActive(true);
+    }
+
+    void SelectSingleSoldier(Soldier soldier)
+    {
+        DeselectAllSoldiers();
+        selectedSoldiers.Add(soldier);
+        soldier.transform.GetChild(2).gameObject.SetActive(true);
+        HideMilitaryBaseButtons();
+    }
+
+    void SelectMilitaryBase()
+    {
+        DeselectAllSoldiers();
+        ShowMilitaryBaseButtons();
+    }
+
+    bool IsMilitaryBase(GameObject obj)
+    {
+        return ((1 << obj.layer) & militaryLayer) != 0;
     }
 
     void UpdateSelectionBox(Vector2 currentMousePosition)
@@ -144,8 +198,15 @@ public class SoldierSelection : MonoBehaviour
 
         bool anySoldierSelected = false;
 
+        DeselectAllSoldiers(); // Desselecciona todos los soldados antes de hacer una nueva selección
+
         foreach (Soldier soldier in FindObjectsOfType<Soldier>())
         {
+            if (soldier.isEnemy) // Saltar los soldados enemigos
+            {
+                continue;
+            }
+
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(soldier.transform.position);
 
             if (screenPosition.x >= min.x && screenPosition.x <= max.x && screenPosition.y >= min.y && screenPosition.y <= max.y)
