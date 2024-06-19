@@ -15,8 +15,17 @@ public class PauseGame : MonoBehaviour
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.
     private StatConData _statConData = new StatConData();
     private bool EncryptionEnabled;
+    [SerializeField] private CustomAnimationsMenu _customRef;
 
-  
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Aña");
+            Pause();
+            _customRef.PauseAnim();
+        }
+    }
 
     public void ToggleEncryption(bool EncryptionEnabled)
     {
