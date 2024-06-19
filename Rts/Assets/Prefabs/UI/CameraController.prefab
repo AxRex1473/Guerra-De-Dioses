@@ -282,10 +282,14 @@ MonoBehaviour:
   fastSpeed: 3
   movementSpeed: 1
   movementTime: 2
-  rotatioAmount: 1
+  rotationAmount: 0
   zoomAmount: {x: 0, y: -10, z: 10}
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
   newZoom: {x: 0, y: -100, z: 100}
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
+  minX: 228
+  maxX: 0
+  minZ: 657
+  maxZ: 0
