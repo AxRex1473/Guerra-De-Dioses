@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4134175974918673479}
-  - component: {fileID: 9015055449255319018}
+  - component: {fileID: 2361004906545538559}
   m_Layer: 6
   m_Name: CameraController
   m_TagString: Untagged
@@ -265,7 +265,7 @@ Transform:
   - {fileID: 6473758472624920733}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9015055449255319018
+--- !u!114 &2361004906545538559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,12 +274,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6801149036399341285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfead8656d4c53458bfcb2cd31459c9, type: 3}
+  m_Script: {fileID: 11500000, guid: c2b8b501f2734574699c5e3118bacf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 50
-  panBorderThickness: 0
-  panLimit: {x: 250, y: 200}
-  scrollSpeed: 30
-  minY: -200
-  maxY: 0
+  cameraTransform: {fileID: 6473758472624920733}
+  normalSpeed: 1
+  fastSpeed: 3
+  movementSpeed: 1
+  movementTime: 2
+  rotatioAmount: 1
+  zoomAmount: {x: 0, y: -10, z: 10}
+  newPosition: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  newZoom: {x: 0, y: -100, z: 100}
+  dragStartPosition: {x: 0, y: 0, z: 0}
+  dragCurrentPosition: {x: 0, y: 0, z: 0}
