@@ -36,7 +36,7 @@ public class CameraRTS : MonoBehaviour
     void Update()
     {
         HandleMovementInput();
-        HandleMousePosition();
+        //HandleMousePosition();
     }
 
     // Rotate Scroll
