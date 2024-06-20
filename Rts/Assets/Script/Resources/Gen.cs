@@ -9,7 +9,6 @@ public class Gen : MonoBehaviour
     {
         if (gameObject.tag.Contains("MinaEstructure"))
         {
-            Debug.Log("Aña");
             StartCoroutine(stoneGen());
         }
     }

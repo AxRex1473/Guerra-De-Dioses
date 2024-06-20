@@ -8,8 +8,7 @@ public class Food : MonoBehaviour
     void Start()
     {
         if (gameObject.tag.Contains("GranjaEstructure") || gameObject.tag.Contains("ChinampaEstructure"))
-        {
-            Debug.Log("Aña");
+        {   
             StartCoroutine(foodGen());
         }
     }
