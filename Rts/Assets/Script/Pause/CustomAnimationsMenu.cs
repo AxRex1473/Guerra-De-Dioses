@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Para que una animación nueva funcione tiene que cumplir varias cosas.
+//1- Animator con Update Mode Unscaled Time para que funcione aúnque este pausado el juego y animaciones que no esten en Loop
+//2- Un estado "Idle" donde empiece el Animator pero con una animación en la que no haga nada
+// Esto es solo para que pueda hacer la transición a la animación inicial con el trigger designado.
+//3- Mínimo 3 funciones en este código y 1 en TestingAnim: Una para activar el objeto y hacer la animación inicial
+//Otra función para únicamente reproducir la segunda animación del objeto con el Trigger del Animator
+//Después la función en TestingAnim que solo se ejecutará por un evento al final de la segunda animación
+//Dicha función en TestingAnim llamará a la tercera función de este código que solo apagará el objeto
+//y en algunos casos prenderá otro objeto.
+//EJ: Pausa- El Botón dentro del GameCanvases tiene un Obj llamado PauseButton este tiene 2 funciones 
+//al darle click, PauseGame.Pause (Lógica de Parar el tiempo), y CustomAnimations...PauseAnim (Se encarga
+//de la lógica para activar el objeto del Pause Canvas, desactivar el Canvas del juego y reproudcir la 
+//animación del PauseCanvas y también del Fade del Texto.
+//Y de ahí si quiere resumir el juego el Resume Button tiene la función Resume el cuál da la animación
+//del menú de Pausa para cerrar el juego, de ahí en TestingAnim tiene la función AnimationDoDone 
+//que espera a que termine la animación para llamar la última función del CustomAnimations que sería 
+//ResumeAnimDone él cuál desactiva el Objeto del PauseCanvas y activa el Canvas del Juego.
+
 public class CustomAnimationsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasPause,_canvasOptions,_canvasGame,_popUpObject,_popUpRestartLV;
     [SerializeField] private Animator _pauseAnimator, _bgAnimator, _optionAnim,_textOptionAnim,_popUpAnimator,_popUpRestartAnim;
-
-    //Para que una animación nueva funcione tiene que cumplir varias cosas.
-    //1- Animator con Update Mode Unscaled Time para que funcione aúnque este pausado el juego y animaciones que no esten en Loop
-    //2- Un estado "Idle" donde empiece el Animator pero con una animación en la que no haga nada
-    // Esto es solo para que pueda hacer la transición a la animación inicial con el trigger designado.
-    //3- Mínimo 3 funciones en este código y 1 en TestingAnim: Una para activar el objeto y hacer la animación inicial
-    //Otra función para únicamente reproducir la segunda animación del objeto con el Trigger del Animator
-    //Después la función en TestingAnim que solo se ejecutará por un evento al final de la segunda animación
-    //Dicha función en TestingAnim llamará a la tercera función de este código que solo apagará el objeto
-    //y en algunos casos prenderá otro objeto.
-    //EJ: Pausa- El Botón dentro del GameCanvases tiene un Obj llamado PauseButton este tiene 2 funciones 
-    //al darle click, PauseGame.Pause (Lógica de Parar el tiempo), y CustomAnimations...PauseAnim (Se encarga
-    //de la lógica para activar el objeto del Pause Canvas, desactivar el Canvas del juego y reproudcir la 
-    //animación del PauseCanvas y también del Fade del Texto.
-    //Y de ahí si quiere resumir el juego el Resume Button tiene la función Resume el cuál da la animación
-    //del menú de Pausa para cerrar el juego, de ahí en TestingAnim tiene la función AnimationDoDone 
-    //que espera a que termine la animación para llamar la última función del CustomAnimations que sería 
-    //ResumeAnimDone él cuál desactiva el Objeto del PauseCanvas y activa el Canvas del Juego.
 
     public void PauseAnim()
     {
