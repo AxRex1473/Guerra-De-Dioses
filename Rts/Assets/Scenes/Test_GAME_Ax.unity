@@ -10835,11 +10835,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1256871272}
   m_SourcePrefab: {fileID: 100100000, guid: 374bbb3f85625de43bac34d79d433b66, type: 3}
---- !u!1 &727788814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3424948390169731249, guid: c60a0be232771f04cadfb58b8a542e41, type: 3}
-  m_PrefabInstance: {fileID: 2663461398024066622}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &729565068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11219,7 +11214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7efc9f3b948b1042957304d68ffa336, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 323.4
+      value: 326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7efc9f3b948b1042957304d68ffa336, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23682,7 +23677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7efc9f3b948b1042957304d68ffa336, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 323.4
+      value: 326.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7efc9f3b948b1042957304d68ffa336, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38040,7 +38035,7 @@ PrefabInstance:
     - target: {fileID: 7598299306288288501, guid: 87b166a155be0f948aa35a3fbb0f94cd, type: 3}
       propertyPath: objects.Array.data[1]
       value: 
-      objectReference: {fileID: 727788814}
+      objectReference: {fileID: 3424948390169731249, guid: c60a0be232771f04cadfb58b8a542e41, type: 3}
     - target: {fileID: 7598299306288288501, guid: 87b166a155be0f948aa35a3fbb0f94cd, type: 3}
       propertyPath: objects.Array.data[2]
       value: 
@@ -38048,7 +38043,7 @@ PrefabInstance:
     - target: {fileID: 7598299306288288501, guid: 87b166a155be0f948aa35a3fbb0f94cd, type: 3}
       propertyPath: objects.Array.data[5]
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 159bac8f04358ab46a576e9a5345ac4e, type: 3}
+      objectReference: {fileID: 6765605354135834313, guid: c75eaec9ad8b09549a6c3a4d75fe7090, type: 3}
     - target: {fileID: 7598299306288288501, guid: 87b166a155be0f948aa35a3fbb0f94cd, type: 3}
       propertyPath: objects.Array.data[7]
       value: 

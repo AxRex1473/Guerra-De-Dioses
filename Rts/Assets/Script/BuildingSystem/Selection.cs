@@ -67,6 +67,6 @@ public class Selection : MonoBehaviour
 
     public void Rotate()
     {
-        selectedObject.transform.Rotate(0, 45, 0);
+        selectedObject.transform.Rotate(0, 0, 45);
     }
 }
