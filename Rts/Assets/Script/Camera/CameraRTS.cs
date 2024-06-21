@@ -20,12 +20,6 @@ public class CameraRTS : MonoBehaviour
     public Vector3 dragStartPosition;
     public Vector3 dragCurrentPosition;
 
-    // Límites de la cámara
-    //public float minX; 
-    //public float maxX; 
-    //public float minZ; 
-    //public float maxZ;
-
     void Start()
     {
         newPosition = transform.position;
@@ -64,9 +58,7 @@ public class CameraRTS : MonoBehaviour
                 dragCurrentPosition = ray.GetPoint(entry);
                 newPosition = transform.position + dragStartPosition - dragCurrentPosition;
 
-                //// Aplicar límites después de calcular la nueva posición
-                //newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-                //newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+
             }
         }
     }
@@ -107,10 +99,6 @@ public class CameraRTS : MonoBehaviour
         {
             newPosition += (transform.forward * movementSpeed);
         }
-
-        //// Aplicar límites después de calcular la nueva posición
-        //newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-        //newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
 
         //Zoom
         if (Input.GetKey(KeyCode.Z))

@@ -74,7 +74,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3543
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -282,14 +282,10 @@ MonoBehaviour:
   fastSpeed: 3
   movementSpeed: 1
   movementTime: 2
-  rotationAmount: 0
+  rotationAmount: 0.5
   zoomAmount: {x: 0, y: -10, z: 10}
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
   newZoom: {x: 0, y: -100, z: 100}
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
-  minX: 228
-  maxX: 0
-  minZ: 657
-  maxZ: 0
