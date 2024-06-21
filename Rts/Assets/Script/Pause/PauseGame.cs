@@ -9,7 +9,6 @@ public class PauseGame : MonoBehaviour
  
     //[SerializeField] private AudioSource _audioGame; //esto es para pausar el audio del juego
     //[SerializeField] private AudioSource _audioPause; //esto es para poner la música de pausa.
-
     //Estos son para que funcione el guardado del juego
     private IDataService DataService = new JSONDataService();
     //Este es un placeholder, pero aquí debería de tener una referencia de los datos generales del jugador ya sea su inventario la cantidad de tropas que lleva, etc.

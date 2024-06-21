@@ -34,7 +34,7 @@ public class LoadBuildings : MonoBehaviour
     public void Start()
     {
         //No es necesaria la función solo es para debug. Las estructuras ya se guardan en PauseGame
-        //FindObjects();
+        FindObjects();
     }
 
     private void FindObjects()
