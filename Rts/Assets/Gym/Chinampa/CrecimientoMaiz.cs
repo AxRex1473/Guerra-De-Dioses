@@ -17,10 +17,11 @@ public class CrecimientoMaiz : MonoBehaviour
         {
             _timer = 0f;
 
-            Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
-
-            // Incrementar el índice y reiniciarlo si es necesario
-            _prefabIndex = (_prefabIndex + 1) % maiz.Length;
+            if (_prefabIndex < maiz.Length)
+            {
+                Instantiate(maiz[_prefabIndex], transform.position, transform.rotation);
+                _prefabIndex++;
+            }
         }
     }
 }
