@@ -46,12 +46,12 @@ public class LoadGame : MonoBehaviour
             }
             else
             {
-                Debug.LogError("File not found: " + filePath);
+               // Debug.LogError("File not found: " + filePath);
             }
         }
         catch (Exception e)
         {
-            Debug.LogError("Could not load game data: " + e.Message);
+            //Debug.LogError("Could not load game data: " + e.Message);
         }
     }
 
@@ -72,7 +72,7 @@ public class LoadGame : MonoBehaviour
                     GameObject existingObject = GameObject.Find(buildingInfo.name);
                     if (existingObject != null)
                     {
-                        Debug.LogWarning("Duplicate object found for name: " + buildingInfo.name + ". Skipping instantiation.");
+                        //Debug.LogWarning("Duplicate object found for name: " + buildingInfo.name + ". Skipping instantiation.");
                         continue; //Se Skipea la instancea y continuá con la siguiente estructura
                     }
                     //Cuándo se genera una estructura se checa que tipo de tag tiene, y se instancia con el mimso nombre con el que tenía al guardar el juego. Esto para evitar bugs
@@ -90,18 +90,18 @@ public class LoadGame : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Prefab not found for tag: " + buildingInfo.tag);
+                        //Debug.LogError("Prefab not found for tag: " + buildingInfo.tag);
                     }
                 }
             }
             else
             {
-                Debug.LogError("File not found: " + filePath);
+               // Debug.LogError("File not found: " + filePath);
             }
         }
         catch (Exception e)
         {
-            Debug.LogError("Could not load game data: " + e.Message);
+           // Debug.LogError("Could not load game data: " + e.Message);
         }
     }
 

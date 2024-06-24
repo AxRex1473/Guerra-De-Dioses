@@ -20,7 +20,7 @@ public class PauseGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Aña");
+           // Debug.Log("Aña");
             Pause();
             _customRef.PauseAnim();
         }
@@ -64,27 +64,27 @@ public class PauseGame : MonoBehaviour
 
             if (DataService.SaveData("/player-Resources.json", _statConData, EncryptionEnabled))
             {
-                Debug.Log("Game saved!");
+               // Debug.Log("Game saved!");
             }
             else
             {
-                Debug.LogError("Could not save file");
+                //Debug.LogError("Could not save file");
             }
         }
         if (LoadBuildings.buildingsData != null && LoadBuildings.buildingsData.Buildings.Count > 0)
         {
             if (DataService.SaveData("/player-Buildings.json", LoadBuildings.buildingsData, EncryptionEnabled))
             {
-                Debug.Log("Game Salvado");
+                //Debug.Log("Game Salvado");
             }
             else
             {
-                Debug.LogError("Could not save file");
+               // Debug.LogError("Could not save file");
             }
         }
         else
         {
-            Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
+            //Debug.LogWarning("Building data list is empty or null. Cannot save buildings data.");
         }
     }
 

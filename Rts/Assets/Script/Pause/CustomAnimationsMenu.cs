@@ -25,11 +25,14 @@ public class CustomAnimationsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _canvasPause,_canvasOptions,_canvasGame,_popUpObject,_popUpRestartLV;
     [SerializeField] private Animator _pauseAnimator, _bgAnimator, _optionAnim,_textOptionAnim,_popUpAnimator,_popUpRestartAnim;
+    [SerializeField] private AudioClip _clickBtn, _exitBtn,_dummyBtn;
+    [SerializeField] private AudioSource _mainUIAudio;
 
     public void PauseAnim()
     {
         _canvasPause.SetActive(true);
         _canvasGame.SetActive(false);
+        _mainUIAudio.PlayOneShot(_clickBtn);
         _pauseAnimator.SetTrigger("MenuAction");
         _bgAnimator.SetTrigger("Fade");
     }
@@ -39,7 +42,7 @@ public class CustomAnimationsMenu : MonoBehaviour
     {
         _pauseAnimator.SetTrigger("MenuAction");
         _bgAnimator.SetTrigger("Fade");
-
+        _mainUIAudio.PlayOneShot(_exitBtn);
     }
 
     //Se resume el juego y se oculta el Pause Canvas
@@ -47,19 +50,20 @@ public class CustomAnimationsMenu : MonoBehaviour
     {
         _canvasPause.SetActive(false);
         _canvasGame.SetActive(true);
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;        
     }
 
     //Hace la otra animación del menú de pausa para que se cierre y así en Testing Anim de la señal para hacer el OptionShow
     public void OptionBtn()
     {
         _pauseAnimator.SetTrigger("MenuOptions");
+        _mainUIAudio.PlayOneShot(_clickBtn);
     }
 
     public void OptionShow()
     {
         //Aquí hace animación de ocultar la parte del PauseCanvas y después la animación que muestra las opciones
-
+        _mainUIAudio.PlayOneShot(_exitBtn);
         _canvasOptions.SetActive(true);
         // _canvasPartofPause.SetActive(false);
         _textOptionAnim.SetTrigger("Texting");
@@ -73,6 +77,7 @@ public class CustomAnimationsMenu : MonoBehaviour
         //Se hace la animación de ocultar el OptionAnim, pasamos al código TestinAnim
         _textOptionAnim.SetTrigger("Texting");
         _optionAnim.SetTrigger("NewOptions");
+        _mainUIAudio.PlayOneShot(_exitBtn);
 
     }
 
@@ -81,6 +86,7 @@ public class CustomAnimationsMenu : MonoBehaviour
         //Se desactiva el canvas Option, se activa la parte del canvas de Pausa y se hace la animación de regreso del canvas de pausa.
         _canvasOptions.SetActive(false);
         _pauseAnimator.SetTrigger("MenuOptions");
+        _mainUIAudio.PlayOneShot(_clickBtn);
         //_partofPauseAnimator.SetTrigger("OptionsChange");
     }
 
@@ -89,12 +95,14 @@ public class CustomAnimationsMenu : MonoBehaviour
     {
         _popUpObject.SetActive(true);
         _popUpAnimator.SetTrigger("PopUpSave");
+        _mainUIAudio.PlayOneShot(_clickBtn);
     }
 
     //Regresa al menú de Pausa después de darle al boton de no en el PopUp de Opciones, de ahí el código pasa a TestingAnim
     public void NotSure()
     {
         _popUpAnimator.SetTrigger("PopUpSave");
+        _mainUIAudio.PlayOneShot(_exitBtn);
     }
 
     //Función para el TestingAnim después de terminar la animación de PopUp
@@ -107,11 +115,13 @@ public class CustomAnimationsMenu : MonoBehaviour
     {
         _popUpRestartLV.SetActive(true);
         _popUpRestartAnim.SetTrigger("RestartPopUp");
+        _mainUIAudio.PlayOneShot(_clickBtn);
     }
 
     public void NotSureRestart()
     {
         _popUpRestartAnim.SetTrigger("RestartPopUp");
+        _mainUIAudio.PlayOneShot(_exitBtn);
     }
 
     public void RestartPopUpDone()
@@ -119,5 +129,9 @@ public class CustomAnimationsMenu : MonoBehaviour
         _popUpRestartLV.SetActive(false);
     }
 
+    public void PlaySound()
+    {
+        _mainUIAudio.PlayOneShot(_dummyBtn);
+    }
 
 }

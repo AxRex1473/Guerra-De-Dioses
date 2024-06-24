@@ -6,22 +6,33 @@ public class panelkeys : MonoBehaviour
 {
     public GameObject panel;
     public GameObject panelControls;
-    private bool isPanelActive = false; 
-
+    private bool isPanelActive = false;
+    [SerializeField] private AudioClip _clickBtn;
+    [SerializeField] private AudioSource _mainUIAudio;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) 
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            isPanelActive = !isPanelActive;
-            panel.SetActive(isPanelActive);
-        }
+            PanelVillagers();
+        }            
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            isPanelActive = !isPanelActive;
-            panelControls.SetActive(isPanelActive);
+            PanelControlers();
         }
     }
+
+    public void PanelVillagers()
+    {                
+            isPanelActive = !isPanelActive;
+            panel.SetActive(isPanelActive);            
+    }
     
+    public void PanelControlers()
+    {
+        isPanelActive = !isPanelActive;
+        panelControls.SetActive(isPanelActive);
+        _mainUIAudio.PlayOneShot(_clickBtn);
+    }
 }

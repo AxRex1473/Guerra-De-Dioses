@@ -7,6 +7,9 @@ public class Transition : MonoBehaviour
 
     public GameObject menuPause;
     public GameObject HUD;
+    [SerializeField] private AudioClip _dummyBtn;
+    [SerializeField] private AudioSource _mainUIAudio;
+
 
     public void SwitchScene(string sceneName)
     {
@@ -19,10 +22,14 @@ public class Transition : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlaySound()
+    {
+        _mainUIAudio.PlayOneShot(_dummyBtn);
+    }
     private void Update()
     {
         // Verifica si se presionó la tecla 'esc'
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Alterna el estado de pausa
             isPaused = !isPaused;
@@ -34,5 +41,6 @@ public class Transition : MonoBehaviour
             // Establece el Time.timeScale según corresponda
             Time.timeScale = isPaused ? 0 : 1;
         }
+       */
     }
 }
